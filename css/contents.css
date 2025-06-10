@@ -94,7 +94,18 @@ main {
   justify-content: space-between;
 }
 .about_list:last-child {
+  position: relative;
   margin-left: -310px;
+}
+.about_list:last-child .about_list_img::before {
+  content: 'DEFINE';
+  position: absolute;
+  top: -300px;
+  right: -114px;
+  font-weight: 500;
+  font-size: 240px;
+  letter-spacing: 0.1;
+  color: rgba(var(--color_black_rgb), 0.03);
 }
 .about_list_text {
   padding-top: 100px;
