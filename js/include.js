@@ -30,16 +30,29 @@ document.addEventListener("DOMContentLoaded", () => {
   function loadMainContent(pageName) {
     const main = document.querySelector("main");
     fetch(`html/content/${pageName}.html`)
-      .then(response => {
-        if (!response.ok) throw new Error("Page not found");
-        return response.text();
-      })
+      .then(response => response.text())
       .then(data => {
         main.innerHTML = data;
-      })
-      .catch(err => {
-        main.innerHTML = "<p>페이지를 불러오지 못했습니다.</p>";
-        console.error(err);
+  
+        // 페이지에 따라 header 스타일 클래스 변경
+        const body = document.body;
+        if (pageName === "home") {
+          body.classList.add("main");
+          body.classList.remove("sub");
+
+          const logoImg = document.querySelector(".logo img");
+          if (logoImg) {
+            logoImg.src = "../images/common/logo_white.svg";
+          }
+        } else {
+          body.classList.add("sub");
+          body.classList.remove("main");
+
+          const logoImg = document.querySelector(".logo img");
+          if (logoImg) {
+            logoImg.src = "../images/common/logo_blue.svg";
+          }
+        }
       });
-  }
+  }  
 });

@@ -1,0 +1,29 @@
+main {
+  position: relative;
+  height: 1090px;
+  background: url(../images/cotent/visual_main.jpg) center no-repeat;
+  background-size: cover;
+}
+.main_box {
+  position: absolute;
+  top: 280px;
+  left: 260px;
+}
+.main_title {
+  font-weight: 500;
+  font-size: 80px;
+  line-height: 96px;
+  color: var(--color_white);
+}
+.main_view_more {
+  display: inline-block;
+  margin-top: 80px;
+  padding: 13px 40px;
+  font-weight: 500;
+  font-size: 18px;
+  color: var(--color_white);
+  border: 1px solid rgba(var(--color_white_rgb), 0.8);
+  border-radius: 42px;
+  background: rgba(var(--color_white_rgb), 0.14);
+  backdrop-filter: blur(8px);
+}
