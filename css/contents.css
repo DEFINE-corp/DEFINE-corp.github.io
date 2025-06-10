@@ -72,12 +72,16 @@ main {
 .sub_content_title em {
   font-weight: 600;
 }
-
-/* about us */
-.about .sub_visual {
+.sub_visual {
   background: url(../images/cotent/visual_about.jpg) center no-repeat;
   background-size: cover;
 }
+
+/* about us */
+/* .about .sub_visual {
+  background: url(../images/cotent/visual_about.jpg) center no-repeat;
+  background-size: cover;
+} */
 .about_list_wrap {
   margin-top: 140px; 
 }
