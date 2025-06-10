@@ -83,9 +83,15 @@ main {
 }
 .about_list {
   display: flex;
+  gap: 120px;
+}
+.about_list:not(:first-child) {
+  margin-top: 180px;
 }
 .about_list:nth-child(even) {
+  gap: 0;
   flex-direction: row-reverse;
+  justify-content: space-between;
 }
 .about_list_text {
   padding-top: 100px;
