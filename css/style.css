@@ -54,7 +54,7 @@ body.main header nav a {
 footer {
   padding: 50px 0 74px 0;
   background: url(../images/common/footer_logo.svg) no-repeat right center, var(--color_bg);
-  background-position: calc(100% + 44px) calc(50% - 46px);
+  background-position: calc(100% + 5px) calc(50% - 46px);
 }
 footer .footer_box {
   width: 1400px;
