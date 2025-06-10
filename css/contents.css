@@ -93,6 +93,9 @@ main {
   flex-direction: row-reverse;
   justify-content: space-between;
 }
+.about_list:last-child {
+  margin-left: -310px;
+}
 .about_list_text {
   padding-top: 100px;
   font-weight: 500;
