@@ -28,9 +28,10 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
+	min-width: 1400px;
 	line-height: 1;
 	letter-spacing: -0.2px;
-  font-family: 'Poppins', "Segoe UI", "Roboto", "Noto Sans", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  font-family: 'Poppins', 'Noto Sans KR', 'Segoe UI', 'Roboto', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
 	color: var(--color_default);
 }
 ol, ul {

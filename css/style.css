@@ -21,6 +21,7 @@
   --color_bg_rgb: 248,248,248;
 }
 
+/* header */
 header {
   position: sticky;
   top: 0;
@@ -56,6 +57,7 @@ body.main header nav a {
   color: var(--color_white);
 }
 
+/* footer */
 footer {
   padding: 50px 0 74px 0;
   background: url(../images/common/footer_logo.svg) no-repeat right center, var(--color_bg);
