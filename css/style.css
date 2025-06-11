@@ -57,6 +57,10 @@ body.main header nav a {
   color: var(--color_white);
 }
 
+body.sub header.scrolled {
+  background-color: rgba(var(--color_white_rgb), 0.45);
+}
+
 /* footer */
 footer {
   padding: 50px 0 74px 0;

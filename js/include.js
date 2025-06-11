@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // header 로드된 후 nav 이벤트 바인딩
         if (el.getAttribute("data-include").includes("header.html")) {
           bindNavEvents();
+          bindHeaderScroll();
         }
       });
   });
@@ -54,5 +55,19 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         }
       });
+  }
+
+  function bindHeaderScroll() {
+    const header = document.querySelector('header'); // include된 header 요소
+  
+    if (!header) return;
+  
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 0) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
   }  
 });

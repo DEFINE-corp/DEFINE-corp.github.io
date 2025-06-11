@@ -124,7 +124,7 @@ main {
 .about_list_text p {
   margin-top: 30px;
   font-size: 18px;
-  line-height: 28px;
+  line-height: 1.5;
   white-space: pre-line;
 }
 
@@ -136,7 +136,7 @@ main {
   margin-top: 140px;
 }
 .professionals_list {
-  flex: 0 0 calc(50% - 70px);
+  width: calc(50% - 70px);
 }
 .professionals_list .list_img {
   display: flex;
