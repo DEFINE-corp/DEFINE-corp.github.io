@@ -163,4 +163,8 @@ main {
 }
 .professionals_list .list_cont dd {
   margin-top: 14px;
-  color: var(--color_sub_text)};
+  color: var(--color_sub_text);
+}
+.professionals_detail_wrap {
+  margin-top: 140px;
+}

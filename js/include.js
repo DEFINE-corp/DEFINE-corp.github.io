@@ -1,73 +1,68 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   // 공통 include 처리 (header, footer)
-  document.querySelectorAll("[data-include]").forEach(el => {
-    fetch(el.getAttribute("data-include"))
+  document.querySelectorAll('[data-include]').forEach(el => {
+    fetch(el.getAttribute('data-include'))
       .then(response => response.text())
       .then(data => {
         el.innerHTML = data;
 
-        // header 로드된 후 nav 이벤트 바인딩
-        if (el.getAttribute("data-include").includes("header.html")) {
-          bindNavEvents();
-          bindHeaderScroll();
+        if (el.getAttribute('data-include').includes('header.html')) {
+          window.bindNavEvents();  // 전역에 노출된 함수 호출
+          window.bindHeaderScroll();
         }
       });
   });
 
-  // 초기 콘텐츠 로딩
-  loadMainContent("home");
-
-  function bindNavEvents() {
-    const navLinks = document.querySelectorAll("nav a[data-page]");
-    navLinks.forEach(link => {
-      link.addEventListener("click", (e) => {
-        e.preventDefault();
-        const page = link.getAttribute("data-page");
-        loadMainContent(page);
-      });
-    });
-  }
-
-  function loadMainContent(pageName) {
-    const main = document.querySelector("main");
+  window.loadMainContent = function(pageName) {
+    const main = document.querySelector('main');
     fetch(`html/content/${pageName}.html`)
       .then(response => response.text())
       .then(data => {
         main.innerHTML = data;
-  
-        // 페이지에 따라 header 스타일 클래스 변경
+
         const body = document.body;
-        if (pageName === "home") {
-          body.classList.add("main");
-          body.classList.remove("sub");
+        if (pageName === 'home') {
+          body.classList.add('main');
+          body.classList.remove('sub');
 
-          const logoImg = document.querySelector(".logo img");
-          if (logoImg) {
-            logoImg.src = "../images/common/logo_white.svg";
-          }
+          const logoImg = document.querySelector('.logo img');
+          if (logoImg) logoImg.src = '../images/common/logo_white.svg';
         } else {
-          body.classList.add("sub");
-          body.classList.remove("main");
+          body.classList.add('sub');
+          body.classList.remove('main');
 
-          const logoImg = document.querySelector(".logo img");
-          if (logoImg) {
-            logoImg.src = "../images/common/logo_blue.svg";
-          }
+          const logoImg = document.querySelector('.logo img');
+          if (logoImg) logoImg.src = '../images/common/logo_blue.svg';
+        }
+
+        // 콘텐츠가 완전히 로드된 시점에 이벤트 바인딩 함수 호출
+        if (window.onContentLoaded) {
+          window.onContentLoaded(pageName);
         }
       });
-  }
+  };
 
-  function bindHeaderScroll() {
-    const header = document.querySelector('header'); // include된 header 요소
-  
-    if (!header) return;
-  
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 0) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
+  window.bindNavEvents = function() {
+    const navLinks = document.querySelectorAll('nav a[data-page]');
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const page = link.getAttribute('data-page');
+        window.loadMainContent(page);
+      });
     });
-  }  
+  };
+
+  window.bindHeaderScroll = function() {
+    const header = document.querySelector('header');
+    if (!header) return;
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 0) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    });
+  };
+
+  // 최초 초기화
+  loadMainContent('home');
 });

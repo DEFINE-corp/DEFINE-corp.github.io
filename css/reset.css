@@ -53,3 +53,7 @@ a {
 	color: var(--color_default);
 	text-decoration: none;
 }
+button {
+	all: unset;
+	cursor: pointer;
+}
