@@ -1,0 +1,16 @@
+<!-- 404.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Redirecting...</title>
+    <script>
+      // 현재 경로를 그대로 유지하면서 index.html로 강제 리디렉션
+      sessionStorage.redirectPath = location.pathname;
+      location.replace('/');
+    </script>
+  </head>
+  <body>
+    Redirecting...
+  </body>
+</html>
