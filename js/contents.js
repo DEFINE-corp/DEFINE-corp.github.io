@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
             detail.style.display = 'none';
           });
           if (detailItems[index]) {
-            detailItems[index].style.display = 'block';
+            detailItems[index].style.display = 'flex';
           }
           // detailWrap.scrollIntoView({ behavior: 'smooth' });
         });
