@@ -166,7 +166,7 @@ main {
   color: var(--color_sub_text);
 }
 
-.professionals_detail_wrap {
+.professionals_detail {
   display: flex;
   gap: 100px;
   margin-top: 140px;
@@ -200,4 +200,8 @@ main {
 .detail_cont .detail_info dd {
   margin-top: 14px;
   color: var(--color_sub_text);
+}
+.detail_cont .detail_info:nth-child(3) dd {
+  white-space: pre-line;
+  line-height: 1.6;
 }
