@@ -201,7 +201,8 @@ main {
   margin-top: 14px;
   color: var(--color_sub_text);
 }
-.detail_cont .detail_info:nth-of-type(3) dd {
+.detail_cont .detail_info:nth-of-type(3) dd,
+.detail_cont .detail_info:nth-of-type(4) dd {
   white-space: pre-line;
   line-height: 1.6;
 }
