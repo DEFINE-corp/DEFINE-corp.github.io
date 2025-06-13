@@ -85,6 +85,8 @@ document.addEventListener('DOMContentLoaded', () => {
             newUrl = '/location';
           } else if (pageName === 'contact') {
             newUrl = '/contact-us';
+          } else if (pageName === 'professionals') {
+            newUrl = '/professionals';
           }
           history.pushState({ pageName }, '', newUrl);
         }
@@ -133,17 +135,38 @@ document.addEventListener('DOMContentLoaded', () => {
     'about-us': 'about',
     'location': 'location',
     'contact-us': 'contact',
-    'professionals/detail': 'professionals'
+    'professionals': 'professionals',
+    'professionals/detail': 'professionals',
   };
 
   if (redirectPath) {
     sessionStorage.removeItem('redirectPath');
     const rawPath = redirectPath.replace(basePath, '').replace(/^\/+/, '');
     const path = urlToPageMap[rawPath] || 'home';
+  
     loadMainContent(path);
+  
+    // ✅ professionals/detail 리다이렉트일 때 상세 자동 표시
+    if (rawPath === 'professionals/detail') {
+      setTimeout(() => {
+        if (typeof window.showProfessionalDetail === 'function') {
+          window.showProfessionalDetail(0);
+        }
+      }, 100); // loadMainContent 후 DOM 렌더링 기다리기
+    }
   } else {
     const rawPath = window.location.pathname.replace(basePath, '').replace(/^\/+/, '');
     const path = urlToPageMap[rawPath] || 'home';
+  
     loadMainContent(path);
-  }
+  
+    // ✅ 새로고침 또는 직접 진입 케이스 처리
+    if (rawPath === 'professionals/detail') {
+      setTimeout(() => {
+        if (typeof window.showProfessionalDetail === 'function') {
+          window.showProfessionalDetail(0);
+        }
+      }, 100);
+    }
+  }  
 });
