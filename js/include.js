@@ -24,18 +24,24 @@ document.addEventListener('DOMContentLoaded', () => {
         // CSS 파일 캐시 무시하고 새로 불러오기
         const cssLinks = document.querySelectorAll('link[rel="stylesheet"]');
         cssLinks.forEach(link => {
-          const url = link.getAttribute('href');
-          if (url && !url.includes('?v=')) {
-            link.setAttribute('href', `${url}?v=${version}`);
+          let href = link.getAttribute('href');
+          if (href && !href.includes('?v=')) {
+            const newHref = `${href}?v=${version}`;
+            const newLink = link.cloneNode();
+            newLink.setAttribute('href', newHref);
+            link.parentNode.replaceChild(newLink, link);  // 기존 링크 교체
           }
         });
 
         // JS 파일 캐시 무시하고 새로 불러오기
-        const scriptTags = document.querySelectorAll('script');
+        const scriptTags = document.querySelectorAll('script[src]');
         scriptTags.forEach(script => {
-          const url = script.getAttribute('src');
-          if (url && !url.includes('?v=')) {
-            script.setAttribute('src', `${url}?v=${version}`);
+          let src = script.getAttribute('src');
+          if (src && !src.includes('?v=')) {
+            const newScript = document.createElement('script');
+            newScript.src = `${src}?v=${version}`;
+            newScript.defer = true;
+            script.parentNode.replaceChild(newScript, script);
           }
         });
       });
