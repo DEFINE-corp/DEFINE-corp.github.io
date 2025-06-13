@@ -54,6 +54,10 @@ document.addEventListener('DOMContentLoaded', () => {
           newUrl = '/';
         } else if (pageName === 'about') {
           newUrl = '/about-us';
+        } else if (pageName === 'location') {
+          newUrl = '/contact';
+        } else if (pageName === 'contact') {
+          newUrl = '/contact-us';
         }
         history.pushState({ pageName }, '', newUrl);
       }      
