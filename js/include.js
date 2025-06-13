@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
           } else if (pageName === 'about') {
             newUrl = '/about-us';
           } else if (pageName === 'location') {
-            newUrl = '/contact';
+            newUrl = '/location';
           } else if (pageName === 'contact') {
             newUrl = '/contact-us';
           }
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const urlToPageMap = {
     '': 'home',
     'about-us': 'about',
-    'contact': 'location',
+    'location': 'location',
     'contact-us': 'contact'
   };
 
