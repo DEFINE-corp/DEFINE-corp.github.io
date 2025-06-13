@@ -1,4 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // 현재 날짜+시간을 버전 문자열로 생성 (예: 20250613_143012)
+  const now = new Date();
+  const version =
+    now.getFullYear().toString() +
+    String(now.getMonth() + 1).padStart(2, '0') +
+    String(now.getDate()).padStart(2, '0') + '_' +
+    String(now.getHours()).padStart(2, '0') +
+    String(now.getMinutes()).padStart(2, '0') +
+    String(now.getSeconds()).padStart(2, '0');
+
   // 공통 include 처리 (header, footer)
   document.querySelectorAll('[data-include]').forEach(el => {
     fetch(el.getAttribute('data-include'))
@@ -7,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         el.innerHTML = data;
 
         if (el.getAttribute('data-include').includes('header.html')) {
-          window.bindNavEvents();  // 전역에 노출된 함수 호출
+          window.bindNavEvents();
           window.bindHeaderScroll();
         }
 
@@ -15,17 +25,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const cssLinks = document.querySelectorAll('link[rel="stylesheet"]');
         cssLinks.forEach(link => {
           const url = link.getAttribute('href');
-          const versionedUrl = `${url}?v=${new Date().getTime()}`;
-          link.setAttribute('href', versionedUrl);
+          if (url && !url.includes('?v=')) {
+            link.setAttribute('href', `${url}?v=${version}`);
+          }
         });
 
         // JS 파일 캐시 무시하고 새로 불러오기
         const scriptTags = document.querySelectorAll('script');
         scriptTags.forEach(script => {
           const url = script.getAttribute('src');
-          if (url) {
-            const versionedUrl = `${url}?v=${new Date().getTime()}`;
-            script.setAttribute('src', versionedUrl);
+          if (url && !url.includes('?v=')) {
+            script.setAttribute('src', `${url}?v=${version}`);
           }
         });
       });

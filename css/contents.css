@@ -98,7 +98,8 @@ main {
   justify-content: space-between;
 }
 .about_list:last-child {
-  margin-left: -310px;
+  gap: 100px;
+  margin-left: -280px;
 }
 .about_list_img {
   display: inline-flex;
@@ -130,6 +131,12 @@ main {
   margin-top: 30px;
   font-size: 22px;
   line-height: 1.6;
+}
+.about_list_text p span {
+  font-weight: 600;
+}
+.about_list:last-child .about_list_text p {
+  width: 550px;
 }
 
 /* about us */

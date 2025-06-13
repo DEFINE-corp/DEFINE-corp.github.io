@@ -12,17 +12,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // 전문가 목록 클릭 시 상세 화면 보여주기
       buttons.forEach((button, index) => {
-        button.addEventListener('click', () => {
-          listWrap.style.display = 'none';  // 전문가 목록 숨기기
-          detailItems.forEach(detail => detail.style.display = 'none');  // 모든 상세 정보 숨기기
-          if (detailItems[index]) {
-            detailItems[index].style.display = 'flex';  // 클릭한 전문가의 상세 정보만 보이기
+        // button.addEventListener('click', () => {
+        //   listWrap.style.display = 'none';  // 전문가 목록 숨기기
+        //   detailItems.forEach(detail => detail.style.display = 'none');  // 모든 상세 정보 숨기기
+        //   if (detailItems[index]) {
+        //     detailItems[index].style.display = 'flex';  // 클릭한 전문가의 상세 정보만 보이기
 
-            // URL을 `professionals/detail`로 업데이트
-            const pageName = 'professionals/detail'; // 상세 페이지 URL
-            window.history.pushState({ pageName }, '', '/professionals/detail');
+        //     // URL을 `professionals/detail`로 업데이트
+        //     const pageName = 'professionals/detail'; // 상세 페이지 URL
+        //     window.history.pushState({ pageName }, '', '/professionals/detail');
+        //   }
+        // });
+        button.addEventListener('click', () => {
+          listWrap.style.display = 'none';
+          detailItems.forEach(detail => detail.style.display = 'none');
+        
+          if (detailItems[index]) {
+            const detailItem = detailItems[index];
+            detailItem.style.display = 'flex';
+        
+            // 현재 스크롤 위치 고려해서 중앙 배치
+            const scrollY = window.scrollY;
+            const viewportHeight = window.innerHeight;
+            const elementHeight = detailItem.offsetHeight;
+        
+            // 중앙 위치 계산
+            const top = scrollY + (viewportHeight - elementHeight) / 2;
+        
+            detailItem.style.position = 'absolute';
+            detailItem.style.top = `${top}px`;
+            detailItem.style.left = '50%';
+            detailItem.style.transform = 'translateX(-50%)';
+            detailItem.style.zIndex = '1000';
+        
+            // URL 업데이트
+            window.history.pushState({ pageName: 'professionals/detail' }, '', '/professionals/detail');
           }
-        });
+        });        
       });
 
       // X 버튼 클릭 시 상세 정보 숨기고 목록 화면으로 돌아가기
