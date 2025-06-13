@@ -49,16 +49,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.loadMainContent = function(pageName, pushState = true) {
     const main = document.querySelector('main');
-    main.classList.remove('loaded'); // 먼저 숨기고
-
+    const body = document.body;
+  
+    body.classList.remove('loaded');
+  
     fetch(`/html/content/${pageName}.html`)
       .then(response => {
         if (!response.ok) throw new Error('Page not found');
         return response.text();
       })
       .then(data => {
-        const body = document.body;
-        
         // 스타일 적용 전 body class 먼저 세팅
         if (pageName === 'home') {
           body.classList.remove('sub');
@@ -67,20 +67,18 @@ document.addEventListener('DOMContentLoaded', () => {
           body.classList.remove('main');
           body.classList.add('sub');
         }
-
+  
         main.innerHTML = data;
-
-        // window.onContentLoaded 호출
+  
         if (window.onContentLoaded) {
           window.onContentLoaded(pageName);
         }
-
+  
         // 스타일 적용된 후 보여주기
         requestAnimationFrame(() => {
-          main.classList.add('loaded'); // 페이드 인
+          body.classList.add('loaded');
         });
-
-        // URL 처리
+  
         if (pushState) {
           let newUrl = `/${pageName}`;
           if (pageName === 'home') newUrl = '/';
@@ -95,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
         main.innerHTML = `<p>요청한 페이지를 불러올 수 없습니다.</p>`;
         console.error(error);
       });
-  };
+  };  
 
   window.addEventListener('popstate', (event) => {
     const state = event.state || {};
