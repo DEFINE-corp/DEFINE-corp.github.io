@@ -132,14 +132,16 @@ main {
 .professionals_list_wrap {
   display: flex;
   flex-wrap: wrap;
-  gap: 180px 140px;
+  gap: 80px 40px;
   margin-top: 140px;
 }
 .professionals_list {
-  width: calc(50% - 70px);
+  width: calc((100% - 80px)/3);
 }
 .professionals_list .list_img {
   display: flex;
+}
+.professionals_list .list_img img {
   width: 100%;
 }
 .professionals_list .list_name {
@@ -174,6 +176,9 @@ main {
 .detail_img {
   display: flex;
   width: 590px;
+}
+.detail_img img {
+  width: 100%;
 }
 .detail_cont {
   flex: 1;

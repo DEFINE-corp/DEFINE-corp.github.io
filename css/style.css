@@ -74,7 +74,7 @@ footer .footer_box {
 .footer_corp {
   font-weight: 600;
   font-size: 24px;
-  color: var(--color_black);}
+  color: var(--color_point);}
 .footer_link {
   display: flex;
   align-items: center;
