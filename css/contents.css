@@ -1,22 +1,22 @@
 /* home */
-.main main {
+.home {
   position: relative;
   height: 1090px;
   margin-top: -90px;
   background: url(../images/cotent/visual_main.jpg) center no-repeat;
   background-size: cover;
 }
-.main_box {
+.home_box {
   width: 1400px;
   margin: 190px auto 0 auto;
 }
-.main_title {
+.home_title {
   font-weight: 500;
   font-size: 80px;
   line-height: 96px;
   color: var(--color_white);
 }
-.main_view_more {
+.home_view_more {
   display: inline-block;
   margin-top: 80px;
   padding: 13px 40px;
@@ -29,7 +29,7 @@
   backdrop-filter: blur(8px);
   cursor: pointer;
 }
-.main_view_more .icon_arrow {
+.home_view_more .icon_arrow {
   margin-left: 10px;
 }
 
