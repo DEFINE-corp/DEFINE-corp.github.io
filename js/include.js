@@ -126,7 +126,8 @@ document.addEventListener('DOMContentLoaded', () => {
     '': 'home',
     'about-us': 'about',
     'location': 'location',
-    'contact-us': 'contact'
+    'contact-us': 'contact',
+    'professionals/detail': 'professionals'
   };
 
   if (redirectPath) {
