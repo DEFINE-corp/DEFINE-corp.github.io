@@ -34,7 +34,7 @@
 }
 
 /* sub */
-main {
+body.sub main {
   padding: 140px 0 180px 0;
 }
 .sub_title {
