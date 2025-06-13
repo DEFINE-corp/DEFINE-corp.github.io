@@ -100,8 +100,13 @@ main {
 .about_list:last-child {
   margin-left: -310px;
 }
-.about_list:last-child .about_list_img {
+.about_list_img {
+  display: inline-flex;
   position: relative;
+}
+.about_list_img img {
+  width: calc(100% - 100px);
+  height: auto;
 }
 .about_list:last-child .about_list_img::before {
   content: 'DEFINE';
@@ -123,7 +128,7 @@ main {
 }
 .about_list_text p {
   margin-top: 30px;
-  font-size: 18px;
+  font-size: 22px;
   line-height: 1.5;
   white-space: pre-line;
 }
