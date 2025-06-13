@@ -49,8 +49,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // 주소 변경
       if (pushState) {
-        history.pushState({ pageName }, '', `/${pageName}`);
-      }
+        let newUrl = `/${pageName}`;
+        if (pageName === 'home') {
+          newUrl = '/';
+        } else if (pageName === 'about') {
+          newUrl = '/about-us';
+        }
+        history.pushState({ pageName }, '', newUrl);
+      }      
     })
     .catch(error => {
       main.innerHTML = `<p>요청한 페이지를 불러올 수 없습니다.</p>`;
@@ -90,12 +96,22 @@ document.addEventListener('DOMContentLoaded', () => {
   // 초기 진입 시 경로 파싱
   const basePath = '';
   const redirectPath = sessionStorage.redirectPath;
+
+  const urlToPageMap = {
+    '': 'home',
+    'about-us': 'about',
+    'contact': 'location',
+    'contact-us': 'contact'
+  };
+
   if (redirectPath) {
     sessionStorage.removeItem('redirectPath');
-    const path = redirectPath.replace(basePath, '').replace(/^\/+/, '') || 'home';
+    const rawPath = redirectPath.replace(basePath, '').replace(/^\/+/, '');
+    const path = urlToPageMap[rawPath] || 'home';
     loadMainContent(path);
   } else {
-    const path = window.location.pathname.replace(basePath, '').replace(/^\/+/, '') || 'home';
+    const rawPath = window.location.pathname.replace(basePath, '').replace(/^\/+/, '');
+    const path = urlToPageMap[rawPath] || 'home';
     loadMainContent(path);
   }
 });
