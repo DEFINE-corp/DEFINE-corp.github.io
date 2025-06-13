@@ -61,9 +61,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (pageName === 'home') {
           body.classList.remove('sub');
           body.classList.add('main');
+          const logoImg = document.querySelector('.logo img');
+          if (logoImg) logoImg.src = '../images/common/logo_white.svg';
         } else {
           body.classList.remove('main');
           body.classList.add('sub');
+          const logoImg = document.querySelector('.logo img');
+          if (logoImg) logoImg.src = '../images/common/logo_blue.svg';
         }
   
         main.innerHTML = data;
