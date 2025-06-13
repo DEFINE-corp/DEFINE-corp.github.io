@@ -6,17 +6,17 @@ body.main main {
   background: url(../images/cotent/visual_main.jpg) center no-repeat;
   background-size: cover;
 }
-.home_box {
+.main_box {
   width: 1400px;
   margin: 190px auto 0 auto;
 }
-.home_title {
+.main_title {
   font-weight: 500;
   font-size: 80px;
   line-height: 96px;
   color: var(--color_white);
 }
-.home_view_more {
+.main_view_more {
   display: inline-block;
   margin-top: 80px;
   padding: 13px 40px;
@@ -29,7 +29,7 @@ body.main main {
   backdrop-filter: blur(8px);
   cursor: pointer;
 }
-.home_view_more .icon_arrow {
+.main_view_more .icon_arrow {
   margin-left: 10px;
 }
 
