@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.loadMainContent = function(pageName, pushState = true) {
     const main = document.querySelector('main');
-    fetch(`html/content/${pageName}.html`)
+    fetch(`/html/content/${pageName}.html`)
       .then(response => {
         if (!response.ok) throw new Error('Page not found');
         return response.text();
