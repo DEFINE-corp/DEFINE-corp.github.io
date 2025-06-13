@@ -15,7 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const cssLinks = document.querySelectorAll('link[rel="stylesheet"]');
         cssLinks.forEach(link => {
           const url = link.getAttribute('href');
-          link.setAttribute('href', `${url}?v=${new Date().getTime()}`);
+          const versionedUrl = `${url}?v=${new Date().getTime()}`;
+          link.setAttribute('href', versionedUrl);
         });
 
         // JS 파일 캐시 무시하고 새로 불러오기
@@ -23,7 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
         scriptTags.forEach(script => {
           const url = script.getAttribute('src');
           if (url) {
-            script.setAttribute('src', `${url}?v=${new Date().getTime()}`);
+            const versionedUrl = `${url}?v=${new Date().getTime()}`;
+            script.setAttribute('src', versionedUrl);
           }
         });
       });

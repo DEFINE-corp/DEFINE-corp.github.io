@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // X 버튼 클릭 시 상세 정보 숨기고 목록 화면으로 돌아가기
       closeButtons.forEach(button => {
         button.addEventListener('click', () => {
-          listWrap.style.display = 'block';  // 목록 화면 보이기
+          listWrap.style.display = 'flex';  // 목록 화면 보이기
           detailItems.forEach(detail => detail.style.display = 'none');  // 상세 정보 숨기기
 
           // URL을 `professionals`로 되돌리기
