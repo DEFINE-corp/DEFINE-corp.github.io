@@ -49,45 +49,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.loadMainContent = function(pageName, pushState = true) {
     const main = document.querySelector('main');
+    main.classList.remove('loaded'); // 먼저 숨기고
+
     fetch(`/html/content/${pageName}.html`)
       .then(response => {
         if (!response.ok) throw new Error('Page not found');
         return response.text();
       })
       .then(data => {
-        main.innerHTML = data;
-
-        const body = document.body;
+        // 스타일 적용 전 body class 먼저 세팅
         if (pageName === 'home') {
-          body.classList.add('main');
           body.classList.remove('sub');
-          const logoImg = document.querySelector('.logo img');
-          if (logoImg) logoImg.src = '../images/common/logo_white.svg';
+          body.classList.add('main');
         } else {
-          body.classList.add('sub');
           body.classList.remove('main');
-          const logoImg = document.querySelector('.logo img');
-          if (logoImg) logoImg.src = '../images/common/logo_blue.svg';
+          body.classList.add('sub');
         }
 
+        main.innerHTML = data;
+
+        // window.onContentLoaded 호출
         if (window.onContentLoaded) {
           window.onContentLoaded(pageName);
         }
 
-        // 주소 변경
+        // 스타일 적용된 후 보여주기
+        requestAnimationFrame(() => {
+          main.classList.add('loaded'); // 페이드 인
+        });
+
+        // URL 처리
         if (pushState) {
           let newUrl = `/${pageName}`;
-          if (pageName === 'home') {
-            newUrl = '/';
-          } else if (pageName === 'about') {
-            newUrl = '/about-us';
-          } else if (pageName === 'location') {
-            newUrl = '/location';
-          } else if (pageName === 'contact') {
-            newUrl = '/contact-us';
-          } else if (pageName === 'professionals') {
-            newUrl = '/professionals';
-          }
+          if (pageName === 'home') newUrl = '/';
+          else if (pageName === 'about') newUrl = '/about-us';
+          else if (pageName === 'location') newUrl = '/location';
+          else if (pageName === 'contact') newUrl = '/contact-us';
+          else if (pageName === 'professionals') newUrl = '/professionals';
           history.pushState({ pageName }, '', newUrl);
         }
       })
@@ -98,9 +96,20 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   window.addEventListener('popstate', (event) => {
-    const pageName = (event.state && event.state.pageName) || 'home';
-    window.loadMainContent(pageName, false);  // pushState 하지 않음
-  });
+    const state = event.state || {};
+    const pageName = state.pageName || 'home';
+  
+    if (pageName === 'professionals/detail') {
+      if (typeof window.showProfessionalDetail === 'function') {
+        window.showProfessionalDetail(state.index || 0);
+      } else {
+        // 아직 contents.js에서 showProfessionalDetail 정의 안 됐을 경우
+        window.loadMainContent('professionals', false);
+      }
+    } else {
+      window.loadMainContent(pageName, false); // false → URL 변경 안 함
+    }
+  });  
 
   window.bindNavEvents = function() {
     const navLinks = document.querySelectorAll('nav a[data-page]');

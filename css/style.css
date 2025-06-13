@@ -97,3 +97,12 @@ footer .footer_box {
   font-size: 15px;
   color: var(--color_sub_text);
 }
+
+/* body */
+body.main {
+  opacity: 0;
+  transition: opacity 0.2s ease-in;
+}
+body.main.loaded {
+  opacity: 1;
+}
