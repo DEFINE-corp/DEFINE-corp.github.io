@@ -57,6 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
         return response.text();
       })
       .then(data => {
+        const body = document.body;
+        
         // 스타일 적용 전 body class 먼저 세팅
         if (pageName === 'home') {
           body.classList.remove('sub');
