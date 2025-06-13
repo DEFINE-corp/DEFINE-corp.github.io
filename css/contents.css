@@ -129,8 +129,7 @@ main {
 .about_list_text p {
   margin-top: 30px;
   font-size: 22px;
-  line-height: 1.5;
-  white-space: pre-line;
+  line-height: 1.6;
 }
 
 /* about us */
@@ -174,20 +173,44 @@ main {
 }
 
 .professionals_detail {
-  display: flex;
   gap: 100px;
+  position: relative;
   margin-top: 140px;
 }
 .close_button {
   position: absolute;
   top: 10px;
   right: 10px;
-  background-color: transparent;
-  border: none;
-  font-size: 1.5rem;
-  color: #333;
-  cursor: pointer;
-  z-index: 10;
+  width: 50px;
+  height: 50px;
+}
+.close_button::before {
+  content: "";
+  position: absolute;
+  height: 2px;
+  width: 50px;
+  background-color: var(--color_default);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  transition: ease-out 0.3s all;
+}
+.close_button::after {
+  content: "";
+  position: absolute;
+  height: 2px;
+  width: 50px;
+  background-color: var(--color_default);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  transition: ease-out 0.3s all;
+}
+.close_button:hover::before, .close_button:focus::before {
+  transform: translate(-50%, -50%) rotate(135deg);
+}
+.close_button:hover::after, .close_button:focus::after {
+  transform: translate(-50%, -50%) rotate(225deg);
 }
 .detail_img {
   display: flex;

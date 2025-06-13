@@ -17,6 +17,10 @@ document.addEventListener('DOMContentLoaded', () => {
           detailItems.forEach(detail => detail.style.display = 'none');  // 모든 상세 정보 숨기기
           if (detailItems[index]) {
             detailItems[index].style.display = 'flex';  // 클릭한 전문가의 상세 정보만 보이기
+
+            // URL을 `professionals/detail`로 업데이트
+            const pageName = 'professionals/detail'; // 상세 페이지 URL
+            window.history.pushState({ pageName }, '', '/professionals/detail');
           }
         });
       });
@@ -26,6 +30,10 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', () => {
           listWrap.style.display = 'block';  // 목록 화면 보이기
           detailItems.forEach(detail => detail.style.display = 'none');  // 상세 정보 숨기기
+
+          // URL을 `professionals`로 되돌리기
+          const pageName = 'professionals'; // 목록 페이지 URL
+          window.history.pushState({ pageName }, '', '/professionals');
         });
       });
     }
