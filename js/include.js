@@ -51,8 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const main = document.querySelector('main');
     const body = document.body;
   
-    body.classList.remove('loaded');
-  
     fetch(`/html/content/${pageName}.html`)
       .then(response => {
         if (!response.ok) throw new Error('Page not found');
@@ -73,11 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window.onContentLoaded) {
           window.onContentLoaded(pageName);
         }
-  
-        // 스타일 적용된 후 보여주기
-        requestAnimationFrame(() => {
-          body.classList.add('loaded');
-        });
   
         if (pushState) {
           let newUrl = `/${pageName}`;
