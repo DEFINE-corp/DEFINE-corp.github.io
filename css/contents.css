@@ -8,7 +8,8 @@ body.main main {
 }
 .main_box {
   width: 1400px;
-  margin: 190px auto 0 auto;
+  margin: 0 auto;
+  padding-top: 190px;
 }
 .main_title {
   font-weight: 500;
