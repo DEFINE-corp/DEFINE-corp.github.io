@@ -38,12 +38,16 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   };
-
-  initNaverMap();
 });
 
 // location map
 function initNaverMap() {
+  const mapEl = document.getElementById('map');
+  if (!mapEl) {
+    console.warn('#map 요소가 존재하지 않아 지도 초기화를 건너뜁니다.');
+    return;
+  }
+
   var mapOptions = {
     center: new naver.maps.LatLng(37.3595704, 127.105399),
     zoom: 16
