@@ -37,11 +37,11 @@ document.addEventListener('DOMContentLoaded', () => {
         window.showProfessionalDetail(0);
       }
     }
-  };
 
-  if (pageName === 'location') {
-    initNaverMap(); // ✅ location 페이지일 때 지도 초기화 실행
-  }
+    if (pageName === 'location') {
+      initNaverMap();
+    }
+  };
 });
 
 // location map
