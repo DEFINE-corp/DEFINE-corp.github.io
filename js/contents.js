@@ -39,7 +39,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  initNaverMap();
+  if (pageName === 'location') {
+    initNaverMap(); // ✅ location 페이지일 때 지도 초기화 실행
+  }
 });
 
 // location map
