@@ -368,7 +368,7 @@ body.sub main {
 /* sub - motion */
 .pin-spacer {
   position: relative;
-  height: 200vh; /* 이미지가 스크롤될 만큼 충분한 높이 */
+  height: 100vh; /* 이미지가 스크롤될 만큼 충분한 높이 */
   overflow: hidden;
 }
 
