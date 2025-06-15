@@ -63,33 +63,41 @@ function initNaverMap() {
 }
 
 // email
-document.getElementById('contactForm').addEventListener('submit', async function (e) {
-  e.preventDefault();
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('contactForm');
+  
+  if (form) {
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
 
-  const formData = {
-    category: document.getElementById('category').value,
-    name: document.getElementById('name').value,
-    company: document.getElementById('company').value,
-    phone: document.getElementById('phone').value,
-    email: document.getElementById('email').value,
-    qna: document.getElementById('qna').value,
-  };
+      const formData = {
+        category: document.getElementById('category').value,
+        name: document.getElementById('name').value,
+        company: document.getElementById('company').value,
+        phone: document.getElementById('phone').value,
+        email: document.getElementById('email').value,
+        qna: document.getElementById('qna').value,
+      };
 
-  try {
-    const response = await fetch('/api/send-email', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData)
+      try {
+        const response = await fetch('/api/send-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+
+        if (response.ok) {
+          alert('문의가 성공적으로 전송되었습니다.');
+          form.reset();  // form.reset()을 이렇게 사용
+        } else {
+          alert('전송 중 오류가 발생했습니다.');
+        }
+      } catch (err) {
+        console.error(err);
+        alert('전송 실패');
+      }
     });
-
-    if (response.ok) {
-      alert('문의가 성공적으로 전송되었습니다.');
-      document.getElementById('contactForm').reset();
-    } else {
-      alert('전송 중 오류가 발생했습니다.');
-    }
-  } catch (err) {
-    console.error(err);
-    alert('전송 실패');
+  } else {
+    console.error('contactForm 요소를 찾을 수 없습니다.');
   }
 });
