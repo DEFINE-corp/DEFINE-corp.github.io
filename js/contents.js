@@ -14,6 +14,16 @@ document.addEventListener('DOMContentLoaded', () => {
         detailItems.forEach(detail => detail.style.display = 'none');
         if (detailItems[index]) {
           detailItems[index].style.display = 'flex';
+
+          // 페이지 스크롤을 해당 detail 요소가 화면 중간에 오도록 설정
+          const rect = detail.getBoundingClientRect();
+          const detailTop = rect.top + window.scrollY;
+          const detailHeight = rect.height;
+          const windowHeight = window.innerHeight;
+
+          // 스크롤을 중앙에 맞추기 (상단 50% - 화면의 절반 크기)
+          window.scrollTo(0, detailTop - (windowHeight / 2) + (detailHeight / 2));
+          
           history.pushState({ pageName: 'professionals/detail', index }, '', '/professionals/detail');
         }
       };

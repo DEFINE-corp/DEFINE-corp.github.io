@@ -78,6 +78,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
   
         main.innerHTML = data;
+
+        window.scrollTo(0, 0);
   
         if (window.onContentLoaded) {
           window.onContentLoaded(pageName);
