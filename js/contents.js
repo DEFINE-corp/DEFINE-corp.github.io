@@ -53,20 +53,24 @@ function initNaverMap() {
 
   const map = new naver.maps.Map('map', mapOptions);
 
-  // 마커 생성 (위치 설정)
+  // 마커 위치 설정
+  const markerPosition = new naver.maps.LatLng(37.503219, 127.036620);
+  
+  // 마커 생성
   const marker = new naver.maps.Marker({
     position: markerPosition,
     map: map,
-    title: "DEFINE 특허법인",
+    title: "DEFINE 특허법인",  // 마커에 마우스를 올리면 표시되는 타이틀
   });
-  
-  // 항상 보이도록 Infowindow 사용
+
+  // InfoWindow 생성 (마커 위에 항상 표시될 텍스트)
   const infowindow = new naver.maps.InfoWindow({
-    content: '<div class="location_map_title">DEFINE 특허법인</div>',
-    position: markerPosition
+    content: '<div class="location_map_title">DEFINE 특허법인</div>',  // 표시할 내용
+    position: markerPosition  // InfoWindow를 마커 위치에 띄움
   });
-  
-  infowindow.open(map);  
+
+  // InfoWindow를 지도에 표시
+  infowindow.open(map);
 }
 
 // email
