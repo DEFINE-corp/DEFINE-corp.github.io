@@ -106,25 +106,29 @@ document.addEventListener('DOMContentLoaded', function() {
 window.addEventListener('scroll', function() {
   const image = document.querySelector('.scroll-image');
   const textContent = document.querySelector('.text-content');
-  const scrollPosition = window.scrollY;
-  const windowHeight = window.innerHeight;
 
-  // 이미지 크기 변화 (초기 이미지 크기에서 점차 커짐)
-  const scaleFactor = 2; // 최대 확대 배율 (예: 2배)
-  const imageWidth = 1300 * scaleFactor; // 최대 너비
-  const imageHeight = 504 * scaleFactor; // 최대 높이
+  // 만약 해당 클래스가 존재할 때에만 실행
+  if (image && textContent) {
+    const scrollPosition = window.scrollY;
+    const windowHeight = window.innerHeight;
 
-  // 스크롤에 따라 이미지 크기와 투명도 변화
-  const scale = 1 + scrollPosition / (windowHeight * 2); // 확대 비율 (스크롤이 내려갈수록 이미지 확대)
-  const imageOpacity = 1 - Math.min(scrollPosition / windowHeight, 1); // 이미지가 스크롤될수록 투명해짐
-  image.style.width = `${1300 * scale}px`; // 이미지 너비 변경
-  image.style.height = `${504 * scale}px`; // 이미지 높이 변경
-  image.style.opacity = 1; // 처음부터 이미지는 보이도록 설정
+    // 이미지 크기 변화 (초기 이미지 크기에서 점차 커짐)
+    const scaleFactor = 2; // 최대 확대 배율 (예: 2배)
+    const imageWidth = 1300 * scaleFactor; // 최대 너비
+    const imageHeight = 504 * scaleFactor; // 최대 높이
 
-  // 텍스트가 나타나는 조건
-  if (scrollPosition > windowHeight / 2) {
-    textContent.style.opacity = 1; // 텍스트가 나타남
-  } else {
-    textContent.style.opacity = 0; // 텍스트가 숨겨짐
+    // 스크롤에 따라 이미지 크기와 투명도 변화
+    const scale = 1 + scrollPosition / (windowHeight * 2); // 확대 비율 (스크롤이 내려갈수록 이미지 확대)
+    const imageOpacity = 1 - Math.min(scrollPosition / windowHeight, 1); // 이미지가 스크롤될수록 투명해짐
+    image.style.width = `${1300 * scale}px`; // 이미지 너비 변경
+    image.style.height = `${504 * scale}px`; // 이미지 높이 변경
+    image.style.opacity = 1; // 처음부터 이미지는 보이도록 설정
+
+    // 텍스트가 나타나는 조건
+    if (scrollPosition > windowHeight / 2) {
+      textContent.style.opacity = 1; // 텍스트가 나타남
+    } else {
+      textContent.style.opacity = 0; // 텍스트가 숨겨짐
+    }
   }
 });
