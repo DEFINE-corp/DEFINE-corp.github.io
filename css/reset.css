@@ -57,3 +57,28 @@ button {
 	all: unset;
 	cursor: pointer;
 }
+select {
+	position: relative;
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+select::-ms-expand {
+	display: none;
+}
+select::after {
+	content: '';
+	position: absolute;
+	right: 20px;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 14px;
+	height: 14px;
+	background-image: url('../images/common/icon_accordion.svg');
+	background-size: contain;
+	background-repeat: no-repeat;
+	pointer-events: none;
+}
+textarea {
+  resize: none;
+}

@@ -47,11 +47,19 @@ document.addEventListener('DOMContentLoaded', () => {
 // location map
 function initNaverMap() {
   const mapOptions = {
-    center: new naver.maps.LatLng(37.513787, 127.058120),
+    center: new naver.maps.LatLng(37.503219, 127.036620),
     zoom: 16,
   };
 
   const map = new naver.maps.Map('map', mapOptions);
+
+  // 마커 생성 (위치 설정)
+  const markerPosition = new naver.maps.LatLng(37.503219, 127.036620);
+  const marker = new naver.maps.Marker({
+    position: markerPosition,
+    map: map,
+    title: "DEFINE 특허법인",
+  });
 }
 
 // email
