@@ -46,36 +46,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // location map
 function initNaverMap() {
-  const mapEl = document.getElementById('map');
-  if (!mapEl) {
-    console.warn('#map 요소가 존재하지 않아 지도 초기화를 건너뜁니다.');
-    return;
-  }
-
   const mapOptions = {
-    center: new naver.maps.LatLng(37.3595704, 127.105399),
+    center: new naver.maps.LatLng(37.513787, 127.058120),
     zoom: 16,
   };
 
   const map = new naver.maps.Map('map', mapOptions);
-
-  const geocoder = new naver.maps.Geocoder();
-
-  geocoder.addressSearch('서울특별시 강남구 봉은사로30길 68', function(status, response) {
-    if (status !== naver.maps.Service.Status.OK) {
-      return alert('Geocoding 실패');
-    }
-
-    const result = response.result.items[0]; // response 구조에 따라 다름
-    const coords = new naver.maps.LatLng(result.point.y, result.point.x);
-
-    map.setCenter(coords);
-
-    new naver.maps.Marker({
-      position: coords,
-      map: map,
-    });
-  });
 }
 
 // email
