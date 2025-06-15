@@ -266,13 +266,15 @@ body.sub main {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   column-gap: 90px;
-  row-gap: 160px;
   margin-top: 120px;
 }
 .practices_list {
   width: calc((100% - 90px)/2);
 }
-.practices_list:nth-of-type(2) {
+.practices_list:nth-of-type(odd) {
+  margin-top: 0;
+}
+.practices_list:nth-of-type(even) {
   margin-top: 160px;
 }
 .practices_list_img {
