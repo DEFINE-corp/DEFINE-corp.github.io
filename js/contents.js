@@ -48,18 +48,25 @@ document.addEventListener('DOMContentLoaded', () => {
 function initNaverMap() {
   const mapOptions = {
     center: new naver.maps.LatLng(37.503219, 127.036620),
-    zoom: 16,
+    zoom: 20,
   };
 
   const map = new naver.maps.Map('map', mapOptions);
 
   // 마커 생성 (위치 설정)
-  const markerPosition = new naver.maps.LatLng(37.503219, 127.036620);
   const marker = new naver.maps.Marker({
     position: markerPosition,
     map: map,
     title: "DEFINE 특허법인",
   });
+  
+  // 항상 보이도록 Infowindow 사용
+  const infowindow = new naver.maps.InfoWindow({
+    content: '<div class="location_map_title">DEFINE 특허법인</div>',
+    position: markerPosition
+  });
+  
+  infowindow.open(map);  
 }
 
 // email
