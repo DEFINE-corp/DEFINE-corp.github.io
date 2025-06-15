@@ -10,6 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
     String(now.getSeconds()).padStart(2, '0');
 
   // 공통 include 처리 (header, footer)
+  // 최초 한 번만 실행되도록 플래그 사용
+  let cacheBusted = false;
+
   document.querySelectorAll('[data-include]').forEach(el => {
     fetch(el.getAttribute('data-include'))
       .then(response => response.text())
@@ -21,29 +24,33 @@ document.addEventListener('DOMContentLoaded', () => {
           window.bindHeaderScroll();
         }
 
-        // CSS 파일 캐시 무시하고 새로 불러오기
-        const cssLinks = document.querySelectorAll('link[rel="stylesheet"]');
-        cssLinks.forEach(link => {
-          let href = link.getAttribute('href');
-          if (href && !href.includes('?v=')) {
-            const newHref = `${href}?v=${version}`;
-            const newLink = link.cloneNode();
-            newLink.setAttribute('href', newHref);
-            link.parentNode.replaceChild(newLink, link);  // 기존 링크 교체
-          }
-        });
+        if (!cacheBusted) {
+          // CSS 캐시 무시 한번만
+          const cssLinks = document.querySelectorAll('link[rel="stylesheet"]');
+          cssLinks.forEach(link => {
+            let href = link.getAttribute('href');
+            if (href && !href.includes('?v=')) {
+              const newHref = `${href}?v=${version}`;
+              const newLink = link.cloneNode();
+              newLink.setAttribute('href', newHref);
+              link.parentNode.replaceChild(newLink, link);
+            }
+          });
 
-        // JS 파일 캐시 무시하고 새로 불러오기
-        const scriptTags = document.querySelectorAll('script[src]');
-        scriptTags.forEach(script => {
-          let src = script.getAttribute('src');
-          if (src && !src.includes('?v=')) {
-            const newScript = document.createElement('script');
-            newScript.src = `${src}?v=${version}`;
-            newScript.defer = true;
-            script.parentNode.replaceChild(newScript, script);
-          }
-        });
+          // JS 캐시 무시 한번만
+          const scriptTags = document.querySelectorAll('script[src]');
+          scriptTags.forEach(script => {
+            let src = script.getAttribute('src');
+            if (src && !src.includes('?v=')) {
+              const newScript = document.createElement('script');
+              newScript.src = `${src}?v=${version}`;
+              newScript.defer = true;
+              script.parentNode.replaceChild(newScript, script);
+            }
+          });
+
+          cacheBusted = true;
+        }
       });
   });
 
