@@ -53,30 +53,59 @@ function initNaverMap() {
   }
 
   const mapOptions = {
-    center: new naver.maps.LatLng(37.3595704, 127.105399), // 초기 위치
-    zoom: 16
+    center: new naver.maps.LatLng(37.3595704, 127.105399),
+    zoom: 16,
   };
 
   const map = new naver.maps.Map('map', mapOptions);
 
-  // 주소 → 좌표 변환 (정적 메서드 사용)
-  naver.maps.Service.geocode(
-    { query: '서울특별시 강남구 봉은사로30길 68' },
-    function(status, response) {
-      if (status !== naver.maps.Service.Status.OK) {
-        return alert('Geocoding 실패');
-      }
-  
-      const result = response.v2.addresses[0]; // 좌표 정보
-      const coords = new naver.maps.LatLng(result.y, result.x);
-  
-      map.setCenter(coords);
-  
-      // 마커 표시 (선택 사항)
-      new naver.maps.Marker({
-        position: coords,
-        map: map
-      });
+  const geocoder = new naver.maps.Geocoder();
+
+  geocoder.addressSearch('서울특별시 강남구 봉은사로30길 68', function(status, response) {
+    if (status !== naver.maps.Service.Status.OK) {
+      return alert('Geocoding 실패');
     }
-  );  
+
+    const result = response.result.items[0]; // response 구조에 따라 다름
+    const coords = new naver.maps.LatLng(result.point.y, result.point.x);
+
+    map.setCenter(coords);
+
+    new naver.maps.Marker({
+      position: coords,
+      map: map,
+    });
+  });
 }
+
+// email
+document.getElementById('contactForm').addEventListener('submit', async function (e) {
+  e.preventDefault();
+
+  const formData = {
+    category: document.getElementById('category').value,
+    name: document.getElementById('name').value,
+    company: document.getElementById('company').value,
+    phone: document.getElementById('phone').value,
+    email: document.getElementById('email').value,
+    qna: document.getElementById('qna').value,
+  };
+
+  try {
+    const response = await fetch('/api/send-email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData)
+    });
+
+    if (response.ok) {
+      alert('문의가 성공적으로 전송되었습니다.');
+      document.getElementById('contactForm').reset();
+    } else {
+      alert('전송 중 오류가 발생했습니다.');
+    }
+  } catch (err) {
+    console.error(err);
+    alert('전송 실패');
+  }
+});
