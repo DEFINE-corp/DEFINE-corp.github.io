@@ -292,6 +292,7 @@ body.sub main {
   margin-top: 18px;
   font-weight: 300;
   font-size: 18px; 
+  line-height: 1.4;
   color: var(--color_sub_text);
 }
 
