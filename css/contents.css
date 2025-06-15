@@ -376,13 +376,14 @@ body.sub main {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); /* 이미지가 중앙에 오도록 */
   transition: transform 0.3s ease-in-out;
 }
 
 .scroll-image {
-  width: 50%;
-  transition: width 0.3s ease, opacity 0.3s ease;
+  width: 1300px; /* 초기 이미지 너비 */
+  height: 504px; /* 초기 이미지 높이 */
+  transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
 }
 
 .text-content {
@@ -390,7 +391,7 @@ body.sub main {
   top: 60%;
   left: 50%;
   transform: translateX(-50%);
-  opacity: 0;
+  opacity: 0; /* 초기 상태에서 텍스트는 보이지 않음 */
   transition: opacity 0.3s ease;
   color: white;
   text-align: center;
