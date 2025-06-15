@@ -12,21 +12,26 @@ document.addEventListener('DOMContentLoaded', () => {
       window.showProfessionalDetail = function(index = 0) {
         listWrap.style.display = 'none';
         detailItems.forEach(detail => detail.style.display = 'none');
+        
+        // Check if the detailItems[index] exists
         if (detailItems[index]) {
-          detailItems[index].style.display = 'flex';
-
-          // 페이지 스크롤을 해당 detail 요소가 화면 중간에 오도록 설정
+          const detail = detailItems[index];
+          detail.style.display = 'flex';
+      
+          // Get the bounding rectangle for the detail item
           const rect = detail.getBoundingClientRect();
           const detailTop = rect.top + window.scrollY;
           const detailHeight = rect.height;
           const windowHeight = window.innerHeight;
-
-          // 스크롤을 중앙에 맞추기 (상단 50% - 화면의 절반 크기)
+      
+          // Scroll to the middle of the screen where the detail is
           window.scrollTo(0, detailTop - (windowHeight / 2) + (detailHeight / 2));
-
+      
           history.pushState({ pageName: 'professionals/detail', index }, '', '/professionals/detail');
+        } else {
+          console.error("Detail item not found for index:", index);
         }
-      };
+      };      
 
       buttons.forEach((button, index) => {
         button.addEventListener('click', () => {
