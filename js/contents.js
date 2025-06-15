@@ -105,29 +105,41 @@ document.addEventListener('DOMContentLoaded', function() {
 // sub - motion
 window.addEventListener('scroll', function() {
   const image = document.querySelector('.scroll-image');
-  const textContent = document.querySelector('.text-content');
+  const subTitle = document.querySelector('.sub_title');
+  const windowHeight = window.innerHeight;
+  const scrollPosition = window.scrollY;
 
-  // 만약 해당 클래스가 존재할 때에만 실행
-  if (image && textContent) {
-    const scrollPosition = window.scrollY;
-    const windowHeight = window.innerHeight;
+  // 1. 이미지가 100% 크기로 커질 때 고정
+  const scale = 1 + (scrollPosition / windowHeight) * 3; // 커지는 비율 설정
+  const imageWidth = 1300 * scale;
+  const imageHeight = 504 * scale;
 
-    // 이미지 크기 변화 (초기 이미지 크기에서 점차 커짐)
-    const scaleFactor = 2; // 최대 확대 배율 (예: 2배)
-    const scaleSpeed = 5;  // 커지는 속도 비율을 조정 (더 높은 값일수록 빠르게 커짐)
+  // 이미지가 100% 크기로 커지면 고정
+  if (scale >= 1.8) {
+    image.style.width = `${imageWidth}px`;
+    image.style.height = `${imageHeight}px`;
+    image.style.position = 'fixed';
+    image.style.top = 0; // 이미지가 화면에 고정되도록 설정
+    image.style.left = 0; // 좌측 상단에 고정
+  } else {
+    image.style.width = `${imageWidth}px`;
+    image.style.height = `${imageHeight}px`;
+  }
 
-    // 스크롤에 따라 이미지 크기와 투명도 변화
-    const scale = 1 + (scrollPosition / windowHeight) * scaleSpeed; // 확대 비율을 더 빠르게 변경
-    const imageOpacity = 1 - Math.min(scrollPosition / windowHeight, 1); // 이미지가 스크롤될수록 투명해짐
-    image.style.width = `${1300 * scale}px`; // 이미지 너비 변경
-    image.style.height = `${504 * scale}px`; // 이미지 높이 변경
-    image.style.opacity = 1; // 처음부터 이미지는 보이도록 설정
+  // 2. 서브타이틀 텍스트 애니메이션
+  if (scrollPosition > windowHeight / 3) {
+    subTitle.classList.add('is-visible'); // 텍스트 애니메이션을 시작
+  } else {
+    subTitle.classList.remove('is-visible'); // 스크롤이 다시 위로 올라가면 텍스트가 숨겨짐
+  }
 
-    // 텍스트가 나타나는 조건
-    if (scrollPosition > windowHeight / 2) {
-      textContent.style.opacity = 1; // 텍스트가 나타남
-    } else {
-      textContent.style.opacity = 0; // 텍스트가 숨겨짐
-    }
+  // 3. 서브타이틀의 텍스트가 다 나타난 후, 스크롤이 더 내려가면 이미지가 리사이징 되도록
+  if (scrollPosition > windowHeight * 1.5 && scale >= 1.8) {
+    image.style.width = `${1300}px`; // 이미지가 다시 원래 크기로 줄어듬
+    image.style.height = `${504}px`;
+    image.style.position = 'absolute';
+    image.style.top = '50%'; // 이미지의 위치를 원래대로 되돌림
+    image.style.left = '50%';
+    image.style.transform = 'translate(-50%, -50%)';
   }
 });
