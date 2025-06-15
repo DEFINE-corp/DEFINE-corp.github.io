@@ -53,11 +53,13 @@ body.sub main {
 }
 .sub_visual {
   width: 1300px;
-  height: 400px;
-  margin: 90px auto 0 auto;
+  height: 540px;
+  margin: 120px auto 140px auto;
 }
 .sub_visual img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .sub_content {
   width: 1300px;
