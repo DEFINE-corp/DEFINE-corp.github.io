@@ -1,6 +1,8 @@
 *,
 *::before,
 *::after {
+	-webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 html, body, div, span, applet, object, iframe,
@@ -68,6 +70,7 @@ input::placeholder, textarea::placeholder {
 }
 select {
 	position: relative;
+	padding-right: 54px;
 	appearance: none;
 	-webkit-appearance: none;
 	-moz-appearance: none;
@@ -76,7 +79,7 @@ select::-ms-expand {
 	display: none;
 }
 select::after {
-	content: '';
+	/* content: '';
 	position: absolute;
 	right: 20px;
 	top: 50%;
@@ -86,7 +89,18 @@ select::after {
 	background-image: url('../images/common/icon_accordion.svg');
 	background-size: contain;
 	background-repeat: no-repeat;
-	pointer-events: none;
+	pointer-events: none; */
+	content: '';
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  mask-image: url('../images/common/icon_accordion.svg');
+  -webkit-mask-image: url('../images/common/icon_accordion.svg');
+  background-color: var(--color_default);
+  pointer-events: none;  
 }
 textarea {
   resize: none;
