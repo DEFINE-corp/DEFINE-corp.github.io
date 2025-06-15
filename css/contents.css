@@ -324,3 +324,48 @@ body.sub main {
   font-size: 20px;
   color: var(--color_sub_text);
 }
+
+/* contact us */
+.email_form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 46px 50px;
+  margin-top: 140px;
+  padding: 60px 20px;
+  border-top: 1px solid var(--color_default);
+  border-bottom: 1px solid var(--color_border);
+}
+.email_form_sort {
+  width: calc((100% - 50px) / 2);
+}
+.email_form_sort label {
+  display: block;
+  font-size: 15px;
+}
+.email_form_sort select,
+.email_form_sort input,
+.email_form_sort textarea {
+  width: 100%;
+  margin-top: 16px;
+  padding: 16px 20px;
+  font-size: 16px;
+  border: 1px solid var(--color_input_border);
+  border-radius: 4px;
+}
+.email_form_sort textarea {
+  height: 306px;
+}
+.email_form_sort input::placeholder,
+.email_form_sort textarea::placeholder {
+  color: var(--color_placeholder);
+}
+.email_send {
+  display: block;
+  margin: 60px auto 0 auto;
+  padding: 18px 47px;
+  font-weight: 500;
+  font-size: 18px;
+  color: var(--color_white);
+  border-radius: 42px;
+  background: var(--color_default);
+}

@@ -19,6 +19,10 @@
   --color_border_rgb: 232,232,232;
   --color_bg: #F8F8F8;
   --color_bg_rgb: 248,248,248;
+  --color_input_border: #DDDDDD;
+  --color_input_border_rgb: 221,221,221;
+  --color_placeholder: #999999;
+  --color_placeholder_rgb: 153,153,153;
 }
 
 /* header */
