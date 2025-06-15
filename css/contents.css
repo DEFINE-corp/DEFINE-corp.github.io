@@ -52,9 +52,12 @@ body.sub main {
   font-size: 26px;
 }
 .sub_visual {
-  width: 100%;
+  width: 1300px;
   height: 400px;
-  margin-top: 90px;
+  margin: 90px auto 0 auto;
+}
+.sub_visual img {
+  width: 100%;
 }
 .sub_content {
   width: 1300px;
@@ -78,10 +81,6 @@ body.sub main {
   font-size: 28px;
   line-height: 1.4;
 }
-.sub_visual {
-  background: url(../images/cotent/visual_about.jpg) center no-repeat;
-  background-size: cover;
-}
 
 .pin-spacer {
   position: relative;
@@ -104,10 +103,6 @@ body.sub main {
 }
 
 /* about us */
-/* .about .sub_visual {
-  background: url(../images/cotent/visual_about.jpg) center no-repeat;
-  background-size: cover;
-} */
 .about_list_wrap {
   margin-top: 140px; 
 }
