@@ -82,9 +82,10 @@ body.sub main {
   background: url(../images/cotent/visual_about.jpg) center no-repeat;
   background-size: cover;
 }
+
 .pin-spacer {
   position: relative;
-  height: 200vh; /* 충분히 긴 높이를 설정 */
+  height: 60vh; /* 화면의 60%만큼 높이를 설정 */
   overflow: hidden;
 }
 
@@ -100,24 +101,6 @@ body.sub main {
   width: 1300px;
   height: 504px;
   transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
-}
-
-/* 서브타이틀이 화면에 보일 때 애니메이션을 적용 */
-.sub_title.is-visible {
-  opacity: 1; /* 텍스트가 보이도록 */
-  transform: translateY(0); /* 텍스트가 위로 올라오도록 */
-}
-
-.sub_title h2.is-visible,
-.sub_title p.is-visible {
-  opacity: 1; /* 서브타이틀 텍스트가 보이도록 */
-  transition: opacity 1s ease;
-}
-.sub_title h2.is-visible {
-  transition-delay: 0.5s; /* h2 텍스트가 늦게 나타나도록 설정 */
-}
-.sub_title p.is-visible {
-  transition-delay: 1s; /* p 텍스트가 더 늦게 나타나도록 설정 */
 }
 
 /* about us */

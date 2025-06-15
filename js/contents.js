@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
           // 스크롤을 중앙에 맞추기 (상단 50% - 화면의 절반 크기)
           window.scrollTo(0, detailTop - (windowHeight / 2) + (detailHeight / 2));
-          
+
           history.pushState({ pageName: 'professionals/detail', index }, '', '/professionals/detail');
         }
       };
@@ -113,43 +113,78 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // sub - motion
-window.addEventListener('scroll', function() {
-  const image = document.querySelector('.scroll-image');
-  const subTitle = document.querySelector('.sub_title');
-  const windowHeight = window.innerHeight;
-  const scrollPosition = window.scrollY;
+gsap.registerPlugin(ScrollTrigger);
 
-  // 1. 이미지가 100% 크기로 커질 때 고정
-  const scale = 1 + (scrollPosition / windowHeight) * 3; // 커지는 비율 설정
-  const imageWidth = 1300 * scale;
-  const imageHeight = 504 * scale;
-
-  // 이미지가 100% 크기로 커지면 고정
-  if (scale >= 1.8) {
-    image.style.width = `${imageWidth}px`;
-    image.style.height = `${imageHeight}px`;
-    image.style.position = 'fixed';
-    image.style.top = 0; // 이미지가 화면에 고정되도록 설정
-    image.style.left = 0; // 좌측 상단에 고정
-  } else {
-    image.style.width = `${imageWidth}px`;
-    image.style.height = `${imageHeight}px`;
+// 1. 서브타이틀 텍스트 애니메이션
+gsap.to(".sub_title", {
+  opacity: 1, // 서브타이틀을 보이게
+  y: 0, // 텍스트가 원래 위치로 이동
+  duration: 1,
+  scrollTrigger: {
+    trigger: ".pin-spacer",
+    start: "top 50%", // 이미지가 화면의 50%에 왔을 때
+    end: "bottom center", // 스크롤이 중간을 지나갈 때
+    scrub: true, // 스크롤에 따라 애니메이션이 연동되도록
+    onEnter: () => console.log("Sub Title Entered"),
   }
+});
 
-  // 2. 서브타이틀 텍스트 애니메이션
-  if (scrollPosition > windowHeight / 3) {
-    subTitle.classList.add('is-visible'); // 텍스트 애니메이션을 시작
-  } else {
-    subTitle.classList.remove('is-visible'); // 스크롤이 다시 위로 올라가면 텍스트가 숨겨짐
+// h2 텍스트 애니메이션 (시간차로 나타나게 설정)
+gsap.from(".sub_title h2", {
+  opacity: 0,
+  y: 50,
+  duration: 1,
+  delay: 0.2, // h2는 약간 지연시켜서 나타나도록 설정
+  scrollTrigger: {
+    trigger: ".pin-spacer",
+    start: "top 50%", // h2가 보일 때 스크롤 위치
+    end: "bottom center",
+    scrub: true,
+    onEnter: () => console.log("h2 Entered")
   }
+});
 
-  // 3. 서브타이틀의 텍스트가 다 나타난 후, 스크롤이 더 내려가면 이미지가 리사이징 되도록
-  if (scrollPosition > windowHeight * 1.5 && scale >= 1.8) {
-    image.style.width = `${1300}px`; // 이미지가 다시 원래 크기로 줄어듬
-    image.style.height = `${504}px`;
-    image.style.position = 'absolute';
-    image.style.top = '50%'; // 이미지의 위치를 원래대로 되돌림
-    image.style.left = '50%';
-    image.style.transform = 'translate(-50%, -50%)';
+// p 텍스트 애니메이션 (h2 다음으로 나타나게 설정)
+gsap.from(".sub_title p", {
+  opacity: 0,
+  y: 50,
+  duration: 1,
+  delay: 0.5, // p는 h2보다 더 늦게 나타나도록 설정
+  scrollTrigger: {
+    trigger: ".pin-spacer",
+    start: "top 40%", // p가 보일 때 스크롤 위치
+    end: "bottom center",
+    scrub: true,
+    onEnter: () => console.log("p Entered")
+  }
+});
+
+// 2. 이미지 크기 조정 (스크롤에 따라 커짐)
+gsap.to(".scroll-image", {
+  scale: 2, // 이미지가 최대 2배로 커짐
+  scrollTrigger: {
+    trigger: ".pin-spacer",
+    start: "top top", // 페이지가 최상단에 있을 때
+    end: "bottom top", // 페이지가 끝에 도달할 때
+    scrub: 1, // 스크롤에 따라 애니메이션이 자연스럽게 변화
+    onUpdate: (self) => {
+      if (self.progress > 0.5) {
+        // 이미지가 꽉 차면 고정
+        gsap.set(".scroll-image", { position: "fixed", top: 0, left: 0 });
+      }
+    }
+  }
+});
+
+// 3. 이미지 고정 후, 텍스트 애니메이션 완료 후 이미지 크기 축소 (스크롤 후)
+gsap.to(".scroll-image", {
+  scale: 1,
+  scrollTrigger: {
+    trigger: ".sub_title",
+    start: "top bottom", // 서브타이틀이 보일 때
+    end: "bottom top",
+    scrub: 1,
+    onEnter: () => console.log("Image Shrink Entered"),
+    onLeaveBack: () => gsap.set(".scroll-image", { position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }) // 이미지 다시 원래 위치
   }
 });
