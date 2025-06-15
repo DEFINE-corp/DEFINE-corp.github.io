@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function initNaverMap() {
   const mapOptions = {
     center: new naver.maps.LatLng(37.503219, 127.036620),
-    zoom: 17,
+    zoom: 16,
   };
 
   const map = new naver.maps.Map('map', mapOptions);
@@ -99,5 +99,26 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   } else {
     console.error('contactForm 요소를 찾을 수 없습니다.');
+  }
+});
+
+// sub - motion
+window.addEventListener('scroll', function() {
+  const image = document.querySelector('.scroll-image');
+  const textContent = document.querySelector('.text-content');
+  const scrollPosition = window.scrollY;
+  const windowHeight = window.innerHeight;
+
+  // 이미지 크기 변경 및 위치 조정
+  const scale = 1 + scrollPosition / (windowHeight * 1.5);
+  const imageOpacity = 1 - Math.min(scrollPosition / windowHeight, 1);
+  image.style.transform = `scale(${scale})`;
+  image.style.opacity = imageOpacity;
+
+  // 텍스트 나타나기
+  if (scrollPosition > windowHeight / 2) {
+    textContent.style.opacity = 1;
+  } else {
+    textContent.style.opacity = 0;
   }
 });
