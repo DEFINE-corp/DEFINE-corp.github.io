@@ -136,58 +136,63 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // sub - motion
 document.addEventListener('DOMContentLoaded', () => {
-  // .sub_visual_wrap 내부의 .sub_visual img를 선택
-  const img = document.querySelector(".sub_visual_wrap .sub_visual img");
-  const titleH2 = document.querySelector(".sub_visual_wrap .sub_title h2");
-  const titleP = document.querySelector(".sub_visual_wrap .sub_title p");
+  const observer = new MutationObserver((mutationsList, observer) => {
+    const img = document.querySelector(".sub_visual_wrap .sub_visual img");
+    const titleH2 = document.querySelector(".sub_visual_wrap .sub_title h2");
+    const titleP = document.querySelector(".sub_visual_wrap .sub_title p");
 
-  // 요소들이 존재하는지 확인
-  if (img && titleH2 && titleP) {
-    gsap.registerPlugin(ScrollTrigger);
+    if (img && titleH2 && titleP) {
+      console.log("All elements are found!");
 
-    gsap.set(img, {
-      width: 1300,
-      height: 540,
-      scale: 1,
-      xPercent: -50,
-      yPercent: -50,
-      transformOrigin: "center center"
-    });
+      gsap.registerPlugin(ScrollTrigger);
 
-    gsap.set(titleH2, { opacity: 0, y: 40 });
-    gsap.set(titleP, { opacity: 0, y: 40 });
+      gsap.set(img, {
+        width: 1300,
+        height: 540,
+        scale: 1,
+        xPercent: -50,
+        yPercent: -50,
+        transformOrigin: "center center"
+      });
 
-    const tlAbout = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".sub_visual_wrap",  // 상위 요소 기준
-        start: "center center",
-        end: "+=150%",
-        pin: true,
-        scrub: true,
-        markers: false
-      }
-    });
+      gsap.set(titleH2, { opacity: 0, y: 40 });
+      gsap.set(titleP, { opacity: 0, y: 40 });
 
-    tlAbout.to(img, {
-      scale: 1.6,
-      duration: 1.5,
-      ease: "power2.inOut"
-    });
+      const tlAbout = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".sub_visual_wrap",
+          start: "center center",
+          end: "+=150%",
+          pin: true,
+          scrub: true,
+          markers: false
+        }
+      });
 
-    tlAbout.to(titleH2, {
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      ease: "power2.out"
-    });
+      tlAbout.to(img, {
+        scale: 1.6,
+        duration: 1.5,
+        ease: "power2.inOut"
+      });
 
-    tlAbout.to(titleP, {
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      ease: "power2.out"
-    });
-  } else {
-    console.error('Elements not found!');
-  }
+      tlAbout.to(titleH2, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out"
+      });
+
+      tlAbout.to(titleP, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out"
+      });
+
+      observer.disconnect(); // 요소를 찾았으므로 observer 종료
+    }
+  });
+
+  // DOM 변화 감지 시작
+  observer.observe(document.body, { childList: true, subtree: true });
 });
