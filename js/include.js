@@ -230,7 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
   
         tl.to(img, {
-          scale: 3,
+          scale: 2.5,
           duration: 1.5,
           ease: "power2.inOut"
         });
