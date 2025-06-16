@@ -199,7 +199,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const titleP = document.querySelector(".motion_sub_visual_wrap .motion_sub_title p");
   
       if (img && titleH2 && titleP) {
-        gsap.registerPlugin(ScrollTrigger);
+        if (!gsap.core.globals().ScrollTrigger) {
+          gsap.registerPlugin(ScrollTrigger);
+        }
   
         gsap.set(img, {
           width: 1300,

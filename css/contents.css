@@ -55,7 +55,7 @@ body.main main {
 
 /* sub */
 body.sub main {
-  padding: 240px 0 180px 0;
+  padding: 180px 0;
 }
 .sub_title {
   width: 1300px;
@@ -81,7 +81,7 @@ body.sub main {
   object-fit: cover;
 }
  .motion_sub_visual_wrap {
-  min-height: 200vh; /* 충분한 스크롤 공간 확보 */
+  min-height: 200vh;
 }
 .motion_sub_visual {
   position: relative;
