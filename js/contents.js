@@ -135,51 +135,53 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // sub - motion
-gsap.registerPlugin(ScrollTrigger);
+document.addEventListener('DOMContentLoaded', () => {
+  gsap.registerPlugin(ScrollTrigger);
 
-// 이미지 초기 상태
-gsap.set(".sub_visual img", {
-  width: 1300,
-  height: 540,
-  scale: 1,
-  xPercent: -50,
-  yPercent: -50,
-  transformOrigin: "center center"
-});
+  // 이미지 초기 상태
+  gsap.set(".sub_visual img", {
+    width: 1300,
+    height: 540,
+    scale: 1,
+    xPercent: -50,
+    yPercent: -50,
+    transformOrigin: "center center"
+  });
 
-gsap.set(".sub_title h2", {opacity: 0, y: 40});
-gsap.set(".sub_title p", {opacity: 0, y: 40});
+  gsap.set(".sub_title h2", { opacity: 0, y: 40 });
+  gsap.set(".sub_title p", { opacity: 0, y: 40 });
 
-// 타임라인: 이미지 확대 → 텍스트 등장
-const tl = gsap.timeline({
-  scrollTrigger: {
-    trigger: ".sub_visual",
-    start: "center center",
-    end: "+=150%",  // 더 긴 구간 확보
-    pin: true,
-    scrub: true,
-    markers: false
-  }
-});
+  // 중복 방지 위해 'tl' 대신 'tlAbout' 등 다른 변수 사용
+  const tlAbout = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".sub_visual",
+      start: "center center",
+      end: "+=150%",
+      pin: true,
+      scrub: true,
+      markers: false
+    }
+  });
 
-// 1) 이미지 확대
-tl.to(".sub_visual img", {
-  scale: 1.6,
-  duration: 1.5,
-  ease: "power2.inOut"
-});
+  // 1) 이미지 확대
+  tlAbout.to(".sub_visual img", {
+    scale: 1.6,
+    duration: 1.5,
+    ease: "power2.inOut"
+  });
 
-// 2) 텍스트 순서대로 등장
-tl.to(".sub_title h2", {
-  opacity: 1,
-  y: 0,
-  duration: 1,
-  ease: "power2.out"
-});
+  // 2) 텍스트 순서대로 등장
+  tlAbout.to(".sub_title h2", {
+    opacity: 1,
+    y: 0,
+    duration: 1,
+    ease: "power2.out"
+  });
 
-tl.to(".sub_title p", {
-  opacity: 1,
-  y: 0,
-  duration: 1,
-  ease: "power2.out"
+  tlAbout.to(".sub_title p", {
+    opacity: 1,
+    y: 0,
+    duration: 1,
+    ease: "power2.out"
+  });
 });
