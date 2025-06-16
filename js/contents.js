@@ -142,8 +142,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const titleP = document.querySelector(".sub_visual_wrap .sub_title p");
 
     if (img && titleH2 && titleP) {
-      console.log("All elements are found!");
-
       gsap.registerPlugin(ScrollTrigger);
 
       gsap.set(img, {
@@ -158,9 +156,9 @@ document.addEventListener('DOMContentLoaded', () => {
       gsap.set(titleH2, { opacity: 0, y: 40 });
       gsap.set(titleP, { opacity: 0, y: 40 });
 
-      const tlAbout = gsap.timeline({
+      const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: ".sub_visual_wrap",
+          trigger: ".sub_visual",
           start: "center center",
           end: "+=150%",
           pin: true,
@@ -169,20 +167,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
-      tlAbout.to(img, {
-        scale: 1.6,
+      tl.to(img, {
+        scale: 2,
         duration: 1.5,
         ease: "power2.inOut"
       });
 
-      tlAbout.to(titleH2, {
+      tl.to(titleH2, {
         opacity: 1,
         y: 0,
         duration: 1,
         ease: "power2.out"
       });
 
-      tlAbout.to(titleP, {
+      tl.to(titleP, {
         opacity: 1,
         y: 0,
         duration: 1,
