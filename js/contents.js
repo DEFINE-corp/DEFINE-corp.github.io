@@ -117,4 +117,17 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
+// select
+const wrapper = document.querySelector('.select-wrap');
+const select = wrapper.querySelector('select');
+
+select.addEventListener('focus', () => {
+  wrapper.classList.add('open');
+});
+
+select.addEventListener('blur', () => {
+  wrapper.classList.remove('open');
+});
+
+
 // sub - motion
