@@ -65,6 +65,21 @@ body.sub header.scrolled {
   background-color: rgba(var(--color_white_rgb), 0.45);
 }
 
+/* 데스크톱 */
+@media (min-width: 1025px) and (max-width: 1400px) {
+  
+}
+
+/* 태블릿 */
+@media (min-width: 601px) and (max-width: 1024px) {
+  
+}
+
+/* 모바일 */
+@media (max-width: 600px) {
+  
+}
+
 /* footer */
 footer {
   padding: 50px 0 74px 0;
@@ -100,4 +115,19 @@ footer .footer_box {
   font-weight: 300;
   font-size: 15px;
   color: var(--color_sub_text);
+}
+
+/* 데스크톱 */
+@media (min-width: 1025px) and (max-width: 1400px) {
+  
+}
+
+/* 태블릿 */
+@media (min-width: 601px) and (max-width: 1024px) {
+  
+}
+
+/* 모바일 */
+@media (max-width: 600px) {
+  
 }
