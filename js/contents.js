@@ -118,15 +118,20 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // select
-const selectWrapper = document.querySelector('.select-wrap');
-const select = selectWrapper.querySelector('select');
+document.addEventListener('DOMContentLoaded', function() {
+  const selectWrapper = document.querySelector('.select-wrap');
 
-select.addEventListener('focus', () => {
-  selectWrapper.classList.add('open');
-});
+  if (selectWrapper) {
+    const select = selectWrapper.querySelector('select');
 
-select.addEventListener('blur', () => {
-  selectWrapper.classList.remove('open');
+    select.addEventListener('focus', () => {
+      selectWrapper.classList.add('open');
+    });
+
+    select.addEventListener('blur', () => {
+      selectWrapper.classList.remove('open');
+    });
+  }
 });
 
 // sub - motion
