@@ -137,9 +137,9 @@ document.addEventListener('DOMContentLoaded', function() {
 // sub - motion
 document.addEventListener('DOMContentLoaded', () => {
   const observer = new MutationObserver((mutationsList, observer) => {
-    const img = document.querySelector(".sub_visual_wrap .sub_visual img");
-    const titleH2 = document.querySelector(".sub_visual_wrap .sub_title h2");
-    const titleP = document.querySelector(".sub_visual_wrap .sub_title p");
+    const img = document.querySelector(".motion_sub_visual_wrap .motion_sub_visual img");
+    const titleH2 = document.querySelector(".motion_sub_visual_wrap .motion_sub_title h2");
+    const titleP = document.querySelector(".motion_sub_visual_wrap .motion_sub_title p");
 
     if (img && titleH2 && titleP) {
       gsap.registerPlugin(ScrollTrigger);
@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: ".sub_visual",
+          trigger: ".motion_sub_visual",
           start: "center center",
           end: "+=150%",
           pin: true,
