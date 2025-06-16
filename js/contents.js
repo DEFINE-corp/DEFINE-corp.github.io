@@ -136,56 +136,58 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // sub - motion
 document.addEventListener('DOMContentLoaded', () => {
-  console.log(document.querySelector(".sub_visual img"));  // 확인
-  console.log(document.querySelector(".sub_title h2"));  // 확인
-  console.log(document.querySelector(".sub_title p"));   // 확인
-  
-  gsap.registerPlugin(ScrollTrigger);
+  // .sub_visual_wrap 내부의 .sub_visual img를 선택
+  const img = document.querySelector(".sub_visual_wrap .sub_visual img");
+  const titleH2 = document.querySelector(".sub_visual_wrap .sub_title h2");
+  const titleP = document.querySelector(".sub_visual_wrap .sub_title p");
 
-  // 이미지 초기 상태
-  gsap.set(".sub_visual img", {
-    width: 1300,
-    height: 540,
-    scale: 1,
-    xPercent: -50,
-    yPercent: -50,
-    transformOrigin: "center center"
-  });
+  // 요소들이 존재하는지 확인
+  if (img && titleH2 && titleP) {
+    gsap.registerPlugin(ScrollTrigger);
 
-  gsap.set(".sub_title h2", { opacity: 0, y: 40 });
-  gsap.set(".sub_title p", { opacity: 0, y: 40 });
+    gsap.set(img, {
+      width: 1300,
+      height: 540,
+      scale: 1,
+      xPercent: -50,
+      yPercent: -50,
+      transformOrigin: "center center"
+    });
 
-  // 중복 방지 위해 'tl' 대신 'tlAbout' 등 다른 변수 사용
-  const tlAbout = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".sub_visual",
-      start: "center center",
-      end: "+=150%",
-      pin: true,
-      scrub: true,
-      markers: false
-    }
-  });
+    gsap.set(titleH2, { opacity: 0, y: 40 });
+    gsap.set(titleP, { opacity: 0, y: 40 });
 
-  // 1) 이미지 확대
-  tlAbout.to(".sub_visual img", {
-    scale: 1.6,
-    duration: 1.5,
-    ease: "power2.inOut"
-  });
+    const tlAbout = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".sub_visual_wrap",  // 상위 요소 기준
+        start: "center center",
+        end: "+=150%",
+        pin: true,
+        scrub: true,
+        markers: false
+      }
+    });
 
-  // 2) 텍스트 순서대로 등장
-  tlAbout.to(".sub_title h2", {
-    opacity: 1,
-    y: 0,
-    duration: 1,
-    ease: "power2.out"
-  });
+    tlAbout.to(img, {
+      scale: 1.6,
+      duration: 1.5,
+      ease: "power2.inOut"
+    });
 
-  tlAbout.to(".sub_title p", {
-    opacity: 1,
-    y: 0,
-    duration: 1,
-    ease: "power2.out"
-  });
+    tlAbout.to(titleH2, {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      ease: "power2.out"
+    });
+
+    tlAbout.to(titleP, {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      ease: "power2.out"
+    });
+  } else {
+    console.error('Elements not found!');
+  }
 });
