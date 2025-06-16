@@ -136,6 +136,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // sub - motion
 document.addEventListener('DOMContentLoaded', () => {
+  console.log(document.querySelector(".sub_visual img"));  // 확인
+  console.log(document.querySelector(".sub_title h2"));  // 확인
+  console.log(document.querySelector(".sub_title p"));   // 확인
+  
   gsap.registerPlugin(ScrollTrigger);
 
   // 이미지 초기 상태
