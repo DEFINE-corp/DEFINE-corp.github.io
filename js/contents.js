@@ -187,6 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ease: "power2.out"
       });
 
+      ScrollTrigger.refresh();
       observer.disconnect(); // 요소를 찾았으므로 observer 종료
     }
   });
