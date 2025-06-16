@@ -80,8 +80,9 @@ body.sub main {
   height: 100%;
   object-fit: cover;
 }
- .motion_sub_visual_wrap {
+.motion_sub_visual_wrap {
   min-height: 100vh;
+  margin-top: -270px;
 }
 .motion_sub_visual {
   position: relative;
