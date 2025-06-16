@@ -14,7 +14,7 @@ body.main main {
   height: 120%;
   object-fit: cover;
   z-index: -1;
-  animation: kenburns 60s ease-in-out infinite alternate;
+  animation: kenburns 60s cubic-bezier(0.3, 0, 0.3, 1) infinite alternate;
 }
 .main_box {
   width: 1400px;
