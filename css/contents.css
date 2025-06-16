@@ -55,7 +55,7 @@ body.main main {
 
 /* sub */
 body.sub main {
-  padding: 180px 0;
+  padding: 150px 0 180px 0;
 }
 .sub_title {
   width: 1300px;
