@@ -81,7 +81,7 @@ body.sub main {
   object-fit: cover;
 }
  .motion_sub_visual_wrap {
-  min-height: 200vh;
+  min-height: 100vh;
 }
 .motion_sub_visual {
   position: relative;

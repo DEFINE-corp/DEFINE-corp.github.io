@@ -199,6 +199,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const titleP = document.querySelector(".motion_sub_visual_wrap .motion_sub_title p");
   
       if (img && titleH2 && titleP) {
+        // 기존 ScrollTrigger가 존재하면 제거
+        ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+
         if (!gsap.core.globals().ScrollTrigger) {
           gsap.registerPlugin(ScrollTrigger);
         }
@@ -227,7 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
   
         tl.to(img, {
-          scale: 2,
+          scale: 3,
           duration: 1.5,
           ease: "power2.inOut"
         });
@@ -246,6 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
           ease: "power2.out"
         });
   
+        ScrollTrigger.refresh();
         observer.disconnect(); // observer 종료
       }
     });
