@@ -13,7 +13,8 @@ body.main main {
   width: 120%;
   height: 120%;
   object-fit: cover;
-  animation: kenburns 15s ease-in-out infinite alternate;
+  z-index: -1;
+  animation: kenburns 60s ease-in-out infinite alternate;
 }
 .main_box {
   width: 1400px;
