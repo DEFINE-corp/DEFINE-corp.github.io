@@ -79,6 +79,12 @@ document.addEventListener('DOMContentLoaded', () => {
   
         main.innerHTML = data;
 
+        // ScrollTrigger 초기화 및 기존 Trigger 제거
+        ScrollTrigger.getAll().forEach(trigger => trigger.kill()); // 모든 기존 ScrollTrigger를 제거
+
+        // 스크롤 트리거 새로 초기화
+        initializeScrollTrigger();
+
         window.scrollTo(0, 0);
   
         if (window.onContentLoaded) {
@@ -183,5 +189,66 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }, 100);
     }
+  }  
+
+  function initializeScrollTrigger() {
+    // .motion_sub_visual_wrap 내에서 ScrollTrigger 초기화
+    const observer = new MutationObserver(() => {
+      const img = document.querySelector(".motion_sub_visual_wrap .motion_sub_visual img");
+      const titleH2 = document.querySelector(".motion_sub_visual_wrap .motion_sub_title h2");
+      const titleP = document.querySelector(".motion_sub_visual_wrap .motion_sub_title p");
+  
+      if (img && titleH2 && titleP) {
+        gsap.registerPlugin(ScrollTrigger);
+  
+        gsap.set(img, {
+          width: 1300,
+          height: 540,
+          scale: 1,
+          xPercent: -50,
+          yPercent: -50,
+          transformOrigin: "center center"
+        });
+  
+        gsap.set(titleH2, { opacity: 0, y: 40 });
+        gsap.set(titleP, { opacity: 0, y: 40 });
+  
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".motion_sub_visual",
+            start: "center center",
+            end: "+=150%",
+            pin: true,
+            scrub: true,
+            markers: false
+          }
+        });
+  
+        tl.to(img, {
+          scale: 2,
+          duration: 1.5,
+          ease: "power2.inOut"
+        });
+  
+        tl.to(titleH2, {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power2.out"
+        });
+  
+        tl.to(titleP, {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power2.out"
+        });
+  
+        observer.disconnect(); // observer 종료
+      }
+    });
+  
+    // DOM 변화 감지 시작
+    observer.observe(document.body, { childList: true, subtree: true });
   }  
 });
