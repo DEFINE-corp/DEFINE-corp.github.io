@@ -350,6 +350,7 @@ body.sub main {
   font-size: 18px; 
   line-height: 1.4;
   color: var(--color_sub_text);
+  word-break: keep-all;
 }
 
 /* location */
@@ -427,74 +428,77 @@ body.sub main {
 @media (max-width: 1399px) {
   /* home */
   body.main main {
-    height: 1090px;
-    margin-top: -90px;
+    height: calc(100vh - 13rem);
+    margin-top: -4.375rem;
   }
   .main_box {
-    padding-top: 280px;
+    padding: 12.5rem 0 0 1.25rem;
   }
   .main_title {
-    font-size: 80px;
+    font-size: 4.063rem;
   }
   .main_view_more {
-    gap: 10px;
-    margin-top: 80px;
-    padding: 13px 40px;
-    font-size: 18px;
+    gap: 0.625rem;
+    margin-top: 3.75rem;
+    padding: 0.75rem 2.188rem;
+    font-size: 1rem;
     border-radius: 2.625rem;
   }
 
   /* sub */
   body.sub main {
-    padding: 130px 0 180px 0;
+    padding: 6.25rem 0 9.375rem 0;
   }
   .sub_title {
     padding: 0 1.25rem;
   }
   .sub_title h2 {
-    font-size: 72px;
+    font-size: 4.063rem;
   }
   .sub_title p {
-    margin-top: 28px;
-    font-size: 26px;
+    margin-top: 1.563rem;
+    font-size: 1.5rem;
   }
   .sub_visual {
-    height: 540px;
-    margin: 100px auto 130px auto;
+    height: 31.25rem;
+    margin: 5rem auto 6.25rem auto;
     padding: 0 1.25rem;
   }
   .sub_content {
-    margin: 120px auto 0 auto;
+    margin: 6.25rem auto 0 auto;
     padding: 0 1.25rem;
   }
   .sub_content_summary {
-    font-size: 26px;
+    font-size: 1.5rem;
   }
   .sub_content_title {
-    margin-top: 34px;
-    font-size: 56px;
+    margin-top: 1.875rem;
+    font-size: 3.125rem;
   }
   .sub_content_addition {
-    margin-top: 40px;
-    font-size: 28px;
+    margin-top: 2.188rem;
+    font-size: 1.625rem;
   }
 
   /* about us */
   .about_list_wrap {
-    margin-top: 140px; 
+    margin-top: 7.5rem; 
   }
   .about_list {
-    gap: 120px;
+    gap: 6.25rem;
   }
   .about_list:not(:first-child) {
-    margin-top: 180px;
+    margin-top: 10rem;
   }
   .about_list:last-child {
-    gap: 100px;
-    margin-left: -280px;
+    gap: 5rem;
+    margin-left: -16.25rem;
+  }
+  .about_list_img {
+    width: 50%;
   }
   .about_list_img img {
-    width: calc(100% - 100px);
+    width: auto;
   }
   .about_list:last-child .about_list_img::before {
     top: -270px;
