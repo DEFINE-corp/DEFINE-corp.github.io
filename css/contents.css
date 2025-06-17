@@ -28,7 +28,10 @@ body.main main {
   color: var(--color_white);
 }
 .main_view_more {
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
   margin-top: 80px;
   padding: 13px 40px;
   font-weight: 500;
@@ -38,10 +41,6 @@ body.main main {
   border-radius: 42px;
   background: rgba(var(--color_white_rgb), 0.14);
   backdrop-filter: blur(8px);
-  cursor: pointer;
-}
-.main_view_more .icon_arrow {
-  margin-left: 10px;
 }
 
 @keyframes kenburns {
@@ -435,7 +434,9 @@ body.sub main {
   height: 306px;
 }
 .email_send {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   margin: 60px auto 0 auto;
   padding: 18px 47px;
   font-weight: 500;
