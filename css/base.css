@@ -35,6 +35,15 @@ a {
   text-decoration: none;
 }
 
+em {
+  font-style: normal;
+}
+
+span {
+  font: inherit;
+  color: inherit;
+}
+
 img, picture, video, canvas, svg {
   display: block;
   max-width: 100%;
