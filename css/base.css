@@ -56,19 +56,18 @@ table {
 }
 
 input, button, textarea, select {
+  margin: 0;
   font: inherit;
   color: inherit;
-  margin: 0;
-  background: none;
   border: none;
-  outline: none;
+  background: none;
   box-shadow: none;
+  outline: none;
 }
 
 button {
-  background: none;
-  cursor: pointer;
   padding: 0;
+  cursor: pointer;
 }
 
 input[type="text"],
@@ -92,11 +91,15 @@ textarea {
   resize: none;
 }
 
+input, select {
+  height: 3.125rem;
+}
+
 select {
+  padding-right: 3.375rem; /* 54px */
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  padding-right: 3.375rem; /* 54px */
 }
 
 select::-ms-expand {
@@ -104,20 +107,20 @@ select::-ms-expand {
 }
 
 .select-wrap {
-  position: relative;
   display: inline-block;
+  position: relative;
 }
 
 .select-wrap::after {
   content: '';
   position: absolute;
-  right: 1.25rem; /* 20px */
   top: 50%;
-  transform: translateY(-50%);
+  right: 1.25rem; /* 20px */
   width: 14px;
   height: 14px;
   background: url('../images/common/icon_accordion.svg') no-repeat center / contain;
   pointer-events: none;
+  transform: translateY(-50%);
   transition: transform 0.3s ease;
 }
 
@@ -136,9 +139,9 @@ select::-ms-expand {
   margin: -1px;
   padding: 0;
   border: 0;
+  white-space: nowrap;
   overflow: hidden;
   clip: rect(0 0 0 0);
-  white-space: nowrap;
 }
 
 .scroll-lock {
