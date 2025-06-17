@@ -17,14 +17,15 @@ body.main main {
   animation: kenburns 60s cubic-bezier(0.3, 0, 0.3, 1) infinite alternate;
 }
 .main_box {
-  width: 1400px;
+  width: 100%;
+  max-width: var(--layout-max-width);
   margin: 0 auto;
   padding-top: 280px;
 }
 .main_title {
   font-weight: 500;
   font-size: 80px;
-  line-height: 96px;
+  line-height: 1.2;
   color: var(--color_white);
 }
 .main_view_more {
@@ -54,10 +55,11 @@ body.main main {
 
 /* sub */
 body.sub main {
-  padding: 150px 0 180px 0;
+  padding: 130px 0 180px 0;
 }
 .sub_title {
-  width: 1300px;
+  width: 100%;
+  max-width: var(--layout-content-width);
   margin: 0 auto;
   text-transform: uppercase;
 }
@@ -70,9 +72,10 @@ body.sub main {
   font-size: 26px;
 }
 .sub_visual {
-  width: 1300px;
+  width: 100%;
+  max-width: var(--layout-content-width);
   height: 540px;
-  margin: 120px auto 140px auto;
+  margin: 100px auto 130px auto;
 }
 .sub_visual img {
   width: 100%;
@@ -124,7 +127,8 @@ body.sub main {
   font-size: 26px;
 }
 .sub_content {
-  width: 1300px;
+  width: 100%;
+  max-width: var(--layout-content-width);
   margin: 120px auto 0 auto;
 }
 .sub_content_summary {
@@ -144,26 +148,6 @@ body.sub main {
   margin-top: 40px;
   font-size: 28px;
   line-height: 1.4;
-}
-
-.pin-spacer {
-  position: relative;
-  height: 60vh; /* 화면의 60%만큼 높이를 설정 */
-  overflow: hidden;
-}
-
-.image-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 0;
-}
-
-.scroll-image {
-  width: 1300px;
-  height: 504px;
-  transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
 }
 
 /* about us */
@@ -237,9 +221,6 @@ body.sub main {
 .professionals_list .list_img {
   display: flex;
 }
-.professionals_list .list_img img {
-  width: 100%;
-}
 .professionals_list .list_name {
   margin-top: 50px;
   font-weight: 500;
@@ -308,9 +289,6 @@ body.sub main {
   display: flex;
   width: 590px;
 }
-.detail_img img {
-  width: 100%;
-}
 .detail_cont {
   flex: 1;
 }
@@ -358,9 +336,6 @@ body.sub main {
 }
 .practices_list_img {
   width: 605px;
-}
-.practices_list_img img {
-  width: 100%;
 }
 .practices_cont {
   margin-top: 40px;
@@ -449,16 +424,670 @@ body.sub main {
 
 
 /* notebook, desktop */
-@media (min-width: 1025px) and (max-width: 1399px) {
-  
+@media (max-width: 1399px) {
+  /* home */
+  body.main main {
+    height: 1090px;
+    margin-top: -90px;
+  }
+  .main_box {
+    padding-top: 280px;
+  }
+  .main_title {
+    font-size: 80px;
+  }
+  .main_view_more {
+    gap: 10px;
+    margin-top: 80px;
+    padding: 13px 40px;
+    font-size: 18px;
+    border-radius: 2.625rem;
+  }
+
+  /* sub */
+  body.sub main {
+    padding: 130px 0 180px 0;
+  }
+  .sub_title {
+    padding: 0 1.25rem;
+  }
+  .sub_title h2 {
+    font-size: 72px;
+  }
+  .sub_title p {
+    margin-top: 28px;
+    font-size: 26px;
+  }
+  .sub_visual {
+    height: 540px;
+    margin: 100px auto 130px auto;
+    padding: 0 1.25rem;
+  }
+  .sub_content {
+    margin: 120px auto 0 auto;
+    padding: 0 1.25rem;
+  }
+  .sub_content_summary {
+    font-size: 26px;
+  }
+  .sub_content_title {
+    margin-top: 34px;
+    font-size: 56px;
+  }
+  .sub_content_addition {
+    margin-top: 40px;
+    font-size: 28px;
+  }
+
+  /* about us */
+  .about_list_wrap {
+    margin-top: 140px; 
+  }
+  .about_list {
+    gap: 120px;
+  }
+  .about_list:not(:first-child) {
+    margin-top: 180px;
+  }
+  .about_list:last-child {
+    gap: 100px;
+    margin-left: -280px;
+  }
+  .about_list_img img {
+    width: calc(100% - 100px);
+  }
+  .about_list:last-child .about_list_img::before {
+    top: -270px;
+    right: 114px;
+    font-size: 200px;
+    letter-spacing: 20px;
+  }
+  .about_list_text {
+    padding-top: 100px;
+  }
+  .about_list_text strong {
+    font-size: 46px;
+    line-height: 58px;
+  }
+  .about_list_text p {
+    margin-top: 30px;
+    font-size: 22px;
+  }
+  .about_list:last-child .about_list_text p {
+    width: 550px;
+  }
+
+  /* professionals */
+  .professionals_list_wrap {
+    gap: 80px 40px;
+    margin-top: 140px;
+  }
+  .professionals_list {
+    width: calc((100% - 80px)/3);
+  }
+  .professionals_list .list_name {
+    margin-top: 50px;
+    font-size: 26px;
+  }
+  .professionals_list .list_cont {
+    margin-top: 40px;
+    font-size: 20px;
+  }
+  .professionals_list .list_cont + .list_cont {
+    margin-top: 30px;
+  }
+  .professionals_list .list_cont dd {
+    margin-top: 14px;
+  }
+
+  .professionals_detail {
+    gap: 100px;
+    margin-top: 140px;
+  }
+  .close_button {
+    width: 35px;
+    height: 35px;
+  }
+  .close_button::before {
+    height: 2px;
+    width: 35px;
+  }
+  .close_button::after {
+    height: 2px;
+    width: 35px;
+  }
+  .detail_img {
+    width: 590px;
+  }
+  .detail_cont .detail_name {
+    margin-top: 50px;
+    font-size: 32px;
+  }
+  .detail_cont .detail_info {
+    margin-top: 40px;
+    font-size: 20px;
+  }
+  .detail_cont .detail_info + .detail_info {
+    margin-top: 30px;
+  }
+  .detail_cont .detail_info dd {
+    margin-top: 14px;
+  }
+
+  /* practices */
+  .practices_list_wrap {
+    column-gap: 90px;
+    margin-top: 120px;
+  }
+  .practices_list:nth-of-type(even) {
+    margin-top: 160px;
+  }
+  .practices_list_img {
+    width: 605px;
+  }
+  .practices_cont {
+    margin-top: 40px;
+  }
+  .practices_cont dt {
+    font-size: 28px;
+  }
+  .practices_cont dd {
+    margin-top: 18px;
+    font-size: 18px; 
+  }
+
+  /* location */
+  .location_map {
+    height: 600px;
+  }
+  .location_info_wrap {
+    gap: 30px 172px;
+    margin-top: 140px;
+    padding: 46px 40px;
+  }
+  .location_info {
+    width: calc((100% - 172px)/2);
+  }
+  .location_info dt {
+    font-weight: 600;
+    font-size: 24px;
+  }
+  .location_info dd {
+    margin-top: 14px;
+    font-size: 20px;
+  }
+
+  /* contact us */
+  .email_form {
+    gap: 46px 50px;
+    margin-top: 140px;
+    padding: 60px 20px;
+  }
+  .email_form_sort {
+    width: calc((100% - 50px) / 2);
+  }
+  .email_form_sort label {
+    font-size: 15px;
+  }
+  .email_form_sort select,
+  .email_form_sort input,
+  .email_form_sort textarea {
+    margin-top: 16px;
+  }
+  .email_form_sort textarea {
+    height: 306px;
+  }
+  .email_send {
+    gap: 10px;
+    margin: 60px auto 0 auto;
+    padding: 18px 47px;
+    font-size: 18px;
+    border-radius: 42px;
+  }
 }
 
 /* tablet */
-@media (min-width: 768px) and (max-width: 1024px) {
-  
+@media (max-width: 1024px) {
+  /* home */
+  body.main main {
+    height: 1090px;
+    margin-top: -90px;
+  }
+  .main_box {
+    padding-top: 280px;
+  }
+  .main_title {
+    font-size: 80px;
+  }
+  .main_view_more {
+    gap: 10px;
+    margin-top: 80px;
+    padding: 13px 40px;
+    font-size: 18px;
+    border-radius: 2.625rem;
+  }
+
+  /* sub */
+  body.sub main {
+    padding: 130px 0 180px 0;
+  }
+  .sub_title {
+    padding: 0 1.25rem;
+  }
+  .sub_title h2 {
+    font-size: 72px;
+  }
+  .sub_title p {
+    margin-top: 28px;
+    font-size: 26px;
+  }
+  .sub_visual {
+    height: 540px;
+    margin: 100px auto 130px auto;
+    padding: 0 1.25rem;
+  }
+  .sub_content {
+    margin: 120px auto 0 auto;
+    padding: 0 1.25rem;
+  }
+  .sub_content_summary {
+    font-size: 26px;
+  }
+  .sub_content_title {
+    margin-top: 34px;
+    font-size: 56px;
+  }
+  .sub_content_addition {
+    margin-top: 40px;
+    font-size: 28px;
+  }
+
+  /* about us */
+  .about_list_wrap {
+    margin-top: 140px; 
+  }
+  .about_list {
+    gap: 120px;
+  }
+  .about_list:not(:first-child) {
+    margin-top: 180px;
+  }
+  .about_list:last-child {
+    gap: 100px;
+    margin-left: -280px;
+  }
+  .about_list_img img {
+    width: calc(100% - 100px);
+  }
+  .about_list:last-child .about_list_img::before {
+    top: -270px;
+    right: 114px;
+    font-size: 200px;
+    letter-spacing: 20px;
+  }
+  .about_list_text {
+    padding-top: 100px;
+  }
+  .about_list_text strong {
+    font-size: 46px;
+    line-height: 58px;
+  }
+  .about_list_text p {
+    margin-top: 30px;
+    font-size: 22px;
+  }
+  .about_list:last-child .about_list_text p {
+    width: 550px;
+  }
+
+  /* professionals */
+  .professionals_list_wrap {
+    gap: 80px 40px;
+    margin-top: 140px;
+  }
+  .professionals_list {
+    width: calc((100% - 80px)/3);
+  }
+  .professionals_list .list_name {
+    margin-top: 50px;
+    font-size: 26px;
+  }
+  .professionals_list .list_cont {
+    margin-top: 40px;
+    font-size: 20px;
+  }
+  .professionals_list .list_cont + .list_cont {
+    margin-top: 30px;
+  }
+  .professionals_list .list_cont dd {
+    margin-top: 14px;
+  }
+
+  .professionals_detail {
+    gap: 100px;
+    margin-top: 140px;
+  }
+  .close_button {
+    width: 35px;
+    height: 35px;
+  }
+  .close_button::before {
+    height: 2px;
+    width: 35px;
+  }
+  .close_button::after {
+    height: 2px;
+    width: 35px;
+  }
+  .detail_img {
+    width: 590px;
+  }
+  .detail_cont .detail_name {
+    margin-top: 50px;
+    font-size: 32px;
+  }
+  .detail_cont .detail_info {
+    margin-top: 40px;
+    font-size: 20px;
+  }
+  .detail_cont .detail_info + .detail_info {
+    margin-top: 30px;
+  }
+  .detail_cont .detail_info dd {
+    margin-top: 14px;
+  }
+
+  /* practices */
+  .practices_list_wrap {
+    column-gap: 90px;
+    margin-top: 120px;
+  }
+  .practices_list:nth-of-type(even) {
+    margin-top: 160px;
+  }
+  .practices_list_img {
+    width: 605px;
+  }
+  .practices_cont {
+    margin-top: 40px;
+  }
+  .practices_cont dt {
+    font-size: 28px;
+  }
+  .practices_cont dd {
+    margin-top: 18px;
+    font-size: 18px; 
+  }
+
+  /* location */
+  .location_map {
+    height: 600px;
+  }
+  .location_info_wrap {
+    gap: 30px 172px;
+    margin-top: 140px;
+    padding: 46px 40px;
+  }
+  .location_info {
+    width: calc((100% - 172px)/2);
+  }
+  .location_info dt {
+    font-weight: 600;
+    font-size: 24px;
+  }
+  .location_info dd {
+    margin-top: 14px;
+    font-size: 20px;
+  }
+
+  /* contact us */
+  .email_form {
+    gap: 46px 50px;
+    margin-top: 140px;
+    padding: 60px 20px;
+  }
+  .email_form_sort {
+    width: calc((100% - 50px) / 2);
+  }
+  .email_form_sort label {
+    font-size: 15px;
+  }
+  .email_form_sort select,
+  .email_form_sort input,
+  .email_form_sort textarea {
+    margin-top: 16px;
+  }
+  .email_form_sort textarea {
+    height: 306px;
+  }
+  .email_send {
+    gap: 10px;
+    margin: 60px auto 0 auto;
+    padding: 18px 47px;
+    font-size: 18px;
+    border-radius: 42px;
+  }
 }
 
 /* mobile */
 @media (max-width: 767px) {
-  
+  /* home */
+  body.main main {
+    height: 1090px;
+    margin-top: -90px;
+  }
+  .main_box {
+    padding-top: 280px;
+  }
+  .main_title {
+    font-size: 80px;
+  }
+  .main_view_more {
+    gap: 10px;
+    margin-top: 80px;
+    padding: 13px 40px;
+    font-size: 18px;
+    border-radius: 2.625rem;
+  }
+
+  /* sub */
+  body.sub main {
+    padding: 130px 0 180px 0;
+  }
+  .sub_title {
+    padding: 0 1.25rem;
+  }
+  .sub_title h2 {
+    font-size: 72px;
+  }
+  .sub_title p {
+    margin-top: 28px;
+    font-size: 26px;
+  }
+  .sub_visual {
+    height: 540px;
+    margin: 100px auto 130px auto;
+    padding: 0 1.25rem;
+  }
+  .sub_content {
+    margin: 120px auto 0 auto;
+    padding: 0 1.25rem;
+  }
+  .sub_content_summary {
+    font-size: 26px;
+  }
+  .sub_content_title {
+    margin-top: 34px;
+    font-size: 56px;
+  }
+  .sub_content_addition {
+    margin-top: 40px;
+    font-size: 28px;
+  }
+
+  /* about us */
+  .about_list_wrap {
+    margin-top: 140px; 
+  }
+  .about_list {
+    gap: 120px;
+  }
+  .about_list:not(:first-child) {
+    margin-top: 180px;
+  }
+  .about_list:last-child {
+    gap: 100px;
+    margin-left: -280px;
+  }
+  .about_list_img img {
+    width: calc(100% - 100px);
+  }
+  .about_list:last-child .about_list_img::before {
+    top: -270px;
+    right: 114px;
+    font-size: 200px;
+    letter-spacing: 20px;
+  }
+  .about_list_text {
+    padding-top: 100px;
+  }
+  .about_list_text strong {
+    font-size: 46px;
+    line-height: 58px;
+  }
+  .about_list_text p {
+    margin-top: 30px;
+    font-size: 22px;
+  }
+  .about_list:last-child .about_list_text p {
+    width: 550px;
+  }
+
+  /* professionals */
+  .professionals_list_wrap {
+    gap: 80px 40px;
+    margin-top: 140px;
+  }
+  .professionals_list {
+    width: calc((100% - 80px)/3);
+  }
+  .professionals_list .list_name {
+    margin-top: 50px;
+    font-size: 26px;
+  }
+  .professionals_list .list_cont {
+    margin-top: 40px;
+    font-size: 20px;
+  }
+  .professionals_list .list_cont + .list_cont {
+    margin-top: 30px;
+  }
+  .professionals_list .list_cont dd {
+    margin-top: 14px;
+  }
+
+  .professionals_detail {
+    gap: 100px;
+    margin-top: 140px;
+  }
+  .close_button {
+    width: 35px;
+    height: 35px;
+  }
+  .close_button::before {
+    height: 2px;
+    width: 35px;
+  }
+  .close_button::after {
+    height: 2px;
+    width: 35px;
+  }
+  .detail_img {
+    width: 590px;
+  }
+  .detail_cont .detail_name {
+    margin-top: 50px;
+    font-size: 32px;
+  }
+  .detail_cont .detail_info {
+    margin-top: 40px;
+    font-size: 20px;
+  }
+  .detail_cont .detail_info + .detail_info {
+    margin-top: 30px;
+  }
+  .detail_cont .detail_info dd {
+    margin-top: 14px;
+  }
+
+  /* practices */
+  .practices_list_wrap {
+    column-gap: 90px;
+    margin-top: 120px;
+  }
+  .practices_list:nth-of-type(even) {
+    margin-top: 160px;
+  }
+  .practices_list_img {
+    width: 605px;
+  }
+  .practices_cont {
+    margin-top: 40px;
+  }
+  .practices_cont dt {
+    font-size: 28px;
+  }
+  .practices_cont dd {
+    margin-top: 18px;
+    font-size: 18px; 
+  }
+
+  /* location */
+  .location_map {
+    height: 600px;
+  }
+  .location_info_wrap {
+    gap: 30px 172px;
+    margin-top: 140px;
+    padding: 46px 40px;
+  }
+  .location_info {
+    width: calc((100% - 172px)/2);
+  }
+  .location_info dt {
+    font-weight: 600;
+    font-size: 24px;
+  }
+  .location_info dd {
+    margin-top: 14px;
+    font-size: 20px;
+  }
+
+  /* contact us */
+  .email_form {
+    gap: 46px 50px;
+    margin-top: 140px;
+    padding: 60px 20px;
+  }
+  .email_form_sort {
+    width: calc((100% - 50px) / 2);
+  }
+  .email_form_sort label {
+    font-size: 15px;
+  }
+  .email_form_sort select,
+  .email_form_sort input,
+  .email_form_sort textarea {
+    margin-top: 16px;
+  }
+  .email_form_sort textarea {
+    height: 306px;
+  }
+  .email_send {
+    gap: 10px;
+    margin: 60px auto 0 auto;
+    padding: 18px 47px;
+    font-size: 18px;
+    border-radius: 42px;
+  }
 }
