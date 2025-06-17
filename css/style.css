@@ -65,21 +65,6 @@ body.sub header.scrolled {
   background-color: rgba(var(--color_white_rgb), 0.45);
 }
 
-/* 데스크톱 */
-@media (min-width: 1025px) and (max-width: 1400px) {
-  
-}
-
-/* 태블릿 */
-@media (min-width: 601px) and (max-width: 1024px) {
-  
-}
-
-/* 모바일 */
-@media (max-width: 600px) {
-  
-}
-
 /* footer */
 footer {
   padding: 50px 0 74px 0;
@@ -117,17 +102,31 @@ footer .footer_box {
   color: var(--color_sub_text);
 }
 
-/* 데스크톱 */
-@media (min-width: 1025px) and (max-width: 1400px) {
+
+
+/* notebook, desktop */
+@media (min-width: 1025px) and (max-width: 1399px) {
+  header {
+    height: 5.625rem;
+  }
+  header .header_box {
+    width: 1400px;
+  }
+  header .logo {
+    width: clamp(100px, 8vw, 120px);
+  }
+  header nav {
+    gap: 90px;
+    font-size: 18px;
+  }
+}
+
+/* tablet */
+@media (min-width: 768px) and (max-width: 1024px) {
   
 }
 
-/* 태블릿 */
-@media (min-width: 601px) and (max-width: 1024px) {
-  
-}
-
-/* 모바일 */
-@media (max-width: 600px) {
+/* mobile */
+@media (max-width: 767px) {
   
 }

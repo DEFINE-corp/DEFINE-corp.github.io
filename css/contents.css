@@ -444,3 +444,20 @@ body.sub main {
   border-radius: 42px;
   background: var(--color_default);
 }
+
+
+
+/* notebook, desktop */
+@media (min-width: 1025px) and (max-width: 1399px) {
+  
+}
+
+/* tablet */
+@media (min-width: 768px) and (max-width: 1024px) {
+  
+}
+
+/* mobile */
+@media (max-width: 767px) {
+  
+}
