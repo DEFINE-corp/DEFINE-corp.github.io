@@ -3,6 +3,8 @@
 @import "./contents.css";
 
 :root {
+  --layout-max-width: 1400px;
+
   --color_default: #222222;
   --color_default_rgb: 34,34,34;
   --color_text: #333333;
@@ -39,7 +41,9 @@ header .header_box {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 1400px;
+  /* width: 1400px; */
+  width: 100%;
+  max-width: var(--layout-max-width);
   height: 100%;
   margin: 0 auto;
 }
@@ -72,13 +76,16 @@ footer {
   background-position: calc(100% + 5px) calc(50% - 46px);
 }
 footer .footer_box {
-  width: 1400px;
+  /* width: 1400px; */
+  width: 100%;
+  max-width: var(--layout-max-width);
   margin: 0 auto;
 }
 .footer_corp {
   font-weight: 600;
   font-size: 24px;
-  color: var(--color_point);}
+  color: var(--color_point);
+}
 .footer_link {
   display: flex;
   align-items: center;
@@ -110,7 +117,7 @@ footer .footer_box {
     height: 5.625rem;
   }
   header .header_box {
-    width: 95%;
+    width: 87.5rem;
   }
   header .logo {
     width: 8.75rem;
@@ -118,6 +125,31 @@ footer .footer_box {
   header nav {
     gap: 5.625rem;
     font-size: 1.125rem;
+  }
+
+  footer {
+    padding: 3.125rem 0 4.625rem 0;
+    background-position: calc(100% + 0.313rem) calc(50% - 2.875rem);
+  }
+  footer .footer_box {
+    width: 87.5rem;
+  }
+  .footer_corp {
+    font-size: 1.5rem;
+  }
+  .footer_link {
+    margin-top: 1.5rem;
+    font-size: 0.938rem;
+  }
+  .footer_link li:not(:last-child)::after {
+    margin: 0 0.313rem 0 0.5rem;
+  }
+  .footer_link + .footer_info {
+    margin-top: 1rem;
+  }
+  .footer_info {
+    margin-top: 0.5rem;
+    font-size: 0.938rem;
   }
 }
 
