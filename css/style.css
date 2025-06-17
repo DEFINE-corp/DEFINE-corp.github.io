@@ -1,4 +1,4 @@
-@import "./reset.css";
+@import "./base.css";
 @import "./font.css";
 @import "./contents.css";
 
@@ -110,14 +110,14 @@ footer .footer_box {
     height: 5.625rem;
   }
   header .header_box {
-    width: 1400px;
+    width: 95%;
   }
   header .logo {
-    width: clamp(100px, 8vw, 120px);
+    width: 8.75rem;
   }
   header nav {
-    gap: 90px;
-    font-size: 18px;
+    gap: 5.625rem;
+    font-size: 1.125rem;
   }
 }
 

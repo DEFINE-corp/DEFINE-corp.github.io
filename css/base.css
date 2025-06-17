@@ -1,0 +1,138 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%; /* 16px (1rem) 기준 */
+  -webkit-text-size-adjust: 100%; /* Prevent font scaling in landscape */
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  max-width: 100%;
+  line-height: 1;
+  letter-spacing: -0.2px;
+  font-family: 'Poppins', 'Noto Sans KR', 'Segoe UI', 'Roboto', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  color: var(--color_default);
+  background-color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, figure, blockquote, dl, dd {
+  margin: 0;
+}
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+input, button, textarea, select {
+  font: inherit;
+  color: inherit;
+  margin: 0;
+  background: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+button {
+  background: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+  padding: 0.9375rem 1.25rem; /* 15px 20px */
+  font-size: 1rem; /* 16px */
+  border: 1px solid var(--color_input_border);
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--color_placeholder);
+}
+
+textarea {
+  resize: none;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 3.375rem; /* 54px */
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+.select-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.select-wrap::after {
+  content: '';
+  position: absolute;
+  right: 1.25rem; /* 20px */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  background: url('../images/common/icon_accordion.svg') no-repeat center / contain;
+  pointer-events: none;
+  transition: transform 0.3s ease;
+}
+
+.select-wrap.open::after {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.scroll-lock {
+  overflow: hidden;
+  touch-action: none;
+}
