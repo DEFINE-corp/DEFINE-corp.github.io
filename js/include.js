@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // mobileNavToggle 체크박스를 찾음
   const mobileNavToggle = document.getElementById('mobile_nav_toggle');
-
+  
   // mobileNavToggle 요소가 제대로 선택되었는지 확인
   console.log('mobileNavToggle:', mobileNavToggle);  // 콘솔에서 확인
 
@@ -118,7 +118,6 @@ document.addEventListener('DOMContentLoaded', () => {
     return;  // 요소가 없으면 종료
   }
 
-  // navLinks의 모든 링크들을 선택
   const navLinks = document.querySelectorAll('#nav_links a');
   
   // navLinks가 제대로 선택되었는지 확인
