@@ -65,7 +65,7 @@ header .logo {
   left: 0;
   width: 100%;
   height: 2px;
-  background-color: var(--color_white);
+  background-color: var(--color_point);
   transition: all 0.3s ease;
 }
 .mobile_nav_icon {
@@ -99,6 +99,11 @@ header nav {
 
 body.main header {
   border-color: rgba(var(--color_border_rgb), 0.25);
+}
+body.main .mobile_nav_icon,
+body.main .mobile_nav_icon::before,
+body.main .mobile_nav_icon::after {
+  background: var(--color_white);
 }
 body.main header nav a {
   color: var(--color_white);
