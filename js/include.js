@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 모바일 네비 버튼
   const mobileNav = document.querySelector('.mobile_nav');
-  const navLinks = document.querySelector('.nav-links');
+  const navLinks = document.querySelector('.nav_links');
 
   if (mobileNav && navLinks) {
     mobileNav.addEventListener('click', () => {
