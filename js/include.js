@@ -112,10 +112,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const navLinks = document.querySelector('.nav_links');
 
   if (mobileNav && navLinks) {
+    // 모바일 네비 버튼 클릭 이벤트 추가
     mobileNav.addEventListener('click', () => {
-      mobileNav.classList.toggle('open');
+      console.log('Mobile Nav clicked'); // 클릭 여부 확인
+
+      // 'open' 클래스가 정상적으로 토글되는지 확인
+      mobileNav.classList.toggle('open'); 
       navLinks.classList.toggle('open');
     });
+  } else {
+    console.log('Elements not found'); // 요소가 제대로 선택되지 않으면 확인
   }
 
   window.addEventListener('popstate', (event) => {
