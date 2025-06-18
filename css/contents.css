@@ -5,7 +5,7 @@ body.main main {
   /* height: 1090px; */
   height: clamp(600px, 90vh, 1090px);
   /* margin-top: -90px; */
-  margin-top: clamp(60px, 8vh, 90px);
+  margin-top: calc(-1 * clamp(60px, 8vh, 90px));
   overflow: hidden;
 }
 .main_visual {
