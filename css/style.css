@@ -172,12 +172,13 @@ footer .footer_box {
   header nav {
     display: none;
     flex-direction: column;
-    width: 100%;
-    background-color: var(--color_bg);
     position: absolute;
-    top: 60px; /* 헤더 높이만큼 내려서 메뉴 띄우기 */
+    top: 60px;
     left: 0;
+    width: 100%;
     padding: 20px 0;
+    background-color: rgba(var(--color_black_rgb), 0.35);
+    backdrop-filter: blur(2px);
   }
   header nav a {
     padding: 10px 20px;

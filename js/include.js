@@ -113,6 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (mobileNav && navLinks) {
     mobileNav.addEventListener('click', () => {
+      mobileNav.classList.toggle('open');
       navLinks.classList.toggle('open');
     });
   }
