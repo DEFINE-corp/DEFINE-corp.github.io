@@ -64,6 +64,8 @@ body.main main {
 /* sub */
 body.sub main {
   /* padding: 130px 0 180px 0; */
+  width: 100%;
+  max-width: var(--layout-content-width);
   padding: clamp(80px, 10vh, 130px) 0 clamp(100px, 15vh, 180px) 0;
 }
 .sub_title {
@@ -306,8 +308,13 @@ body.sub main {
   background-color: var(--color_point);
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%) rotate(45deg);
   transition: ease-out 0.3s all;
+}
+.close_button::before {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+.close_button::after {
+  transform: translate(-50%, -50%) rotate(45deg);
 }
 .close_button:hover::before, .close_button:focus::before {
   transform: translate(-50%, -50%) rotate(135deg);
