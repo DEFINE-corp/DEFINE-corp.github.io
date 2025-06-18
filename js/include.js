@@ -107,10 +107,10 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   };
 
-  const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+  const mobileNavToggle = document.getElementById('mobile_nav_toggle');
   if (!mobileNavToggle) return;  // mobileNavToggle 요소가 없으면 종료
 
-  const navLinks = document.querySelectorAll('.nav_links a');
+  const navLinks = document.querySelectorAll('#nav_links a'); // 정확한 셀렉터로 수정
   if (navLinks.length === 0) return;  // navLinks 요소가 없으면 종료
 
   // 각 링크 클릭 시 메뉴 닫기
