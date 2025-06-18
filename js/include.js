@@ -105,7 +105,17 @@ document.addEventListener('DOMContentLoaded', () => {
         main.innerHTML = `<p>요청한 페이지를 불러올 수 없습니다.</p>`;
         console.error(error);
       });
-  };  
+  };
+
+  // 모바일 네비 버튼
+  const mobileNav = document.querySelector('.mobile_nav');
+  const navLinks = document.querySelector('.nav-links');
+
+  if (mobileNav && navLinks) {
+    mobileNav.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+  }
 
   window.addEventListener('popstate', (event) => {
     const state = event.state || {};

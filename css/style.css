@@ -50,6 +50,35 @@ header .header_box {
 header .logo {
   width: clamp(80px, 15vw, 140px);
 }
+.mobile_nav {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 11; /* 햄버거 메뉴가 nav보다 위에 오도록 */
+}
+.mobile_nav .mobile_nav_icon {
+  width: 30px;
+  height: 3px;
+  background-color: var(--color_white);
+  position: relative;
+  transition: 0.3s;
+}
+.mobile_nav .mobile_nav_icon::before,
+.mobile_nav .mobile_nav_icon::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 3px;
+  background-color: var(--color_white);
+  transition: 0.3s;
+}
+.mobile_nav .mobile_nav_icon::before {
+  top: -8px;
+}
+.mobile_nav .mobile_nav_icon::after {
+  bottom: -8px;
+}
 header nav {
   display: flex;
   gap: clamp(20px, 5vw, 90px);
@@ -123,11 +152,25 @@ footer .footer_box {
 /* mobile */
 @media (max-width: 767px) {
   /* header */
-  header {
-  }
-  header .logo {
+  .mobile_nav {
+    display: block;
   }
   header nav {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: var(--color_bg);
+    position: absolute;
+    top: 60px; /* 헤더 높이만큼 내려서 메뉴 띄우기 */
+    left: 0;
+    padding: 20px 0;
+  }
+  header nav a {
+    padding: 10px 20px;
+    text-align: center;
+  }
+  .nav-links.open {
+    display: flex;
   }
 
   /* footer */
