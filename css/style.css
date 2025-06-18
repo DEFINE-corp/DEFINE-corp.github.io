@@ -52,32 +52,42 @@ header .logo {
 }
 .mobile_nav {
   display: none;
+  position: relative;
   background: transparent;
   border: none;
   cursor: pointer;
-  z-index: 11; /* 햄버거 메뉴가 nav보다 위에 오도록 */
+  z-index: 10;
 }
-.mobile_nav .mobile_nav_icon {
-  width: 30px;
-  height: 3px;
-  background-color: var(--color_white);
-  position: relative;
-  transition: 0.3s;
-}
-.mobile_nav .mobile_nav_icon::before,
-.mobile_nav .mobile_nav_icon::after {
+.mobile_nav_icon,
+.mobile_nav_icon::before,
+.mobile_nav_icon::after {
   content: '';
   position: absolute;
   width: 30px;
   height: 3px;
   background-color: var(--color_white);
-  transition: 0.3s;
+  transition: all 0.3s ease;
 }
-.mobile_nav .mobile_nav_icon::before {
-  top: -8px;
+.mobile_nav_icon {
+  top: 50%;
+  transform: translateY(-50%);
 }
-.mobile_nav .mobile_nav_icon::after {
-  bottom: -8px;
+.mobile_nav_icon::before {
+  top: -10px;
+}
+.mobile_nav_icon::after {
+  bottom: -10px;
+}
+.mobile_nav.open .mobile_nav_icon {
+  background-color: transparent;
+}
+.mobile_nav.open .mobile_nav_icon::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+.mobile_nav.open .mobile_nav_icon::after {
+  transform: rotate(-45deg);
+  bottom: 0;
 }
 header nav {
   display: flex;
