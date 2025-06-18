@@ -107,12 +107,16 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   };
 
-  const navLinks = document.querySelectorAll('.nav_links a');
-  const mobileNavToggle = document.getElementById('mobile_nav_toggle');
+  const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+  if (!mobileNavToggle) return;  // mobileNavToggle 요소가 없으면 종료
 
+  const navLinks = document.querySelectorAll('.nav_links a');
+  if (navLinks.length === 0) return;  // navLinks 요소가 없으면 종료
+
+  // 각 링크 클릭 시 메뉴 닫기
   navLinks.forEach(link => {
     link.addEventListener('click', () => {
-      mobileNavToggle.checked = false;
+      mobileNavToggle.checked = false;  // 메뉴가 닫히도록 체크박스 해제
     });
   });
 
