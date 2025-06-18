@@ -107,37 +107,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   };
 
-  // mobileNavToggle 체크박스를 찾음
-  const mobileNavToggle = document.getElementById('mobile_nav_toggle');
-  
-  // mobileNavToggle 요소가 제대로 선택되었는지 확인
-  console.log('mobileNavToggle:', mobileNavToggle);  // 콘솔에서 확인
-
-  if (!mobileNavToggle) {
-    console.error('mobileNavToggle 요소를 찾을 수 없습니다!');
-    return;  // 요소가 없으면 종료
-  }
-
-  const navLinks = document.querySelectorAll('#nav_links a');
-  
-  // navLinks가 제대로 선택되었는지 확인
-  console.log('navLinks:', navLinks);  // 콘솔에서 확인
-
-  if (navLinks.length === 0) {
-    console.error('navLinks 요소를 찾을 수 없습니다!');
-    return;  // navLinks가 없으면 종료
-  }
-
-  // 각 링크 클릭 시 메뉴 닫기
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      mobileNavToggle.checked = false;  // 메뉴가 닫히도록 체크박스 해제
-      console.log('메뉴 닫힘');
-    });
-  });
-
-  console.log('이벤트 리스너가 정상적으로 등록되었습니다!');
-
   window.addEventListener('popstate', (event) => {
     const state = event.state || {};
     const pageName = state.pageName || 'home';
