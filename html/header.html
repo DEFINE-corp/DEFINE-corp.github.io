@@ -1,9 +1,12 @@
 <div class="header_box">
   <h1 class="logo"><a href="/" data-page="home"><img src="" alt="define"></a></h1>
-  <button class="mobile_nav" aria-label="Open Nav">
+  
+  <input type="checkbox" id="mobile_nav_toggle" class="mobile_nav_toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav_links">
+  <label for="mobile_nav_toggle" class="mobile_nav_label" role="button" aria-pressed="false">
     <span class="mobile_nav_icon"></span>
-  </button>
-  <nav class="nav_links">
+  </label>
+
+  <nav id="nav_links" class="nav_links">
     <a href="/about" data-page="about">About us</a>
     <a href="/professionals" data-page="professionals">Professionals</a>
     <a href="/practices" data-page="practices">Practices</a>

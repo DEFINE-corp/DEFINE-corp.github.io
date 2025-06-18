@@ -107,21 +107,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   };
 
-  // 모바일 네비 버튼
-  const mobileNav = document.querySelector('.mobile_nav');
-  const navLinks = document.querySelector('.nav_links');
-
-  if (mobileNav && navLinks) {
-    mobileNav.addEventListener('click', () => {
-      console.log('Mobile Nav clicked'); // 클릭 여부 확인
-
-      mobileNav.classList.toggle('open'); 
-      navLinks.classList.toggle('open');
-    });
-  } else {
-    console.log('Elements not found'); // 요소가 없을 때 메시지
-  }
-
   window.addEventListener('popstate', (event) => {
     const state = event.state || {};
     const pageName = state.pageName || 'home';
