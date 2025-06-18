@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const navLinks = document.querySelectorAll('.nav_links a');
-  const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+  const mobileNavToggle = document.getElementById('mobile_nav_toggle');
 
   navLinks.forEach(link => {
     link.addEventListener('click', () => {
