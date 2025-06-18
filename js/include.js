@@ -107,6 +107,15 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   };
 
+  const navLinks = document.querySelectorAll('.nav_links a');
+  const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileNavToggle.checked = false;
+    });
+  });
+
   window.addEventListener('popstate', (event) => {
     const state = event.state || {};
     const pageName = state.pageName || 'home';
