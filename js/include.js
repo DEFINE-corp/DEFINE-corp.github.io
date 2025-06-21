@@ -132,7 +132,32 @@ document.addEventListener('DOMContentLoaded', () => {
         window.loadMainContent(page);
       });
     });
+
+    window.bindMobileNavToggle();
   };
+
+  window.bindMobileNavToggle = function () {
+    const toggle = document.querySelector('.mobile_nav_toggle');
+    const navLinks = document.querySelectorAll('.nav_links a');
+  
+    // 메뉴 클릭 시 자동으로 닫기
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (toggle && toggle.checked) {
+          toggle.checked = false;
+        }
+      });
+    });
+  
+    // 바깥 영역 클릭 시 메뉴 닫기
+    document.addEventListener('click', (e) => {
+      const nav = document.querySelector('header nav');
+      const label = document.querySelector('.mobile_nav_label');
+      if (toggle && toggle.checked && !nav.contains(e.target) && !label.contains(e.target)) {
+        toggle.checked = false;
+      }
+    });
+  };  
 
   window.bindHeaderScroll = function() {
     const header = document.querySelector('header');
