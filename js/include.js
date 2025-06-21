@@ -145,28 +145,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const toggle = document.querySelector('.mobile_nav_toggle');
     const navLinks = document.querySelectorAll('.nav_links a');
 
-    // 메뉴 항목 클릭 시 메뉴 닫기
+    // 메뉴 항목 클릭 시 닫기
     navLinks.forEach(link => {
       link.addEventListener('click', () => {
-        if (toggle && toggle.checked) {
+        if (toggle?.checked) {
           toggle.checked = false;
         }
       });
     });
 
-    // 바깥 클릭 시 메뉴 닫기 (수정된 부분)
+    // 외부 클릭 시 메뉴 닫기
     document.addEventListener('click', (e) => {
-      // 클릭 이벤트 처리 시점을 다음 이벤트 루프로 미룸
-      setTimeout(() => {
-        if (
-          toggle &&
-          toggle.checked &&
-          !e.target.closest('nav') &&
-          !e.target.closest('label.mobile_nav_label')
-        ) {
-          toggle.checked = false;
-        }
-      }, 0);
+      // 메뉴가 안 열려 있으면 무시
+      if (!toggle?.checked) return;
+
+      const isInsideNav = e.target.closest('nav');
+      const isInsideLabel = e.target.closest('label.mobile_nav_label');
+      const isInsideIcon = e.target.closest('.mobile_nav_icon');
+
+      if (!isInsideNav && !isInsideLabel && !isInsideIcon) {
+        toggle.checked = false;
+      }
     });
   };
 
