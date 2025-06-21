@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (el.getAttribute('data-include').includes('header.html')) {
           window.bindNavEvents();
           window.bindHeaderScroll();
+          window.bindMobileNavToggle();
         }
 
         if (!cacheBusted) {
@@ -132,8 +133,6 @@ document.addEventListener('DOMContentLoaded', () => {
         window.loadMainContent(page);
       });
     });
-
-    window.bindMobileNavToggle();
   };
 
   let isMobileNavBound = false;
@@ -145,27 +144,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const toggle = document.querySelector('.mobile_nav_toggle');
     const navLinks = document.querySelectorAll('.nav_links a');
 
-    // 메뉴 항목 클릭 시 닫기
+    // 메뉴 항목 클릭 시 메뉴 닫기
     navLinks.forEach(link => {
       link.addEventListener('click', () => {
-        if (toggle?.checked) {
-          toggle.checked = false;
-        }
+        if (toggle?.checked) toggle.checked = false;
       });
     });
 
-    // 외부 클릭 시 메뉴 닫기
-    document.addEventListener('click', (e) => {
-      // 메뉴가 안 열려 있으면 무시
+    // 바깥 클릭 시 메뉴 닫기 (setTimeout으로 defer 처리)
+    document.addEventListener('pointerdown', (e) => {
       if (!toggle?.checked) return;
 
       const isInsideNav = e.target.closest('nav');
       const isInsideLabel = e.target.closest('label.mobile_nav_label');
       const isInsideIcon = e.target.closest('.mobile_nav_icon');
 
-      if (!isInsideNav && !isInsideLabel && !isInsideIcon) {
-        toggle.checked = false;
-      }
+      // nav 또는 label 내부 클릭이면 닫지 않음
+      if (isInsideNav || isInsideLabel || isInsideIcon) return;
+
+      // defer 처리
+      setTimeout(() => {
+        if (toggle.checked) {
+          toggle.checked = false;
+        }
+      }, 0);
     });
   };
 
