@@ -136,11 +136,16 @@ document.addEventListener('DOMContentLoaded', () => {
     window.bindMobileNavToggle();
   };
 
+  let isMobileNavBound = false;
+
   window.bindMobileNavToggle = function () {
+    if (isMobileNavBound) return;
+    isMobileNavBound = true;
+
     const toggle = document.querySelector('.mobile_nav_toggle');
     const navLinks = document.querySelectorAll('.nav_links a');
-  
-    // 메뉴 클릭 시 자동으로 닫기
+
+    // 메뉴 항목 클릭 시 메뉴 닫기
     navLinks.forEach(link => {
       link.addEventListener('click', () => {
         if (toggle && toggle.checked) {
@@ -148,16 +153,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     });
-  
-    // 바깥 영역 클릭 시 메뉴 닫기
+
+    // 바깥 클릭 시 메뉴 닫기 (수정된 부분)
     document.addEventListener('click', (e) => {
-      const nav = document.querySelector('header nav');
-      const label = document.querySelector('.mobile_nav_label');
-      if (toggle && toggle.checked && !nav.contains(e.target) && !label.contains(e.target)) {
-        toggle.checked = false;
-      }
+      // 클릭 이벤트 처리 시점을 다음 이벤트 루프로 미룸
+      setTimeout(() => {
+        if (
+          toggle &&
+          toggle.checked &&
+          !e.target.closest('nav') &&
+          !e.target.closest('label.mobile_nav_label')
+        ) {
+          toggle.checked = false;
+        }
+      }, 0);
     });
-  };  
+  };
 
   window.bindHeaderScroll = function() {
     const header = document.querySelector('header');
