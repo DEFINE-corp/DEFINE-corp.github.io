@@ -509,35 +509,8 @@ body.sub main {
   }
 
   /* about us */
-  .about_list_wrap {
-   
-  }
-  .about_list {
-   
-  }
-  .about_list:not(:first-child) {
-    
-  }
-  .about_list:last-child {
-   
-  }
-  .about_list_img {
-    
-  }
-  .about_list:last-child .about_list_img::before {
-    
-  }
-  .about_list_text {
-    
-  }
-  .about_list_text strong {
-    
-  }
-  .about_list_text p {
-   
-  }
-  .about_list:last-child .about_list_text p {
-   
+  .about_list_text p br.hide {
+    display: none;
   }
 
   /* professionals */
@@ -545,7 +518,7 @@ body.sub main {
     
   }
   .professionals_list {
-    
+    width: calc((100% - clamp(40px, 6vw, 80px)) / 2);
   }
   .professionals_list .list_name {
     

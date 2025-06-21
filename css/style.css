@@ -153,11 +153,16 @@ footer .footer_box {
     padding: 0 1.25rem;
   }
   /* footer */
-  footer {
-    background-size: 50%;
-  }
   footer .footer_box {
     padding: 0 1.25rem;
+  }
+}
+
+/* tablet */
+@media (max-width: 1024px) {
+  /* footer */
+  footer {
+    background-size: 55%;
   }
 }
 
@@ -199,6 +204,8 @@ footer .footer_box {
 
   /* footer */
   footer {
+    background-size: 100%;
+    background-position: calc(50% + 5rem) center;
   }
   .footer_corp {
   }
