@@ -65,7 +65,7 @@ body.sub main {
   width: 100%;
   max-width: var(--layout-content-width);
   margin: 0 auto;
-  padding: clamp(80px, 13vh, 130px) 0 clamp(100px, 18vh, 180px) 0;
+  padding: clamp(80px, 10vh, 130px) 0 clamp(100px, 13vh, 180px) 0;
 }
 .sub_title {
   width: 100%;
@@ -84,8 +84,8 @@ body.sub main {
 .sub_visual {
   width: 100%;
   max-width: var(--layout-content-width);
-  height: clamp(280px, 50vh, 540px);
-  margin: clamp(60px, 10vh, 100px) auto 0 auto;
+  height: clamp(280px, 35vh, 540px);
+  margin: clamp(60px, 8vh, 100px) auto 0 auto;
 }
 .sub_visual img {
   width: 100%;
@@ -139,7 +139,7 @@ body.sub main {
 .sub_content {
   width: 100%;
   max-width: var(--layout-content-width);
-  margin: clamp(80px, 12vh, 120px) auto 0 auto;
+  margin: clamp(80px, 10vh, 120px) auto 0 auto;
 }
 .sub_content_summary {
   font-weight: 600;
@@ -162,14 +162,14 @@ body.sub main {
 
 /* about us */
 .about_list_wrap {
-  margin-top: clamp(80px, 13vh, 140px);
+  margin-top: clamp(80px, 10vh, 140px);
 }
 .about_list {
   display: flex;
   gap: clamp(40px, 8vw, 120px);
 }
 .about_list:not(:first-child) {
-  margin-top: clamp(80px, 15vh, 180px);
+  margin-top: clamp(80px, 10vh, 180px);
 }
 .about_list:nth-child(even) {
   flex-direction: row-reverse;
@@ -190,7 +190,7 @@ body.sub main {
 .about_list:last-child .about_list_img::before {
   content: 'DEFINE';
   position: absolute;
-  top: clamp(-210px, -30vh, -270px);
+  top: clamp(-130px, -20vh, -270px);
   right: clamp(13px, 1vw, 114px);
   font-weight: 500;
   font-size: clamp(80px, 14vw, 200px);
