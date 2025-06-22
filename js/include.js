@@ -19,7 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(data => {
         el.innerHTML = data;
 
-        if (el.getAttribute('data-include').includes('header.html')) {
+        if (el.getAttribute('data-include').includes('header.html') || ||
+        el.getAttribute('data-include').includes('footer.html')) {
           window.bindNavEvents();
           window.bindHeaderScroll();
           window.bindMobileNavToggle();
