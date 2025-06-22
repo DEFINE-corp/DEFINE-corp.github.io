@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
-  // let isMobileNavBound = false;
+  let isMobileNavBound = false;
 
   window.bindMobileNavToggle = function () {
     if (isMobileNavBound) return;
