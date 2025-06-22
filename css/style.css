@@ -33,7 +33,7 @@ header {
   position: sticky;
   top: 0;
   width: 100%;
-  height: clamp(60px, 8vh, 90px);
+  height: clamp(60px, 10vh, 90px);
   border-bottom: 1px solid var(--color_border);
   background: transparent;
   z-index: 10;
@@ -48,13 +48,13 @@ header .header_box {
   margin: 0 auto;
 }
 header .logo {
-  width: clamp(80px, 15vw, 140px);
+  width: clamp(80px, 8vw, 140px);
 }
 header nav {
   display: flex;
   gap: clamp(20px, 5vw, 90px);
   align-items: center;
-  font-size: clamp(0.875rem, 1.5vw, 1.125rem);
+  font-size: clamp(0.875rem, 1vw, 1.125rem);
   text-transform: uppercase;
 }
 .mobile_nav_toggle {
@@ -62,8 +62,8 @@ header nav {
 }
 .mobile_nav_label {
   display: none;
-  width: 25px;
-  height: 25px;
+  width: 1.563rem;
+  height: 1.563rem;
   position: relative;
   cursor: pointer;
 }
@@ -83,10 +83,10 @@ header nav {
   transform: translateY(-50%);
 }
 .mobile_nav_icon::before {
-  top: -8px;
+  top: -0.5rem;
 }
 .mobile_nav_icon::after {
-  bottom: -8px;
+  bottom: -0.5rem;
 }
 
 body.main header {
@@ -107,7 +107,7 @@ body.sub header.scrolled {
 
 /* footer */
 footer {
-  padding: clamp(20px, 2.7vh, 40px) 0 clamp(30px, 4vh, 64px) 0;
+  padding: clamp(20px, 4vh, 40px) 0 clamp(30px, 7vh, 64px) 0;
   background: url(../images/common/footer_logo.svg) no-repeat, var(--color_bg);
   background-position: right calc(50% - 3.125rem);
 }
@@ -118,29 +118,29 @@ footer .footer_box {
 }
 .footer_corp {
   font-weight: 600;
-  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  font-size: clamp(1.25rem, 1.6vw, 1.5rem);
   color: var(--color_point);
 }
 .footer_link {
   display: flex;
   align-items: center;
-  margin-top: clamp(16px, 2vh, 24px);
+  margin-top: clamp(16px, 2.5vh, 24px);
   font-weight: 600;
-  font-size: clamp(0.75rem, 1.5vw, 0.9375rem);
+  font-size: clamp(0.75rem, 1vw, 0.9375rem);
   color: var(--color_black);
 }
 .footer_link li:not(:last-child)::after {
   content: '\b7\a0';
   display: inline-block;
-  margin: 0 clamp(3px, 0.5vw, 5px) 0 clamp(4px, 0.8vw, 8px);
+  margin: 0 clamp(3px, 0.3vw, 5px) 0 clamp(4px, 0.5vw, 8px);
 }
 .footer_link + .footer_info {
-  margin-top: clamp(12px, 1.5vh, 16px);
+  margin-top: clamp(12px, 1.8vh, 16px);
 }
 .footer_info {
-  margin-top: clamp(6px, 1vh, 8px);
+  margin-top: clamp(6px, 0.95vh, 8px);
   font-weight: 300;
-  font-size: clamp(0.75rem, 1.5vw, 0.9375rem);
+  font-size: clamp(0.75rem, 1vw, 0.9375rem);
   color: var(--color_sub_text);
 }
 
