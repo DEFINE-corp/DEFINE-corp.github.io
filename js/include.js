@@ -109,6 +109,8 @@ document.addEventListener('DOMContentLoaded', () => {
           else if (pageName === 'location') newUrl = '/location';
           else if (pageName === 'contact') newUrl = '/contact-us';
           else if (pageName === 'professionals') newUrl = '/professionals';
+          else if (pageName === 'terms_privacy') newUrl = '/terms-privacy';
+          else if (pageName === 'terms_email') newUrl = '/terms-email';
           history.pushState({ pageName }, '', newUrl);
         }
       })
@@ -214,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'professionals': 'professionals',
     'professionals/detail': 'professionals',
     'terms-privacy': 'terms_privacy',
-    'terms-email': 'terms_email' 
+    'terms-email': 'terms_email'
   };
 
   if (redirectPath) {
