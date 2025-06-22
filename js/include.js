@@ -23,6 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
           window.bindNavEvents();
           window.bindHeaderScroll();
           window.bindMobileNavToggle();
+
+          updateLogoImageStyle();
         }
 
         if (!cacheBusted) {
@@ -55,6 +57,16 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   });
 
+  function updateLogoImageStyle() {
+    const logoImg = document.querySelector('.logo img');
+    if (!logoImg) return;
+  
+    const isHome = document.body.classList.contains('main');
+    logoImg.src = isHome
+      ? '../images/common/logo_white.svg'
+      : '../images/common/logo_blue.svg';
+  }  
+
   window.loadMainContent = function(pageName, pushState = true) {
     const main = document.querySelector('main');
     const body = document.body;
@@ -69,16 +81,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (pageName === 'home') {
           body.classList.remove('sub');
           body.classList.add('main');
-          const logoImg = document.querySelector('.logo img');
-          if (logoImg) logoImg.src = '../images/common/logo_white.svg';
         } else {
           body.classList.remove('main');
           body.classList.add('sub');
-          const logoImg = document.querySelector('.logo img');
-          if (logoImg) logoImg.src = '../images/common/logo_blue.svg';
         }
   
         main.innerHTML = data;
+
+        updateLogoImageStyle();
 
         // ScrollTrigger 초기화 및 기존 Trigger 제거
         ScrollTrigger.getAll().forEach(trigger => trigger.kill()); // 모든 기존 ScrollTrigger를 제거
