@@ -107,12 +107,12 @@ select::-ms-expand {
   display: none;
 }
 
-.select-wrap {
+.select_wrap {
   display: inline-block;
   position: relative;
 }
 
-.select-wrap::after {
+.select_wrap::after {
   content: '';
   position: absolute;
   top: 50%;
@@ -125,7 +125,7 @@ select::-ms-expand {
   transition: transform 0.3s ease;
 }
 
-.select-wrap.open::after {
+.select_wrap.open::after {
   transform: translateY(-50%) rotate(180deg);
 }
 
