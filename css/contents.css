@@ -514,6 +514,9 @@ body.sub main {
   .about_list {
     flex-direction: column;
   }
+  .about_list:nth-child(even) {
+    flex-direction: column;
+  }
   .about_list_img  {
     width: 100%;
   }
