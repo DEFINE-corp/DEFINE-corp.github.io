@@ -33,7 +33,7 @@ body.main main {
   font-weight: 500;
   font-size: clamp(2.188rem, 6vw, 5rem);
   line-height: 1.2;
-  color: var(--color_white);
+  color: var(--color-white);
 }
 .main_view_more {
   display: flex;
@@ -44,10 +44,10 @@ body.main main {
   padding: clamp(8px, 1.5vh, 13px) clamp(15px, 2vw, 40px);
   font-weight: 500;
   font-size: clamp(0.875rem, 1.2vw, 1.125rem);
-  color: var(--color_white);
-  border: 1px solid rgba(var(--color_white_rgb), 0.8);
+  color: var(--color-white);
+  border: 1px solid rgba(var(--color-white-rgb), 0.8);
   border-radius: 2.625rem;
-  background: rgba(var(--color_white_rgb), 0.14);
+  background: rgba(var(--color-white-rgb), 0.14);
   backdrop-filter: blur(8px);
 }
 
@@ -116,7 +116,7 @@ body.sub main {
   left: 50%;
   width: 1300px;
   margin: 0 auto;
-  color: var(--color_white);
+  color: var(--color-white);
   text-transform: uppercase;
   z-index: 2;
   transform: translate(-50%, -50%);
@@ -144,7 +144,7 @@ body.sub main {
 .sub_content_summary {
   font-weight: 600;
   font-size: clamp(1.125rem, 1.5vw, 1.625rem);
-  color: var(--color_point);
+  color: var(--color-point);
 }
 .sub_content_title {
   margin-top: clamp(24px, 3.7vh, 34px);
@@ -195,7 +195,7 @@ body.sub main {
   font-weight: 500;
   font-size: clamp(80px, 14vw, 200px);
   letter-spacing: clamp(4px, 1vw, 20px);
-  color: rgba(var(--color_black_rgb), 0.03);
+  color: rgba(var(--color-black-rgb), 0.03);
 }
 .about_list_text {
   width: 100%;
@@ -247,7 +247,7 @@ body.sub main {
 }
 .professionals_list .list_cont dd {
   margin-top: clamp(8px, 1.5vh, 14px);
-  color: var(--color_sub_text);
+  color: var(--color-sub-text);
 } */
 
 .professionals_detail {
@@ -269,7 +269,7 @@ body.sub main {
   position: absolute;
   height: 2px;
   width: 100%;
-  background-color: var(--color_point);
+  background-color: var(--color-point);
   left: 50%;
   top: 50%;
   transition: ease-out 0.3s all;
@@ -313,7 +313,7 @@ body.sub main {
 }
 .detail_cont .detail_info dd {
   margin-top: clamp(8px, 1.5vh, 14px);
-  color: var(--color_sub_text);
+  color: var(--color-sub-text);
   white-space: pre-line;
   line-height: 1.6;
 }
@@ -349,7 +349,7 @@ body.sub main {
   font-weight: 300;
   font-size: clamp(1rem, 1.25vw, 1.125rem); 
   line-height: 1.4;
-  color: var(--color_sub_text);
+  color: var(--color-sub-text);
   word-break: keep-all;
 }
 
@@ -364,7 +364,7 @@ body.sub main {
   gap: clamp(20px, 1.8vw, 30px) clamp(60px, 10vw, 172px);
   margin-top: clamp(80px, 13vh, 140px);
   padding: clamp(24px, 4vh, 46px) clamp(20px, 2.2vw, 40px);
-  border-top: 1px solid var(--color_default);
+  border-top: 1px solid var(--color-default);
 }
 .location_info {
   width: calc((100% - clamp(60px, 10vw, 172px)) / 2);
@@ -377,7 +377,7 @@ body.sub main {
   margin-top: clamp(8px, 1.5vh, 14px);
   font-weight: 500;
   font-size: clamp(1rem, 1.32vw, 1.25rem);
-  color: var(--color_sub_text);
+  color: var(--color-sub-text);
   word-break: keep-all;
 }
 
@@ -388,8 +388,8 @@ body.sub main {
   gap: clamp(24px, 2.5vw, 46px) clamp(24px, 2.8vw, 50px);
   margin-top: clamp(80px, 13vh, 140px);
   padding: clamp(40px, 6.5vh, 60px) clamp(16px, 1.35vw, 20px);
-  border-top: 1px solid var(--color_default);
-  border-bottom: 1px solid var(--color_border);
+  border-top: 1px solid var(--color-default);
+  border-bottom: 1px solid var(--color-border);
 }
 .email_form_sort {
   width: calc((100% - clamp(24px, 2.8vw, 50px)) / 2);
@@ -420,9 +420,23 @@ body.sub main {
   padding: clamp(14px, 2.1vh, 18px) clamp(28px, 2.5vw, 47px);
   font-weight: 500;
   font-size: clamp(0.875rem, 1.25vw, 1.125rem);
-  color: var(--color_white);
+  color: var(--color-white);
   border-radius: 2.625rem;
-  background: var(--color_default);
+  background: var(--color-default);
+}
+
+/* terms */
+.terms_content{
+  line-height: 1.4;
+  color: var(--color-sub-text);
+  white-space: pre-line;
+}
+.terms_content em {
+  color: var(--color-point);
+}
+.terms_content strong {
+  font-weight: 500;
+  color: var(--color-default);
 }
 
 
