@@ -107,7 +107,7 @@ body.sub header.scrolled {
 
 /* footer */
 footer {
-  padding: clamp(20px, 4vh, 40px) 0 clamp(30px, 7vh, 64px) 0;
+  padding: clamp(20px, 4vh, 40px) 0 clamp(30px, 5vh, 64px) 0;
   background: url(../images/common/footer_logo.svg) no-repeat, var(--color_bg);
   background-position: right calc(50% - 3.125rem);
 }
