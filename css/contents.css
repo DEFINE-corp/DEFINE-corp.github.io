@@ -426,16 +426,22 @@ body.sub main {
 }
 
 /* terms */
-.terms_content{
+.terms_content {
+  margin-top: 3.125rem;
+  padding: 1.25rem;
+  font-size: 0.938rem;
   line-height: 1.4;
   color: var(--color-sub-text);
   white-space: pre-line;
+  border: 1px solid var(--color-border)
 }
 .terms_content em {
+  font-weight: 600;
   color: var(--color-point);
 }
 .terms_content strong {
   font-weight: 500;
+  font-size: 1rem;
   color: var(--color-default);
 }
 
