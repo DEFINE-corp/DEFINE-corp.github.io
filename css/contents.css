@@ -399,13 +399,13 @@ body.sub main {
 }
 .email_form_sort label {
   display: block;
+  margin-bottom: clamp(10px, 1.8vh, 16px);
   font-size: clamp(0.813rem, 1vw, 0.9375rem);
 }
 .email_form_sort select,
 .email_form_sort input,
 .email_form_sort textarea {
   width: 100%;
-  margin-top: clamp(10px, 1.8vh, 16px);
   font-size: clamp(0.875rem, 1.1vw, 1rem);
   padding: clamp(10px, 1.5vh, 14px);
 }

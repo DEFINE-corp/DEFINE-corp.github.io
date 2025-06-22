@@ -108,20 +108,19 @@ select::-ms-expand {
 }
 
 .select_wrap {
-  display: inline-block;
+  display: flex;
+  align-items: center;
   position: relative;
 }
 
 .select_wrap::after {
   content: '';
   position: absolute;
-  top: 50%;
   right: 1.25rem;
-  width: 14px;
-  height: 14px;
+  width: 0.875rem;
+  height: 0.875rem;
   background: url('../images/common/icon_accordion.svg') no-repeat center / contain;
   pointer-events: none;
-  transform: translateY(-50%);
   transition: transform 0.3s ease;
 }
 
