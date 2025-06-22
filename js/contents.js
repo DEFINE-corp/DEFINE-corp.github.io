@@ -17,15 +17,22 @@ document.addEventListener('DOMContentLoaded', () => {
         if (detailItems[index]) {
           const detail = detailItems[index];
           detail.style.display = 'flex';
+
+          const isMobile = window.innerWidth <= 768;
+
+          if (isMobile) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          } else {
+            const rect = detail.getBoundingClientRect();
+            const detailTop = rect.top + window.scrollY;
+            const detailHeight = rect.height;
+            const windowHeight = window.innerHeight;
       
-          // Get the bounding rectangle for the detail item
-          const rect = detail.getBoundingClientRect();
-          const detailTop = rect.top + window.scrollY;
-          const detailHeight = rect.height;
-          const windowHeight = window.innerHeight;
-      
-          // Scroll to the middle of the screen where the detail is
-          window.scrollTo(0, detailTop - (windowHeight / 2) + (detailHeight / 2));
+            window.scrollTo({
+              top: detailTop - (windowHeight / 2) + (detailHeight / 2),
+              behavior: 'smooth'
+            });
+          }
       
           history.pushState({ pageName: 'professionals/detail', index }, '', '/professionals/detail');
         } else {

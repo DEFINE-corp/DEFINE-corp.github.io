@@ -229,7 +229,7 @@ body.sub main {
 .professionals_list .list_name {
   margin-top: clamp(30px, 5vh, 50px);
   font-weight: 500;
-  font-size: clamp(1.25rem, 1.7vw, 1.625rem);
+  font-size: clamp(0.875rem, 1.7vw, 1.625rem);
 }
 .professionals_list .list_name span {
   font-weight: 600;
@@ -508,35 +508,48 @@ body.sub main {
   }
 
   /* about us */
+  .about_list_wrap {
+    margin-top: 20%;
+  }
+  .about_list {
+    flex-direction: column;
+  }
+  .about_list_img  {
+    width: 100%;
+  }
+  .about_list_text {
+    padding-top: 0;
+  }
   .about_list_text p br.hide {
+    display: none;
+  }
+  .about_list:not(:first-child) {
+    margin-top: 20%;
+  }
+  .about_list:last-child {
+    margin-left: 0;
+  }
+  .about_list:last-child .about_list_img::before {
     display: none;
   }
 
   /* professionals */
   .professionals_list_wrap {
-    
+    gap: 1.25rem;
   }
   .professionals_list {
-    width: calc((100% - clamp(40px, 6vw, 80px)) / 2);
+    width: calc((100% - 1.25rem) / 2);
   }
   .professionals_list .list_name {
-    
+    margin-top: 15%;
   }
 
   .professionals_detail {
-    
-  }
-  .close_button {
-   
-  }
-  .close_button::before {
-    
-  }
-  .close_button::after {
-    
+    flex-direction: column;
+    gap: 0;
   }
   .detail_img {
-    
+    width: 80%;
   }
   .detail_cont .detail_name {
     
