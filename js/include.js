@@ -135,8 +135,16 @@ document.addEventListener('DOMContentLoaded', () => {
   });  
 
   window.bindNavEvents = function() {
-    const navLinks = document.querySelectorAll('nav a[data-page]');
-    navLinks.forEach(link => {
+    // const navLinks = document.querySelectorAll('nav a[data-page]');
+    // navLinks.forEach(link => {
+    //   link.addEventListener('click', (e) => {
+    //     e.preventDefault();
+    //     const page = link.getAttribute('data-page');
+    //     window.loadMainContent(page);
+    //   });
+    // });
+    const pageLinks = document.querySelectorAll('a[data-page]');
+    pageLinks.forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
         const page = link.getAttribute('data-page');
@@ -205,6 +213,8 @@ document.addEventListener('DOMContentLoaded', () => {
     'contact-us': 'contact',
     'professionals': 'professionals',
     'professionals/detail': 'professionals',
+    'terms-privacy': 'terms_privacy',
+    'terms-email': 'terms_email' 
   };
 
   if (redirectPath) {
