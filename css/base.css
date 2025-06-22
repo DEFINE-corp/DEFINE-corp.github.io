@@ -96,8 +96,8 @@ input, select {
   height: 3.125rem;
 }
 
-select {
-  padding-right: 3.375rem; /* 54px */
+/* select {
+  padding-right: 3.375rem;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -116,7 +116,7 @@ select::-ms-expand {
   content: '';
   position: absolute;
   top: 50%;
-  right: 1.25rem; /* 20px */
+  right: 1.25rem;
   width: 14px;
   height: 14px;
   background: url('../images/common/icon_accordion.svg') no-repeat center / contain;
@@ -127,7 +127,7 @@ select::-ms-expand {
 
 .select-wrap.open::after {
   transform: translateY(-50%) rotate(180deg);
-}
+} */
 
 [hidden] {
   display: none !important;

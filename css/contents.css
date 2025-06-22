@@ -614,6 +614,9 @@ body.sub main {
   .location_info dd {
     line-height: 1.4;
   }
+  .location_info dd a {
+    text-decoration: none;
+  }
 
   /* contact us */
   .email_form {
