@@ -19,13 +19,24 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(data => {
         el.innerHTML = data;
 
-        if (el.getAttribute('data-include').includes('header.html') || el.getAttribute('data-include').includes('footer.html')) {
+        if (el.getAttribute('data-include').includes('header.html')) {
           window.bindNavEvents();
           window.bindHeaderScroll();
           window.bindMobileNavToggle();
 
           updateLogoImageStyle();
         }
+
+        if (el.getAttribute('data-include').includes('footer.html')) {
+          const footerLinks = el.querySelectorAll('a[data-page]');
+          footerLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+              e.preventDefault();
+              const page = link.getAttribute('data-page');
+              window.loadMainContent(page);
+            });
+          });
+        }        
 
         if (!cacheBusted) {
           // CSS 캐시 무시 한번만
@@ -137,16 +148,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });  
 
   window.bindNavEvents = function() {
-    // const navLinks = document.querySelectorAll('nav a[data-page]');
-    // navLinks.forEach(link => {
-    //   link.addEventListener('click', (e) => {
-    //     e.preventDefault();
-    //     const page = link.getAttribute('data-page');
-    //     window.loadMainContent(page);
-    //   });
-    // });
-    const pageLinks = document.querySelectorAll('a[data-page]');
-    pageLinks.forEach(link => {
+    const navLinks = document.querySelectorAll('nav a[data-page]');
+    navLinks.forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
         const page = link.getAttribute('data-page');
@@ -155,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
-  let isMobileNavBound = false;
+  // let isMobileNavBound = false;
 
   window.bindMobileNavToggle = function () {
     if (isMobileNavBound) return;
