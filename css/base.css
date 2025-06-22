@@ -96,7 +96,7 @@ input, select {
   height: 3.125rem;
 }
 
-/* select {
+select {
   padding-right: 3.375rem;
   appearance: none;
   -webkit-appearance: none;
@@ -127,7 +127,7 @@ select::-ms-expand {
 
 .select-wrap.open::after {
   transform: translateY(-50%) rotate(180deg);
-} */
+}
 
 [hidden] {
   display: none !important;
