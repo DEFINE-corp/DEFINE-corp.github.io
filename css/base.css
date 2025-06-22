@@ -116,7 +116,7 @@ select::-ms-expand {
 .select_wrap::after {
   content: '';
   position: absolute;
-  right: 1.25rem;
+  right: clamp(10px, 1.5vh, 14px);
   width: 0.875rem;
   height: 0.875rem;
   background: url('../images/common/icon_accordion.svg') no-repeat center / contain;
