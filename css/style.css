@@ -211,12 +211,4 @@ footer .footer_box {
     background-size: 100%;
     background-position: calc(50% + 5rem) center;
   }
-  .footer_corp {
-  }
-  .footer_link {
-  }
-  .footer_link + .footer_info {
-  }
-  .footer_info {
-  }
 }
