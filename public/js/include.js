@@ -9,25 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
     String(now.getMinutes()).padStart(2, '0') +
     String(now.getSeconds()).padStart(2, '0');
 
-  // style.css를 불러와서 @import 구문에 버전 추가
-  function loadStyleWithVersion() {
-    fetch('/css/style.css')
-      .then(response => response.text())
-      .then(content => {
-        // @import 경로에 버전 쿼리 추가
-        content = content.replace(/@import\s*['"]([^'"]+)\.css['"];/g, (match, p1) => {
-          return `@import '${p1}.css?v=${version}';`;
-        });
-
-        // 수정된 내용을 <style> 태그로 삽입
-        const styleTag = document.createElement('style');
-        styleTag.innerHTML = content;
-        document.head.appendChild(styleTag);
-      })
-      .catch(error => console.error('Error loading style.css:', error));
-  }
-  loadStyleWithVersion();
-
   // 공통 include 처리 (header, footer)
   // 최초 한 번만 실행되도록 플래그 사용
   let cacheBusted = false;
