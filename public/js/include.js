@@ -120,6 +120,8 @@ document.addEventListener('DOMContentLoaded', () => {
           else if (pageName === 'location') newUrl = '/location';
           else if (pageName === 'contact') newUrl = '/contact-us';
           else if (pageName === 'professionals') newUrl = '/professionals';
+          else if (pageName === 'professionals/detail') newUrl = '/professionals';
+          else if (pageName === 'practices') newUrl = '/practices';
           else if (pageName === 'terms_privacy') newUrl = '/terms-privacy';
           else if (pageName === 'terms_email') newUrl = '/terms-email';
           history.pushState({ pageName }, '', newUrl);
@@ -218,6 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'contact-us': 'contact',
     'professionals': 'professionals',
     'professionals/detail': 'professionals',
+    'practices': 'practices',
     'terms-privacy': 'terms_privacy',
     'terms-email': 'terms_email'
   };
