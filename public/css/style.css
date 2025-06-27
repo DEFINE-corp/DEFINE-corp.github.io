@@ -1,3 +1,7 @@
+@import "./base.css";
+@import "./font.css";
+@import "./contents.css";
+
 :root {
   --layout-max-width: 1400px;
   --layout-content-width: 1300px;
