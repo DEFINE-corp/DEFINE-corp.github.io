@@ -1,17 +1,24 @@
 export default async (req, res) => {
+  // ✅ CORS 설정
+  res.setHeader('Access-Control-Allow-Origin', '*'); // 또는 'https://www.defineip.kr' 정확히 명시
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  // ✅ 사전 요청 처리 (OPTIONS)
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end(); // 브라우저 사전 요청에 대한 응답
+  }
+
   if (req.method === 'POST') {
     const { name, email, category, company, phone, qna } = req.body;
 
-    // 이메일 내용 구성
     const emailParams = {
-      Source: 'ip@defineip.kr', // 검증된 발신자 이메일 주소 (SES에서 검증된 이메일 주소)
+      Source: 'ip@defineip.kr',
       Destination: {
-        ToAddresses: ['ip@defineip.kr'], // 수신자 이메일 주소
+        ToAddresses: ['ip@defineip.kr'],
       },
       Message: {
-        Subject: {
-          Data: '[DEFINE] 웹사이트 문의 도착',
-        },
+        Subject: { Data: '[DEFINE] 웹사이트 문의 도착' },
         Body: {
           Text: {
             Data: `
@@ -25,11 +32,9 @@ export default async (req, res) => {
           },
         },
       },
-      // 고객 이메일 주소를 Reply-To에 설정
-      ReplyToAddresses: [email], // 고객이 입력한 이메일 주소로 답장을 보내기 위해 설정
+      ReplyToAddresses: [email],
     };
 
-    // SES를 통해 이메일 전송
     try {
       const data = await ses.sendEmail(emailParams).promise();
       console.log("Email sent successfully", data);
@@ -39,7 +44,6 @@ export default async (req, res) => {
       res.status(500).json({ message: '이메일 전송 실패' });
     }
   } else {
-    // POST가 아닌 경우 오류 반환
     res.status(405).json({ message: '허용되지 않은 요청' });
   }
 };
