@@ -63,29 +63,28 @@ document.addEventListener('DOMContentLoaded', () => {
             }
           });
 
-          // style.css 내 @import 처리
-          const styleSheet = document.querySelector('link[rel="stylesheet"][href="/css/style.css"]');
-          if (styleSheet) {
-            fetch(styleSheet.href)
-              .then(response => response.text())
-              .then(content => {
-                // @import 구문에서 버전 추가
-                content = content.replace(/@import\s*['"]([^'"]+)\.css['"];/g, (match, p1) => {
-                  return `@import '${p1}.css?v=${version}';`;
-                });
-
-                // 수정된 내용을 <style> 태그로 삽입
-                const styleTag = document.createElement('style');
-                styleTag.innerHTML = content;
-                document.head.appendChild(styleTag);
-              })
-              .catch(error => console.error('Error loading style.css:', error));
-          }
-
           cacheBusted = true;
         }
       });
   });
+
+  // style.css를 불러와서 @import 구문에 버전 추가
+  function loadStyleWithVersion() {
+    fetch('/css/style.css')
+      .then(response => response.text())
+      .then(content => {
+        // @import 경로에 버전 쿼리 추가
+        content = content.replace(/@import\s*['"]([^'"]+)\.css['"];/g, (match, p1) => {
+          return `@import '${p1}.css?v=${version}';`;
+        });
+
+        // 수정된 내용을 <style> 태그로 삽입
+        const styleTag = document.createElement('style');
+        styleTag.innerHTML = content;
+        document.head.appendChild(styleTag);
+      })
+      .catch(error => console.error('Error loading style.css:', error));
+  }
 
   function updateLogoImageStyle() {
     const logoImg = document.querySelector('.logo img');
