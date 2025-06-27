@@ -12,6 +12,13 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="icon" sizes="32x32" href="/favicon-32x32.png" type="image/png">
     <link rel="icon" sizes="16x16" href="/favicon-16x16.png" type="image/png">
+
+    <style>
+      body {
+        visibility: hidden;
+      }
+    </style>
+
     <link rel="stylesheet" href="/css/style.css">
     
     <title>DEFINE 특허법인</title>
@@ -33,5 +40,12 @@
     
     <script type="text/javascript" src="/js/include.js" defer></script>
     <script type="text/javascript" src="/js/contents.js" defer></script>
+
+    <script>
+      // CSS가 로드된 후 페이지를 표시
+      window.addEventListener('load', function() {
+        document.body.style.visibility = 'visible';
+      });
+    </script>
   </body>
 </html>

@@ -9,8 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
     String(now.getMinutes()).padStart(2, '0') +
     String(now.getSeconds()).padStart(2, '0');
 
-  document.body.style.visibility = "hidden";
-
   // 공통 include 처리 (header, footer)
   // 최초 한 번만 실행되도록 플래그 사용
   let cacheBusted = false;
@@ -67,7 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
           cacheBusted = true;
         }
-        document.body.style.visibility = "visible";
       });
   });
 
