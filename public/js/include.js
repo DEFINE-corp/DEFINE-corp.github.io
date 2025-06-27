@@ -75,13 +75,22 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(content => {
         // @import 경로에 버전 쿼리 추가
         content = content.replace(/@import\s*['"]([^'"]+)\.css['"];/g, (match, p1) => {
+          // 각 @import 경로에 버전 추가
           return `@import '${p1}.css?v=${version}';`;
         });
-
+  
         // 수정된 내용을 <style> 태그로 삽입
         const styleTag = document.createElement('style');
         styleTag.innerHTML = content;
+  
+        // <head>에 스타일 태그 추가 (기존 <link> 태그 대신)
         document.head.appendChild(styleTag);
+  
+        // 기존 style.css 링크 제거 (이미 로드된 스타일 제거)
+        const existingLinkTag = document.querySelector('link[rel="stylesheet"][href="/css/style.css"]');
+        if (existingLinkTag) {
+          existingLinkTag.remove();
+        }
       })
       .catch(error => console.error('Error loading style.css:', error));
   }
