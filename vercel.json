@@ -1,12 +1,16 @@
 {
   "rewrites": [
     {
-      "source": "/professionals/detail",
-      "destination": "/professionals"
-    },
-    {
       "source": "/:path*",
       "destination": "/index.html"
     }
+  ],
+  "redirects": [
+    {
+      "source": "/professionals/detail",
+      "destination": "/professionals",
+      "permanent": true
+    }
   ]
+
 }
