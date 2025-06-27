@@ -125,6 +125,47 @@ document.addEventListener('DOMContentLoaded', () => {
           else if (pageName === 'terms_email') newUrl = '/terms-email';
           history.pushState({ pageName }, '', newUrl);
         }
+
+        if (pageName === 'contact') {
+          const form = document.getElementById('contactForm');
+          if (!form) return;
+        
+          form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+        
+            alert('폼 제출 이벤트 발생'); // ✅ alert 테스트
+        
+            const formData = {
+              category: document.getElementById('category').value,
+              name: document.getElementById('name').value,
+              company: document.getElementById('company').value,
+              phone: document.getElementById('phone').value,
+              email: document.getElementById('email').value,
+              qna: document.getElementById('qna').value,
+            };
+        
+            try {
+              const response = await fetch('/api/send-email', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
+              });
+        
+              if (!response.ok) {
+                const errorMessage = await response.text();
+                console.error('Error response:', errorMessage);
+                throw new Error('전송 중 오류가 발생했습니다.');
+              }
+        
+              const responseData = await response.json();
+              alert(responseData.message);
+              form.reset();
+            } catch (err) {
+              console.error('Error:', err);
+              alert('전송 실패');
+            }
+          });
+        }        
       })
       .catch(error => {
         main.innerHTML = `<p>요청한 페이지를 불러올 수 없습니다.</p>`;
