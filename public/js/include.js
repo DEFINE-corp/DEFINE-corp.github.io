@@ -13,118 +13,60 @@ document.addEventListener('DOMContentLoaded', () => {
   // 최초 한 번만 실행되도록 플래그 사용
   let cacheBusted = false;
 
-  // document.querySelectorAll('[data-include]').forEach(el => {
-  //   fetch(el.getAttribute('data-include'))
-  //     .then(response => response.text())
-  //     .then(data => {
-  //       el.innerHTML = data;
+  document.querySelectorAll('[data-include]').forEach(el => {
+    fetch(el.getAttribute('data-include'))
+      .then(response => response.text())
+      .then(data => {
+        el.innerHTML = data;
 
-  //       if (el.getAttribute('data-include').includes('header.html')) {
-  //         window.bindNavEvents();
-  //         window.bindHeaderScroll();
-  //         window.bindMobileNavToggle();
+        if (el.getAttribute('data-include').includes('header.html')) {
+          window.bindNavEvents();
+          window.bindHeaderScroll();
+          window.bindMobileNavToggle();
 
-  //         updateLogoImageStyle();
-  //       }
+          updateLogoImageStyle();
+        }
 
-  //       if (el.getAttribute('data-include').includes('footer.html')) {
-  //         const footerLinks = el.querySelectorAll('a[data-page]');
-  //         footerLinks.forEach(link => {
-  //           link.addEventListener('click', (e) => {
-  //             e.preventDefault();
-  //             const page = link.getAttribute('data-page');
-  //             window.loadMainContent(page);
-  //           });
-  //         });
-  //       }        
+        if (el.getAttribute('data-include').includes('footer.html')) {
+          const footerLinks = el.querySelectorAll('a[data-page]');
+          footerLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+              e.preventDefault();
+              const page = link.getAttribute('data-page');
+              window.loadMainContent(page);
+            });
+          });
+        }        
 
-  //       if (!cacheBusted) {
-  //         // CSS 캐시 무시 한번만
-  //         const cssLinks = document.querySelectorAll('link[rel="stylesheet"]');
-  //         cssLinks.forEach(link => {
-  //           let href = link.getAttribute('href');
-  //           if (href && !href.includes('?v=')) {
-  //             const newHref = `${href}?v=${version}`;
-  //             const newLink = link.cloneNode();
-  //             newLink.setAttribute('href', newHref);
-  //             link.parentNode.replaceChild(newLink, link);
-  //           }
-  //         });
+        if (!cacheBusted) {
+          // CSS 캐시 무시 한번만
+          const cssLinks = document.querySelectorAll('link[rel="stylesheet"]');
+          cssLinks.forEach(link => {
+            let href = link.getAttribute('href');
+            if (href && !href.includes('?v=')) {
+              const newHref = `${href}?v=${version}`;
+              const newLink = link.cloneNode();
+              newLink.setAttribute('href', newHref);
+              link.parentNode.replaceChild(newLink, link);
+            }
+          });
 
-  //         // JS 캐시 무시 한번만
-  //         const scriptTags = document.querySelectorAll('script[src]');
-  //         scriptTags.forEach(script => {
-  //           let src = script.getAttribute('src');
-  //           if (src && !src.includes('?v=')) {
-  //             const newScript = document.createElement('script');
-  //             newScript.src = `${src}?v=${version}`;
-  //             newScript.defer = true;
-  //             script.parentNode.replaceChild(newScript, script);
-  //           }
-  //         });
+          // JS 캐시 무시 한번만
+          const scriptTags = document.querySelectorAll('script[src]');
+          scriptTags.forEach(script => {
+            let src = script.getAttribute('src');
+            if (src && !src.includes('?v=')) {
+              const newScript = document.createElement('script');
+              newScript.src = `${src}?v=${version}`;
+              newScript.defer = true;
+              script.parentNode.replaceChild(newScript, script);
+            }
+          });
 
-  //         cacheBusted = true;
-  //       }
-  //     });
-  // });
-
-  // header와 footer를 먼저 로드 (비동기적 병렬 처리)
-  Promise.all([
-    fetch('html/header.html').then(response => response.text()),
-    fetch('html/footer.html').then(response => response.text())
-  ])
-    .then(([headerData, footerData]) => {
-      // header와 footer 삽입
-      document.querySelector('header').innerHTML = headerData;
-      document.querySelector('footer').innerHTML = footerData;
-
-      // header에서 이벤트 바인딩
-      window.bindNavEvents();
-      window.bindHeaderScroll();
-      window.bindMobileNavToggle();
-      updateLogoImageStyle();
-
-      // footer에서 링크 이벤트 처리
-      const footerLinks = document.querySelectorAll('footer a[data-page]');
-      footerLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-          e.preventDefault();
-          const page = link.getAttribute('data-page');
-          window.loadMainContent(page);
-        });
+          cacheBusted = true;
+        }
       });
-
-      // CSS 캐시 무시 한 번만
-      if (!cacheBusted) {
-        const cssLinks = document.querySelectorAll('link[rel="stylesheet"]');
-        cssLinks.forEach(link => {
-          let href = link.getAttribute('href');
-          if (href && !href.includes('?v=')) {
-            const newHref = `${href}?v=${version}`;
-            const newLink = link.cloneNode();
-            newLink.setAttribute('href', newHref);
-            link.parentNode.replaceChild(newLink, link);
-          }
-        });
-
-        // JS 캐시 무시 한 번만
-        const scriptTags = document.querySelectorAll('script[src]');
-        scriptTags.forEach(script => {
-          let src = script.getAttribute('src');
-          if (src && !src.includes('?v=')) {
-            const newScript = document.createElement('script');
-            newScript.src = `${src}?v=${version}`;
-            newScript.defer = true;
-            script.parentNode.replaceChild(newScript, script);
-          }
-        });
-
-        cacheBusted = true;
-      }
-    })
-    .catch(error => {
-      console.error('Error loading header or footer:', error);
-    });
+  });
 
   function updateLogoImageStyle() {
     const logoImg = document.querySelector('.logo img');
