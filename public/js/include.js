@@ -85,6 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .catch(error => console.error('Error loading style.css:', error));
   }
+  loadStyleWithVersion();
 
   function updateLogoImageStyle() {
     const logoImg = document.querySelector('.logo img');
