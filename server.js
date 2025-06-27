@@ -17,7 +17,7 @@ export default async (req, res) => {
     const emailParams = {
       Source: 'ip@defineip.kr', // 검증된 발신자 이메일 주소
       Destination: {
-        ToAddresses: ['ip@defineip.kr'], // 수신자 이메일 주소
+        ToAddresses: ['myoni.x0x@gmail.com'], // 수신자 이메일 주소
       },
       Message: {
         Subject: {
