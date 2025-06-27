@@ -120,7 +120,6 @@ document.addEventListener('DOMContentLoaded', () => {
           else if (pageName === 'location') newUrl = '/location';
           else if (pageName === 'contact') newUrl = '/contact-us';
           else if (pageName === 'professionals') newUrl = '/professionals';
-          else if (pageName === 'professionals/detail') newUrl = '/professionals/detail';
           else if (pageName === 'practices') newUrl = '/practices';
           else if (pageName === 'terms_privacy') newUrl = '/terms-privacy';
           else if (pageName === 'terms_email') newUrl = '/terms-email';
