@@ -61,6 +61,8 @@
   document.getElementById('contactForm').addEventListener('submit', async function (e) {
     e.preventDefault(); // 폼 제출 기본 동작 막기 (페이지 리로드 방지)
 
+    console.log('폼 제출 이벤트 발생');  // 이벤트가 발생했는지 확인
+
     // 폼 데이터 수집
     const formData = {
       category: document.getElementById('category').value,
@@ -71,6 +73,8 @@
       qna: document.getElementById('qna').value,
     };
 
+    console.log('폼 데이터:', formData);  // 폼 데이터가 제대로 수집되는지 확인
+
     // 폼 데이터를 서버로 전송
     try {
       const response = await fetch('/api/send-email', {
@@ -80,8 +84,10 @@
       });
 
       console.log('Response status:', response.status); // 응답 상태 확인
-      // 응답 상태 확인
+
       if (!response.ok) {
+        const errorMessage = await response.text();  // 오류 메시지 출력
+        console.error('Error response:', errorMessage);  // 오류 메시지 출력
         throw new Error('전송 중 오류가 발생했습니다.');
       }
 
