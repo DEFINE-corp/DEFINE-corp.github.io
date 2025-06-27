@@ -1,23 +1,12 @@
-// pages/api/send-email.js
-import AWS from 'aws-sdk';
-
-AWS.config.update({
-  region: process.env.AWS_REGION,  // Vercel 환경 변수에서 리전 읽기
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID,  // Vercel 환경 변수에서 키 읽기
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,  // Vercel 환경 변수에서 비밀 키 읽기
-});
-
-const ses = new AWS.SES({ apiVersion: '2010-12-01' });
-
 export default async (req, res) => {
   if (req.method === 'POST') {
     const { name, email, category, company, phone, qna } = req.body;
 
     // 이메일 내용 구성
     const emailParams = {
-      Source: 'ip@defineip.kr', // 검증된 발신자 이메일 주소
+      Source: 'ip@defineip.kr', // 검증된 발신자 이메일 주소 (SES에서 검증된 이메일 주소)
       Destination: {
-        ToAddresses: ['myoni.x0x@gmail.com'], // 수신자 이메일 주소
+        ToAddresses: ['ip@defineip.kr'], // 수신자 이메일 주소
       },
       Message: {
         Subject: {
@@ -36,6 +25,8 @@ export default async (req, res) => {
           },
         },
       },
+      // 고객 이메일 주소를 Reply-To에 설정
+      ReplyToAddresses: [email], // 고객이 입력한 이메일 주소로 답장을 보내기 위해 설정
     };
 
     // SES를 통해 이메일 전송
