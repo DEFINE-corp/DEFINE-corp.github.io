@@ -10,7 +10,7 @@ const ses = new AWS.SES({
 
 export default async (req, res) => {
   // ✅ CORS 설정
-  res.setHeader('Access-Control-Allow-Origin', '*'); // 또는 'https://www.defineip.kr' 정확히 명시
+  res.setHeader('Access-Control-Allow-Origin', 'https://www.defineip.kr');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
