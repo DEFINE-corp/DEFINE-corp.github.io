@@ -1,3 +1,13 @@
+// AWS SDK 불러오기
+const AWS = require('aws-sdk');
+
+// 환경 변수에서 AWS 액세스 키와 시크릿 키를 가져옵니다.
+const ses = new AWS.SES({
+  region: 'ap-northeast-2',  // SES가 사용하는 AWS 리전
+  accessKeyId: process.env.AKIAUH43KNEYIO3JWRTN,  // AWS Access Key
+  secretAccessKey: process.env.L5WB9/hZTTTz1HVPnuiiN67qru4rPxIASC1bgVRt,  // AWS Secret Key
+});
+
 export default async (req, res) => {
   // ✅ CORS 설정
   res.setHeader('Access-Control-Allow-Origin', '*'); // 또는 'https://www.defineip.kr' 정확히 명시
