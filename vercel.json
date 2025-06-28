@@ -11,5 +11,17 @@
       "destination": "/professionals",
       "permanent": true
     }
+  ],
+  "builds": [
+    {
+      "src": "pages/api/send-email.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/send-email",
+      "dest": "/pages/api/send-email.js"
+    }
   ]
 }
