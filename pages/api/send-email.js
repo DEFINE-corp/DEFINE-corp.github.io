@@ -8,15 +8,13 @@ const ses = new AWS.SES({
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
 });
 
-export default async (req, res) => {
-  // ✅ CORS 설정
+export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', 'https://www.defineip.kr');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-  // ✅ 사전 요청 처리 (OPTIONS)
   if (req.method === 'OPTIONS') {
-    return res.status(200).end(); // 브라우저 사전 요청에 대한 응답
+    return res.status(200).end();
   }
 
   if (req.method === 'POST') {
@@ -24,9 +22,7 @@ export default async (req, res) => {
 
     const emailParams = {
       Source: 'ip@defineip.kr',
-      Destination: {
-        ToAddresses: ['ip@defineip.kr'],
-      },
+      Destination: { ToAddresses: ['ip@defineip.kr'] },
       Message: {
         Subject: { Data: '[DEFINE] 웹사이트 문의 도착' },
         Body: {
@@ -47,13 +43,13 @@ export default async (req, res) => {
 
     try {
       const data = await ses.sendEmail(emailParams).promise();
-      console.log("Email sent successfully", data);
-      res.status(200).json({ message: '이메일이 성공적으로 전송되었습니다.' });
-    } catch (error) {
-      console.error("Error sending email", error);
-      res.status(500).json({ message: '이메일 전송 실패' });
+      console.log('Email sent:', data);
+      return res.status(200).json({ message: '이메일이 성공적으로 전송되었습니다.' });
+    } catch (err) {
+      console.error('Email send error:', err);
+      return res.status(500).json({ message: '이메일 전송 실패' });
     }
-  } else {
-    res.status(405).json({ message: '허용되지 않은 요청' });
   }
-};
+
+  return res.status(405).json({ message: '허용되지 않은 요청입니다.' });
+}

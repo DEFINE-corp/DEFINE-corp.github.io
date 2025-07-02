@@ -1,12 +1,13 @@
 {
   "routes": [
     { "handle": "filesystem" },  
-    {
-      "src": "/professionals/detail",  
+    { "src": "/api/(.*)", "dest": "/api/$1" },  
+    { 
+      "src": "/professionals/detail", 
       "status": 301,
       "headers": { "Location": "/professionals" }
     },
-    { "src": "/", "dest": "/index.html" },  
-    { "src": "/(.*)", "dest": "/index.html" }  
+    { "src": "/", "dest": "/index.html" }, 
+    { "src": "/(.*)", "dest": "/index.html" } 
   ]
 }
