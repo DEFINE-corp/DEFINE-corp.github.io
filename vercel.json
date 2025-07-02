@@ -1,3 +1,14 @@
 {
-  "cleanUrls": true
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "/api/:path*" },
+    { "source": "/", "destination": "/index" },
+    { "source": "/:path*", "destination": "/index" }
+  ],
+  "redirects": [
+    {
+      "source": "/professionals/detail",
+      "destination": "/professionals",
+      "permanent": true
+    }
+  ]
 }
