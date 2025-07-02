@@ -1,10 +1,6 @@
 {
   "rewrites": [
     {
-      "source": "/api/send-email",
-      "destination": "/pages/api/send-email.js"
-    },
-    {
       "source": "/:path*",
       "destination": "/index.html"
     }
