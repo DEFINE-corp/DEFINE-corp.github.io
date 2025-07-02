@@ -3,9 +3,9 @@ const AWS = require('aws-sdk');
 
 // 환경 변수에서 AWS 액세스 키와 시크릿 키를 가져옵니다.
 const ses = new AWS.SES({
-  region: 'ap-northeast-2',  // SES가 사용하는 AWS 리전
-  accessKeyId: process.env.AKIAUH43KNEYIO3JWRTN,  // AWS Access Key
-  secretAccessKey: process.env.L5WB9/hZTTTz1HVPnuiiN67qru4rPxIASC1bgVRt,  // AWS Secret Key
+  region: process.env.AWS_REGION,
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
 });
 
 export default async (req, res) => {
