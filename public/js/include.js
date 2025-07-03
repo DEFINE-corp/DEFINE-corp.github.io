@@ -133,8 +133,6 @@ document.addEventListener('DOMContentLoaded', () => {
           form.addEventListener('submit', async function (e) {
             e.preventDefault();
         
-            alert('폼 제출 이벤트 발생'); // ✅ alert 테스트
-        
             const formData = {
               category: document.getElementById('category').value,
               name: document.getElementById('name').value,
