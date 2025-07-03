@@ -408,6 +408,9 @@ body.sub main {
   margin-bottom: clamp(10px, 1.8vh, 16px);
   font-size: clamp(0.813rem, 1vw, 0.9375rem);
 }
+.email_form_sort label .required {
+  color: var(--color-red);
+}
 .email_form_sort select,
 .email_form_sort input,
 .email_form_sort textarea {
@@ -417,6 +420,7 @@ body.sub main {
 }
 .email_form_sort textarea {
   height: clamp(200px, 35vh, 306px);
+  line-height: 1.2;
 }
 .email_send {
   display: flex;
