@@ -1,7 +1,4 @@
 {
-  "functions": {
-    "api/**/*.js": {}
-  },
   "routes": [
     { "handle": "filesystem" },
     { "src": "/api/send-email", "dest": "/api/send-email.js" },
