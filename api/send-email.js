@@ -64,8 +64,9 @@ export default async function handler(req, res) {
 
       // reCAPTCHA 검증 실패 시
       if (!recaptchaResult.success) {
+        console.error('reCAPTCHA 검증 실패:', recaptchaResult['error-codes']);
         return res.status(400).json({ message: 'reCAPTCHA 검증에 실패했습니다. 다시 시도해 주세요.' });
-      }
+      }      
 
       const emailParams = {
         Source: 'ip@defineip.kr',
