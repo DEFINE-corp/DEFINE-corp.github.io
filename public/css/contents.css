@@ -434,6 +434,11 @@ body.sub main {
   border-radius: 2.625rem;
   background: var(--color-default);
 }
+.g-recaptcha {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.875rem;
+}
 
 /* terms */
 .terms_content {
