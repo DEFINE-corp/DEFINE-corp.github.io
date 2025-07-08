@@ -47,14 +47,18 @@ export default async function handler(req, res) {
   }
 
   if (req.method === 'POST') {
-    const { name, email, category, company, phone, qna } = req.body;
+    const { name, email, category, company, phone, qna, recaptchaToken } = req.body;
 
-    const recaptchaVerificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${RECAPTCHA_SECRET_KEY}&response=${recaptchaToken}`;
+    const recaptchaVerificationUrl = `https://www.google.com/recaptcha/api/siteverify`;
 
     try {
       // Google reCAPTCHA 검증 요청
       const recaptchaResponse = await fetch(recaptchaVerificationUrl, {
         method: 'POST',
+        body: new URLSearchParams({
+          secret: RECAPTCHA_SECRET_KEY,   // 비공개 키
+          response: recaptchaToken,      // 클라이언트에서 받은 reCAPTCHA 토큰
+        }),
       });
       const recaptchaResult = await recaptchaResponse.json();
 
