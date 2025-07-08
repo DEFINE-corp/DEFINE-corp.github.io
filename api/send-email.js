@@ -8,7 +8,33 @@ const ses = new AWS.SES({
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
 });
 
+const requestCounts = {};
+
 export default async function handler(req, res) {
+  const clientIP = req.headers['x-forwarded-for'] || req.connection.remoteAddress; // 클라이언트 IP 추출
+
+  // Rate Limiting (5분에 1번 요청만 허용)
+  const currentTime = Date.now();
+  const windowTime = 5 * 60 * 1000; // 5분
+  const limit = 1; // 최대 요청 횟수 (5분에 1번)
+
+  if (!requestCounts[clientIP]) {
+    requestCounts[clientIP] = { count: 0, timestamp: currentTime };
+  }
+
+  // 요청 시간과 요청 카운트 체크
+  if (currentTime - requestCounts[clientIP].timestamp < windowTime) {
+    if (requestCounts[clientIP].count >= limit) {
+      return res.status(429).json({ message: '요청 횟수를 초과했습니다. 잠시 후 다시 시도해 주세요.' });
+    }
+  } else {
+    // 시간 초과 후 카운트 리셋
+    requestCounts[clientIP] = { count: 0, timestamp: currentTime };
+  }
+
+  // 요청 카운트 증가
+  requestCounts[clientIP].count++;
+
   res.setHeader('Access-Control-Allow-Origin', 'https://www.defineip.kr');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
