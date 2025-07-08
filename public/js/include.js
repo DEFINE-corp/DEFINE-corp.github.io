@@ -133,38 +133,40 @@ document.addEventListener('DOMContentLoaded', () => {
           form.addEventListener('submit', async function (e) {
             e.preventDefault();
 
-            const recaptchaToken = await grecaptcha.execute('6Lcym3srAAAAALNs3lXgCt5Zx70LycNFH5Fft1SC', { action: 'submit' });
-        
-            const formData = {
-              category: document.getElementById('category').value,
-              name: document.getElementById('name').value,
-              company: document.getElementById('company').value,
-              phone: document.getElementById('phone').value,
-              email: document.getElementById('email').value,
-              qna: document.getElementById('qna').value,
-              recaptchaToken: recaptchaToken,
-            };
-        
-            try {
-              const response = await fetch('/api/send-email', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData),
-              });
-        
-              if (!response.ok) {
-                const errorMessage = await response.text();
-                console.error('Error response:', errorMessage);
-                throw new Error('전송 중 오류가 발생했습니다.');
+            grecaptcha.ready(async function () {
+              const recaptchaToken = await grecaptcha.execute('6Lcym3srAAAAALNs3lXgCt5Zx70LycNFH5Fft1SC', { action: 'submit' });
+          
+              const formData = {
+                category: document.getElementById('category').value,
+                name: document.getElementById('name').value,
+                company: document.getElementById('company').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                qna: document.getElementById('qna').value,
+                recaptchaToken: recaptchaToken,
+              };
+          
+              try {
+                const response = await fetch('/api/send-email', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify(formData),
+                });
+          
+                if (!response.ok) {
+                  const errorMessage = await response.text();
+                  console.error('Error response:', errorMessage);
+                  throw new Error('전송 중 오류가 발생했습니다.');
+                }
+          
+                const responseData = await response.json();
+                alert(responseData.message);
+                form.reset();
+              } catch (err) {
+                console.error('Error:', err);
+                alert('전송 실패');
               }
-        
-              const responseData = await response.json();
-              alert(responseData.message);
-              form.reset();
-            } catch (err) {
-              console.error('Error:', err);
-              alert('전송 실패');
-            }
+            });
           });
         }        
       })
