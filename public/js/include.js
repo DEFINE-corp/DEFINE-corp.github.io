@@ -130,12 +130,11 @@ document.addEventListener('DOMContentLoaded', () => {
           const form = document.getElementById('contactForm');
           if (!form) return;
         
-          form.addEventListener('submit', function (e) {
+          form.addEventListener('submit', async function (e) {
             e.preventDefault();
-        
-            // reCAPTCHA 토큰 가져오기 (v2에서 사용하는 방식)
+
             const recaptchaToken = grecaptcha.getResponse();
-        
+
             // reCAPTCHA 토큰이 비어 있으면 검증 오류 처리
             if (!recaptchaToken) {
               alert('reCAPTCHA를 완료해주세요.');
@@ -149,34 +148,30 @@ document.addEventListener('DOMContentLoaded', () => {
               phone: document.getElementById('phone').value,
               email: document.getElementById('email').value,
               qna: document.getElementById('qna').value,
-              recaptchaToken: recaptchaToken, // 여기에서 받은 토큰을 포함
+              recaptchaToken: recaptchaToken,
             };
         
-            // 서버로 폼 데이터 전송
-            fetch('/api/send-email', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(formData),
-            })
-            .then(function (response) {
+            try {
+              const response = await fetch('/api/send-email', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
+              });
+        
               if (!response.ok) {
-                return response.text().then(function (errorMessage) {
-                  console.error('Error response:', errorMessage);
-                  throw new Error('전송 중 오류가 발생했습니다.');
-                });
+                const errorMessage = await response.text();
+                console.error('Error response:', errorMessage);
+                throw new Error('전송 중 오류가 발생했습니다.');
               }
         
-              return response.json();
-            })
-            .then(function (responseData) {
-              alert(responseData.message); // 성공 메시지 표시
-              form.reset(); // 폼 리셋
-            })
-            .catch(function (err) {
+              const responseData = await response.json();
+              alert(responseData.message);
+              form.reset();
+            } catch (err) {
               console.error('Error:', err);
-              alert('전송 실패'); // 오류 메시지 표시
-            });
-          });        
+              alert('전송 실패');
+            }
+          }); 
         }        
       })
       .catch(error => {
