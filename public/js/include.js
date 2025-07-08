@@ -132,6 +132,8 @@ document.addEventListener('DOMContentLoaded', () => {
         
           form.addEventListener('submit', async function (e) {
             e.preventDefault();
+
+            const recaptchaToken = await grecaptcha.execute('6Lcym3srAAAAALNs3lXgCt5Zx70LycNFH5Fft1SC', { action: 'submit' });
         
             const formData = {
               category: document.getElementById('category').value,
@@ -140,6 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
               phone: document.getElementById('phone').value,
               email: document.getElementById('email').value,
               qna: document.getElementById('qna').value,
+              recaptchaToken: recaptchaToken,
             };
         
             try {

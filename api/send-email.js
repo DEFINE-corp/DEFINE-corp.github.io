@@ -1,5 +1,6 @@
 // AWS SDK 불러오기
 const AWS = require('aws-sdk');
+const fetch = require('node-fetch');
 
 // 환경 변수에서 AWS 액세스 키와 시크릿 키를 가져옵니다.
 const ses = new AWS.SES({
@@ -7,6 +8,8 @@ const ses = new AWS.SES({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
 });
+
+const RECAPTCHA_SECRET_KEY = process.env.RECAPTCHA_SECRET_KEY;
 
 const requestCounts = {};
 
@@ -46,28 +49,41 @@ export default async function handler(req, res) {
   if (req.method === 'POST') {
     const { name, email, category, company, phone, qna } = req.body;
 
-    const emailParams = {
-      Source: 'ip@defineip.kr',
-      Destination: { ToAddresses: ['ip@defineip.kr'] },
-      Message: {
-        Subject: { Data: '[DEFINE] 웹사이트 문의 도착' },
-        Body: {
-          Text: {
-            Data: `
-              [문의 분야]: ${category}
-              [이름]: ${name}
-              [회사]: ${company}
-              [전화번호]: ${phone}
-              [이메일]: ${email}
-              [문의 내용]: ${qna}
-            `,
-          },
-        },
-      },
-      ReplyToAddresses: [email],
-    };
+    const recaptchaVerificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${RECAPTCHA_SECRET_KEY}&response=${recaptchaToken}`;
 
     try {
+      // Google reCAPTCHA 검증 요청
+      const recaptchaResponse = await fetch(recaptchaVerificationUrl, {
+        method: 'POST',
+      });
+      const recaptchaResult = await recaptchaResponse.json();
+
+      // reCAPTCHA 검증 실패 시
+      if (!recaptchaResult.success) {
+        return res.status(400).json({ message: 'reCAPTCHA 검증에 실패했습니다. 다시 시도해 주세요.' });
+      }
+
+      const emailParams = {
+        Source: 'ip@defineip.kr',
+        Destination: { ToAddresses: ['ip@defineip.kr'] },
+        Message: {
+          Subject: { Data: '[DEFINE] 웹사이트 문의 도착' },
+          Body: {
+            Text: {
+              Data: `
+                [문의 분야]: ${category}
+                [이름]: ${name}
+                [회사]: ${company}
+                [전화번호]: ${phone}
+                [이메일]: ${email}
+                [문의 내용]: ${qna}
+              `,
+            },
+          },
+        },
+        ReplyToAddresses: [email],
+      };
+
       const data = await ses.sendEmail(emailParams).promise();
       console.log('Email sent:', data);
       return res.status(200).json({ message: '이메일이 성공적으로 전송되었습니다.' });
