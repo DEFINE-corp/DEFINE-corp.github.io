@@ -130,49 +130,53 @@ document.addEventListener('DOMContentLoaded', () => {
           const form = document.getElementById('contactForm');
           if (!form) return;
         
-          form.addEventListener('submit', async function (e) {
+          form.addEventListener('submit', function (e) {
             e.preventDefault();
-
-            grecaptcha.ready(function () {
-              // grecaptcha.execute는 then()을 사용하여 처리
-              grecaptcha.execute('6Lcym3srAAAAALNs3lXgCt5Zx70LycNFH5Fft1SC', { action: 'submit' })
-                .then(function (recaptchaToken) {
-                  const formData = {
-                    category: document.getElementById('category').value,
-                    name: document.getElementById('name').value,
-                    company: document.getElementById('company').value,
-                    phone: document.getElementById('phone').value,
-                    email: document.getElementById('email').value,
-                    qna: document.getElementById('qna').value,
-                    recaptchaToken: recaptchaToken,
-                  };
         
-                  return fetch('/api/send-email', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(formData),
-                  });
-                })
-                .then(function (response) {
-                  if (!response.ok) {
-                    return response.text().then(function (errorMessage) {
-                      console.error('Error response:', errorMessage);
-                      throw new Error('전송 중 오류가 발생했습니다.');
-                    });
-                  }
-
-                  return response.json();
-                })
-                .then(function (responseData) {
-                  alert(responseData.message);
-                  form.reset();
-                })
-                .catch(function (err) {
-                  console.error('Error:', err);
-                  alert('전송 실패');
+            // reCAPTCHA 토큰 가져오기 (v2에서 사용하는 방식)
+            const recaptchaToken = grecaptcha.getResponse();
+        
+            // reCAPTCHA 토큰이 비어 있으면 검증 오류 처리
+            if (!recaptchaToken) {
+              alert('reCAPTCHA를 완료해주세요.');
+              return;
+            }
+        
+            const formData = {
+              category: document.getElementById('category').value,
+              name: document.getElementById('name').value,
+              company: document.getElementById('company').value,
+              phone: document.getElementById('phone').value,
+              email: document.getElementById('email').value,
+              qna: document.getElementById('qna').value,
+              recaptchaToken: recaptchaToken, // 여기에서 받은 토큰을 포함
+            };
+        
+            // 서버로 폼 데이터 전송
+            fetch('/api/send-email', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(formData),
+            })
+            .then(function (response) {
+              if (!response.ok) {
+                return response.text().then(function (errorMessage) {
+                  console.error('Error response:', errorMessage);
+                  throw new Error('전송 중 오류가 발생했습니다.');
                 });
+              }
+        
+              return response.json();
+            })
+            .then(function (responseData) {
+              alert(responseData.message); // 성공 메시지 표시
+              form.reset(); // 폼 리셋
+            })
+            .catch(function (err) {
+              console.error('Error:', err);
+              alert('전송 실패'); // 오류 메시지 표시
             });
-          });
+          });        
         }        
       })
       .catch(error => {
