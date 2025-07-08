@@ -133,39 +133,44 @@ document.addEventListener('DOMContentLoaded', () => {
           form.addEventListener('submit', async function (e) {
             e.preventDefault();
 
-            grecaptcha.ready(async function () {
-              const recaptchaToken = await grecaptcha.execute('6Lcym3srAAAAALNs3lXgCt5Zx70LycNFH5Fft1SC', { action: 'submit' });
-          
-              const formData = {
-                category: document.getElementById('category').value,
-                name: document.getElementById('name').value,
-                company: document.getElementById('company').value,
-                phone: document.getElementById('phone').value,
-                email: document.getElementById('email').value,
-                qna: document.getElementById('qna').value,
-                recaptchaToken: recaptchaToken,
-              };
-          
-              try {
-                const response = await fetch('/api/send-email', {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify(formData),
+            grecaptcha.ready(function () {
+              // grecaptcha.execute는 then()을 사용하여 처리
+              grecaptcha.execute('6Lcym3srAAAAALNs3lXgCt5Zx70LycNFH5Fft1SC', { action: 'submit' })
+                .then(function (recaptchaToken) {
+                  const formData = {
+                    category: document.getElementById('category').value,
+                    name: document.getElementById('name').value,
+                    company: document.getElementById('company').value,
+                    phone: document.getElementById('phone').value,
+                    email: document.getElementById('email').value,
+                    qna: document.getElementById('qna').value,
+                    recaptchaToken: recaptchaToken,
+                  };
+        
+                  return fetch('/api/send-email', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData),
+                  });
+                })
+                .then(function (response) {
+                  if (!response.ok) {
+                    return response.text().then(function (errorMessage) {
+                      console.error('Error response:', errorMessage);
+                      throw new Error('전송 중 오류가 발생했습니다.');
+                    });
+                  }
+
+                  return response.json();
+                })
+                .then(function (responseData) {
+                  alert(responseData.message);
+                  form.reset();
+                })
+                .catch(function (err) {
+                  console.error('Error:', err);
+                  alert('전송 실패');
                 });
-          
-                if (!response.ok) {
-                  const errorMessage = await response.text();
-                  console.error('Error response:', errorMessage);
-                  throw new Error('전송 중 오류가 발생했습니다.');
-                }
-          
-                const responseData = await response.json();
-                alert(responseData.message);
-                form.reset();
-              } catch (err) {
-                console.error('Error:', err);
-                alert('전송 실패');
-              }
             });
           });
         }        
