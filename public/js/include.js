@@ -135,6 +135,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const recaptchaToken = grecaptcha.getResponse();
 
+            console.log("리캡챠 토큰: ", recaptchaToken);
+
             // reCAPTCHA 토큰이 비어 있으면 검증 오류 처리
             if (!recaptchaToken) {
               alert('reCAPTCHA를 완료해주세요.');
