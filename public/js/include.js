@@ -140,7 +140,6 @@ document.addEventListener('DOMContentLoaded', () => {
               phone: document.getElementById('phone').value,
               email: document.getElementById('email').value,
               qna: document.getElementById('qna').value,
-              recaptchaToken: recaptchaToken,
             };
         
             try {
