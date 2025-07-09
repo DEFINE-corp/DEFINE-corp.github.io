@@ -46,28 +46,28 @@ export default async function handler(req, res) {
   if (req.method === 'POST') {
     const { name, email, category, company, phone, qna } = req.body;
 
-    try {
-      const emailParams = {
-        Source: 'ip@defineip.kr',
-        Destination: { ToAddresses: ['ip@defineip.kr'] },
-        Message: {
-          Subject: { Data: '[DEFINE] 웹사이트 문의 도착' },
-          Body: {
-            Text: {
-              Data: `
-                [문의 분야]: ${category}
-                [이름]: ${name}
-                [회사]: ${company}
-                [전화번호]: ${phone}
-                [이메일]: ${email}
-                [문의 내용]: ${qna}
-              `,
-            },
+    const emailParams = {
+      Source: 'ip@defineip.kr',
+      Destination: { ToAddresses: ['ip@defineip.kr'] },
+      Message: {
+        Subject: { Data: '[DEFINE] 웹사이트 문의 도착' },
+        Body: {
+          Text: {
+            Data: `
+              [문의 분야]: ${category}
+              [이름]: ${name}
+              [회사]: ${company}
+              [전화번호]: ${phone}
+              [이메일]: ${email}
+              [문의 내용]: ${qna}
+            `,
           },
         },
-        ReplyToAddresses: [email],
-      };
-
+      },
+      ReplyToAddresses: [email],
+    };
+    
+    try {
       const data = await ses.sendEmail(emailParams).promise();
       console.log('Email sent:', data);
       return res.status(200).json({ message: '이메일이 성공적으로 전송되었습니다.' });
