@@ -132,16 +132,6 @@ document.addEventListener('DOMContentLoaded', () => {
         
           form.addEventListener('submit', async function (e) {
             e.preventDefault();
-
-            const recaptchaToken = grecaptcha.getResponse();
-
-            console.log("리캡챠 토큰: ", recaptchaToken);
-
-            // reCAPTCHA 토큰이 비어 있으면 검증 오류 처리
-            if (!recaptchaToken) {
-              alert('reCAPTCHA를 완료해주세요.');
-              return;
-            }
         
             const formData = {
               category: document.getElementById('category').value,

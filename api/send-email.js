@@ -1,6 +1,5 @@
 // AWS SDK 불러오기
 const AWS = require('aws-sdk');
-const fetch = require('node-fetch');
 
 // 환경 변수에서 AWS 액세스 키와 시크릿 키를 가져옵니다.
 const ses = new AWS.SES({
@@ -8,8 +7,6 @@ const ses = new AWS.SES({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
 });
-
-const RECAPTCHA_SECRET_KEY = process.env.RECAPTCHA_SECRET_KEY;
 
 const requestCounts = {};
 
@@ -47,27 +44,9 @@ export default async function handler(req, res) {
   }
 
   if (req.method === 'POST') {
-    const { name, email, category, company, phone, qna, recaptchaToken } = req.body;
-
-    const recaptchaVerificationUrl = `https://www.google.com/recaptcha/api/siteverify`;
+    const { name, email, category, company, phone, qna } = req.body;
 
     try {
-      // Google reCAPTCHA 검증 요청
-      const recaptchaResponse = await fetch(recaptchaVerificationUrl, {
-        method: 'POST',
-        body: new URLSearchParams({
-          secret: RECAPTCHA_SECRET_KEY,   // 비공개 키
-          response: recaptchaToken,      // 클라이언트에서 받은 reCAPTCHA 토큰
-        }),
-      });
-      const recaptchaResult = await recaptchaResponse.json();
-
-      // reCAPTCHA 검증 실패 시
-      if (!recaptchaResult.success) {
-        console.error('reCAPTCHA 검증 실패:', recaptchaResult['error-codes']);
-        return res.status(400).json({ message: 'reCAPTCHA 검증에 실패했습니다. 다시 시도해 주세요.' });
-      }      
-
       const emailParams = {
         Source: 'ip@defineip.kr',
         Destination: { ToAddresses: ['ip@defineip.kr'] },
