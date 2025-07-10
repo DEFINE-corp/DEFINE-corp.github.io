@@ -8,6 +8,8 @@ const ses = new AWS.SES({
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
 });
 
+const RECAPTCHA_SECRET_KEY = process.env.RECAPTCHA_SECRET_KEY;
+
 const requestCounts = {};
 
 export default async function handler(req, res) {
@@ -44,7 +46,9 @@ export default async function handler(req, res) {
   }
 
   if (req.method === 'POST') {
-    const { name, email, category, company, phone, qna } = req.body;
+    const { name, email, category, company, phone, qna, recaptchaToken } = req.body;
+
+    const recaptchaVerificationUrl = `https://www.google.com/recaptcha/api/siteverify`;
 
     const emailParams = {
       Source: 'ip@defineip.kr',
@@ -68,6 +72,22 @@ export default async function handler(req, res) {
     };
     
     try {
+      // Google reCAPTCHA 검증 요청
+      const recaptchaResponse = await fetch(recaptchaVerificationUrl, {
+        method: 'POST',
+        body: new URLSearchParams({
+          secret: RECAPTCHA_SECRET_KEY,   // 비공개 키
+          response: recaptchaToken,      // 클라이언트에서 받은 reCAPTCHA 토큰
+        }),
+      });
+      const recaptchaResult = await recaptchaResponse.json();
+
+      // reCAPTCHA 검증 실패 시
+      if (!recaptchaResult.success) {
+        console.error('reCAPTCHA 검증 실패:', recaptchaResult['error-codes']);
+        return res.status(400).json({ message: 'reCAPTCHA 검증에 실패했습니다. 다시 시도해 주세요.' });
+      }
+      
       const data = await ses.sendEmail(emailParams).promise();
       console.log('Email sent:', data);
       return res.status(200).json({ message: '이메일이 성공적으로 전송되었습니다.' });

@@ -130,8 +130,14 @@ document.addEventListener('DOMContentLoaded', () => {
           const form = document.getElementById('contactForm');
           if (!form) return;
         
-          form.addEventListener('submit', async function (e) {
-            e.preventDefault();
+          // form.addEventListener('submit', async function (e) {
+          //   e.preventDefault();
+
+          window.onSubmitRecaptcha = async function (recaptchaToken) {
+            if (!recaptchaToken) {
+              alert('reCAPTCHA를 완료해주세요.');
+              return;
+            }
         
             const formData = {
               category: document.getElementById('category').value,
@@ -140,6 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
               phone: document.getElementById('phone').value,
               email: document.getElementById('email').value,
               qna: document.getElementById('qna').value,
+              recaptchaToken,
             };
         
             try {
@@ -161,8 +168,16 @@ document.addEventListener('DOMContentLoaded', () => {
             } catch (err) {
               console.error('Error:', err);
               alert('전송 실패');
+            } finally {
+              //reCAPTCHA reset
+              grecaptcha.reset()
             }
-          }); 
+          };
+
+          form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            grecaptcha.execute(); // Invisible reCAPTCHA 실행
+          });
         }        
       })
       .catch(error => {
