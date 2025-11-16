@@ -18,21 +18,23 @@ document.addEventListener('DOMContentLoaded', () => {
           const detail = detailItems[index];
           detail.style.display = 'flex';
 
-          const isMobile = window.innerWidth <= 768;
+          window.scrollTo({ top: 0, behavior: 'smooth' });
 
-          if (isMobile) {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          } else {
-            const rect = detail.getBoundingClientRect();
-            const detailTop = rect.top + window.scrollY;
-            const detailHeight = rect.height;
-            const windowHeight = window.innerHeight;
+          // const isMobile = window.innerWidth <= 768;
+
+          // if (isMobile) {
+          //   window.scrollTo({ top: 0, behavior: 'smooth' });
+          // } else {
+          //   const rect = detail.getBoundingClientRect();
+          //   const detailTop = rect.top + window.scrollY;
+          //   const detailHeight = rect.height;
+          //   const windowHeight = window.innerHeight;
       
-            window.scrollTo({
-              top: detailTop - (windowHeight / 2) + (detailHeight / 2),
-              behavior: 'smooth'
-            });
-          }
+          //   window.scrollTo({
+          //     top: detailTop - (windowHeight / 2) + (detailHeight / 2),
+          //     behavior: 'smooth'
+          //   });
+          // }
       
           history.pushState({ pageName: 'professionals/detail', index }, '', '/professionals/detail');
         } else {
